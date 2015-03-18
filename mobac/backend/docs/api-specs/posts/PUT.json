@@ -1,0 +1,26 @@
+/posts/<post_Id>
+
+	PUT: "http://api.loc.dpower4.com/v0/posts/3"
+
+	Response: 
+
+    {
+       "internal_status":
+       {
+           "code": "2002",
+           "message": "Post Updated"
+       },
+       "data":
+       {
+           "posts":
+           [
+               {
+                   "id": "3",
+                   "chId": "761",
+                   "title": "The Future of One-on-One Education",
+                   "hashtag": "#digitalCollaboration #future #education #onotoone #learning #freetutor #idea",
+                   "shareCount": "2"
+               }
+           ]
+       }
+    }

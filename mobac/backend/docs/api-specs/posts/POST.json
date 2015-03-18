@@ -1,0 +1,26 @@
+/posts
+
+	POST: "http://api.loc.dpower4.com/v0/posts"
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2001",
+           "message": "Post Created"
+       },
+       "data":
+       {
+           "posts":
+           [
+               {
+                   "id": 17,
+                   "chId": "1573",
+                   "title": "Wear This Sticker To make Calls And Listen To Music",
+                   "hashtag": "#digitalCollaboration #wearabletech #sensors #weartech #iSkin #beforehand",
+                   "shareCount": 0
+               }
+           ]
+       }
+    }

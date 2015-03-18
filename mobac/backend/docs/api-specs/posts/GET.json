@@ -1,0 +1,65 @@
+/posts
+
+	GET "http://api.loc.dpower4.com/v0/posts"
+
+	Response: 
+	{
+       "internal_status":
+       {
+           "code": "2000",
+           "message": "Post Fetched"
+       },
+       "data":
+       {
+           "posts":
+           [
+               {
+	               "id": "14",
+	               "chId": "1557",
+	               "title": "Franz Anton Mesmer: Innovator of hypnotism",
+	               "hashtag": "#digitalCollaboration ##manofday #hypnotism #inventor #physician #magn",
+	               "shareCount": "1"
+	           },
+	           {
+	               "id": "15",
+	               "chId": "1549",
+	               "title": "Frozenbyte Announces Trine 3: The Artifacts Of Power",
+	               "hashtag": "#digitalCollaboration #Frozenbyte #gaming #trine3 #artifacts #PlayStat",
+	               "shareCount": "1"
+	           },
+	           {
+	               "id": "16",
+	               "chId": "1565",
+	               "title": "Five Cool Things Revealed at Mobile World Congress",
+	               "hashtag": "#digitalCollaboration #MWC #cooltech #smartwatch #5G # virtualreality ",
+	               "shareCount": "1"
+	           }
+            ]
+       }
+    }
+
+/posts/<post_Id>
+	
+	GET "http://api.loc.dpower4.com/v0/posts/16"
+
+	Response: 
+    {
+       "internal_status":
+       {
+           "code": "2000",
+           "message": "Post Fetched"
+       },
+       "data":
+       {
+           "posts":
+           [
+               {
+                   "id": "16",
+                   "chId": "1565",
+                   "title": "Five Cool Things Revealed at Mobile World Congress",
+                   "hashtag": "#digitalCollaboration #MWC #cooltech #smartwatch #5G # virtualreality ",
+                   "shareCount": "0"
+               }
+           ]
+       }
+    }

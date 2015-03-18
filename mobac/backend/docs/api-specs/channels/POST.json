@@ -1,0 +1,33 @@
+/channels
+
+	POST "https://cap.app:123@nucleus.capillary.in/v0/channels"
+
+	POST Data: 
+	{
+	  "root": {
+		"chId": "4", 
+        "title": "this is sample title", 
+        "hashtag": "#hash #tags"
+	  }
+	}
+
+	Response:
+	{
+	    "internal_status": {
+	        "code": "2001",
+	        "message": "Channel Created"
+	    },
+	    "data": {
+	        "channels": [
+	            {
+	                "id": "2",
+	                "name": "facebook",
+	                "description": "Facebook API Integration", 
+	                "sources": [
+	                    "microsite",
+	                    "ecommerce"
+	                ]
+	            }
+	        ]
+	    }
+	}

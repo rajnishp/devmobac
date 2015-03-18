@@ -1,0 +1,39 @@
+<h4>Edit Post</h4> <hr />
+<form class="edit-post-form" role="form">
+
+      <legend><%= post ? 'Edit' : 'New' %> Post</legend>
+      <table>
+      <% if (post){ %>
+          <tr>
+            <td>ID</td>
+            <td>
+              <%= post.id  %>
+            </td>
+          </tr>
+          <% }%>
+
+       
+       <tr>
+        <td> Challenge Id:</td>
+        <td>  <input name="chId" class="input-block-level" type="text" value="<%= post ? post.chId : '' %>">
+        </td>
+        <tr>
+        <td> Title:
+        </td>
+        <td>
+          <input name="title" class="input-block-level" type="text" value="<%= post ? post.title : '' %>">
+          </td>
+
+        <td> Hashtag:
+        </td>
+        <td>
+          <input name="hashtag" class="input-block-level" type="text" value="<%= post ? post.hashtag : '' %>">
+          </td>
+      </table>
+        <hr />
+       <button type="submit" class="btn"><%= post ? 'Update' : 'Create' %></button>
+       <% if(post) { %>
+        <input type="hidden" name="id" value="<%= post.id %>" />
+       <button data-channel-id="<%= post.id %>" class="btn btn-danger" id="delpost">Delete</button>
+       <% }; %>
+    </form>
