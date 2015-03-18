@@ -14,16 +14,6 @@
 
             switch($resourceType) {
 
-            	case '/posts': 
-            		require_once 'resources/PostsResource.class.php';
-            		$this -> resource = new PostsResource();
-                break;
-
-                case '/posts-to-share': 
-                    require_once 'resources/PostsToShareResource.class.php';
-                    $this -> resource = new PostsToShareResource();
-                break;
-
                 case '/messages': 
                     require_once 'resources/MessagesResource.class.php';
                     $this -> resource = new MessagesResource();
