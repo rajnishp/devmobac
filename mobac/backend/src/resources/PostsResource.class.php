@@ -15,18 +15,23 @@ class PostsResource implements Resource {
     private $posts;
 
     public function __construct() {
-		$DAOFactory = new DAOFactory();
+		
+        $DAOFactory = new DAOFactory();
 		$this->postDAO = $DAOFactory->getPostsDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
-		return in_array($requestMethod, array('get', 'put', 'post', 'delete', 'options'));
+	
+    	return in_array($requestMethod, array('get', 'put', 'post', 'delete', 'options'));
     }
 
-    public function options() {    }
+    public function options() {    
+
+    }
 
     
     public function delete ($resourceVals, $data) {
+    
         global $logger, $warnings_payload; 
         $postId = $resourceVals ['posts'];
 
@@ -49,6 +54,7 @@ class PostsResource implements Resource {
     }
 
     public function put ($resourceVals, $data) {
+    
         global $logger, $warnings_payload;
         $update = false;
         
@@ -113,6 +119,7 @@ class PostsResource implements Resource {
     }
 
     public function post ($resourceVals, $data) {
+    
         global $logger, $warnings_payload;
 
         $postId = $resourceVals ['posts'];
@@ -163,7 +170,8 @@ class PostsResource implements Resource {
     }
 
     private function getPost($postId) {
-		global $logger;
+	
+    	global $logger;
 		$logger->debug('Fetch list of  post...');
 
 		$postObj = $this -> postDAO -> load($postId);
@@ -185,7 +193,8 @@ class PostsResource implements Resource {
     }
 
     private function getListOfAllPosts() {
-		global $logger;
+	
+    	global $logger;
 		$logger->debug('Fetch list of all post...');
 
 		$listOfPostObjs = $this -> postDAO -> readAll();
@@ -208,7 +217,8 @@ class PostsResource implements Resource {
 
 
     private function sanitize($data) {
-		if (!isset($data ['chId']))
+	
+    	if (!isset($data ['chId']))
 	    	throw new MissingParametersException("'chId' field is missing");
 
 		if (!isset($data ['title']))
