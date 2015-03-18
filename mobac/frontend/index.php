@@ -94,7 +94,7 @@ if ($user_id != "admin") {
       </div>
       <div class='col-md-10' >
         <div id="page">
-          Loading Smart Share UI....
+          Loading Mobac UI....
         </div>
       </div> 
   </div>

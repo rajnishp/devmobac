@@ -1,0 +1,21 @@
+<h4>List of Locations</h4> <hr />
+<a href="#/new" class="btn btn-primary">New</a>
+  <br/><br/>
+  <table class="display" id='locationsTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th> ID</th><th>Latitude</th><th>Longitude</th><th>Time</th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(locations, function(location) { %>
+        <tr>
+          <td><%= location.id %></td>
+          <td><%= location.latitude %></td>
+          <td><%= location.longitude %></td>
+          <td><%= location.time %></td>
+          <td><a class="btn" href="#/edit/<%= location.id %>">Edit</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

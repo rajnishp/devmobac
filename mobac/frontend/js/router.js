@@ -24,7 +24,7 @@ define([
         }
     });
 
-    window.BASE_URL = 'http://api.loc.dpower4.com/v0';
+    window.BASE_URL = 'http://api.loc.mobac.com/v0';
     window.app_router = new AppRouter;
     //console.log("new router request");
     var initialize = function () {
