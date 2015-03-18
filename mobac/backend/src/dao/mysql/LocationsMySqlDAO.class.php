@@ -60,9 +60,9 @@ class LocationsMySqlDAO implements LocationsDAO{
 		$sql = 'INSERT INTO locations (latitude, longitude, time) VALUES (?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($location->latitude);
-		$sqlQuery->set($location->longitude);
-		$sqlQuery->set($location->time);
+		$sqlQuery->set($location->getLatitude());
+		$sqlQuery->set($location->getLongitude());
+		$sqlQuery->set($location->getTime());
 
 		$id = $this->executeInsert($sqlQuery);	
 		$location->id = $id;

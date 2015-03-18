@@ -12,8 +12,8 @@ require_once('utils/sql/ConnectionProperty.class.php');
 require_once('utils/sql/QueryExecutor.class.php');
 require_once('utils/sql/Transaction.class.php');
 require_once('utils/sql/SqlQuery.class.php');
-require_once('utils/core/ArrayList.class.php');
-require_once('utils/dao/DAOFactory.class.php');
+require_once('utils/ArrayList.class.php');
+//require_once('utils/dao/DAOFactory.class.php');
 
 class DAOFactory{
 	
