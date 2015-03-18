@@ -16,7 +16,7 @@ if ($user_id != "admin") {
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Smart Share</title>
+	<title>Mobac</title>
 	<meta name="description" content="">
 	<meta name="author" content="rahul lahoria">
 
@@ -58,7 +58,7 @@ if ($user_id != "admin") {
           		
           </a>
           <a href="index.php" class="navbar-brand">
-          		Smart Share
+          		Mobac
           </a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
@@ -70,12 +70,14 @@ if ($user_id != "admin") {
           
 
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" >Messages</a></li>
+            <li><a href="#" >Call Details</a></li>
+            <li><a href="#" >Locations</a></li>
             <li><a href="#" >Home</a></li>
-            <!-- <li><a href="#" >Organizations</a></li>
-        	<li ><a href="#/channels" >Channels</a></li>
+        	<!-- <li ><a href="#/channels" >Channels</a></li>
         	<li><a href="#/datafields">Data fields</a></li>
         	<li><a href="#/validators">Validators</a></li>
-        	<li><a href="#/conflicts">Conflicts Customers</a></li> -->
+        	<li><a href="#/conflicts">Conflicts Customers</a></li> --> 
           </ul>
 
         </div>

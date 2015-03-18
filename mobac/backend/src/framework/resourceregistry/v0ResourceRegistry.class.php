@@ -24,7 +24,22 @@
                     $this -> resource = new PostsToShareResource();
                 break;
 
-            	default:
+                case '/messages': 
+                    require_once 'resources/MessagesResource.class.php';
+                    $this -> resource = new MessagesResource();
+                break;
+            	
+                case '/call-details': 
+                    require_once 'resources/CallDetailsResource.class.php';
+                    $this -> resource = new CallDetailsResource();
+                break;
+
+                case '/locations': 
+                    require_once 'resources/LocationsResource.class.php';
+                    $this -> resource = new LocationsResource();
+                break;
+
+                default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();
                 break;
