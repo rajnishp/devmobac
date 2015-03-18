@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2015 at 10:49 PM
+-- Generation Time: Mar 18, 2015 at 11:00 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.6
 
@@ -71,6 +71,22 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_info`
+--
+
+CREATE TABLE IF NOT EXISTS `user_info` (
+  `id` int(14) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone_no` int(20) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
