@@ -23,7 +23,7 @@ define([
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
-
+                    
         }
     });
 
