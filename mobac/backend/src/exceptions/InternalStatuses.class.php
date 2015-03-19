@@ -1,7 +1,7 @@
 <?php
 
     /**
-     * @author Jessy James
+     * @author rajnish
      */
 
     class InternalStatuses {
@@ -145,13 +145,13 @@
 
             /* [5000 - 5999] - call-details Resource Exceptions  */
             '5000' => array('httpStatusCode' => 200, 
-                            'message' => 'call-details Fetched', 'otherHeaders' => array()),
+                            'message' => 'call-detail Fetched', 'otherHeaders' => array()),
             '5001' => array('httpStatusCode' => 200, 
-                            'message' => 'call-details Saved', 'otherHeaders' => array()),
+                            'message' => 'call-detail Saved', 'otherHeaders' => array()),
             '5002' => array('httpStatusCode' => 200, 
-                            'message' => 'call-details Updated', 'otherHeaders' => array()),
+                            'message' => 'call-detail Updated', 'otherHeaders' => array()),
             '5003' => array('httpStatusCode' => 200, 
-                            'message' => 'call-details Deleted', 'otherHeaders' => array()),
+                            'message' => 'Call detail Deleted', 'otherHeaders' => array()),
             '5004' => array('httpStatusCode' => 404, 
                             'message' => 'call-details Not Found', 'otherHeaders' => array()),
             '5005' => array('httpStatusCode' => 404, 

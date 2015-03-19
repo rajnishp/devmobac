@@ -26,7 +26,29 @@ class MessagesResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data) {    }
+    public function delete ($resourceVals, $data) {
+        
+        global $logger, $warnings_payload; 
+
+        $messageId = $resourceVals ['messages'];
+
+        if (! isset($messageId)) {
+            $warnings_payload [] = 'DELETE call to /messages must be succeeded ' .  
+                                        'by /messageId i.e. DELETE /messages/messageId';
+            throw new UnsupportedResourceMethodException();
+        }
+        $logger -> debug ("Delete message with Id: " . $messageId);-
+        
+        $result = $this -> mobacDAO -> delete($messageId);
+        $logger -> debug ("Message Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '2003');
+        else 
+            $result = array('code' => '2004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data) {    }
 
