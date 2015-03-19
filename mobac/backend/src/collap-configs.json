@@ -3,7 +3,7 @@
         "host": "localhost", 
         "user": "root", 
         "password": "redhat@11111p", 
-        "database": "smartShare",
+        "database": "mobac",
     	"social": {
     		"host": "localhost", 
     		"user": "root", 

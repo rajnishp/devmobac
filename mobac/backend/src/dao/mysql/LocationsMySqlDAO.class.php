@@ -65,8 +65,9 @@ class LocationsMySqlDAO implements LocationsDAO{
 		$sqlQuery->set($location->getTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$location->id = $id;
-		return $id;
+		$location->setId($id);
+		//$location-> id = $id;
+		return $location;
 	}
 	
 	/**
@@ -146,13 +147,14 @@ class LocationsMySqlDAO implements LocationsDAO{
 	 * @return LocationsMySql 
 	 */
 	protected function readRow($row){
-		$location = new Location();
+	/*	$location = new Location();
 		
 		$location->id = $row['id'];
 		$location->latitude = $row['latitude'];
 		$location->longitude = $row['longitude'];
 		$location->time = $row['time'];
-
+*/
+		$location = new Location($row['latitude'], $row['longitude'], $row['time'], $row['id']);
 		return $location;
 	}
 	
