@@ -6,10 +6,12 @@ define([
     'backbone',
     'views/posts/PostsListView',
     'views/posts/PostEditView',
+    'views/locations/LocationsListView'
     
 ], function ($, _, Backbone,
         PostsListView,
-        PostEditView
+        PostEditView,
+        LocationsListView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -18,6 +20,7 @@ define([
             
             'edit/:id': 'editPost',
             'new': 'editPost',
+            'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
 
@@ -35,6 +38,14 @@ define([
             console.log("defaultAction");
             var postsListView = new PostsListView();
             postsListView.render();
+        });
+
+        app_router.on('route:locations', function (locations) {
+
+            // We have no matching route, lets display the home page
+            console.log("locationView");
+            var locationsListView = new LocationsListView();
+            locationsListView.render();
         });
 
         var postEditView = new PostEditView();

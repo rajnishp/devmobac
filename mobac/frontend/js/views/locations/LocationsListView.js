@@ -22,7 +22,7 @@ define([
       var that = this;
       
       var locations = new LocationsCollection();
-      console.log("inside render");
+      console.log("inside render locations");
       locations.fetch({
         success: function (locations) {
            //defining teplate

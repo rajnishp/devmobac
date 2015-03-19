@@ -19,6 +19,6 @@ define([
      
   });
 
-  return LocationssCollection;
+  return LocationsCollection;
 
 });
