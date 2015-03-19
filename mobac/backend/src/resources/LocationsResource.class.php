@@ -95,7 +95,7 @@ class LocationsResource implements Resource {
 
         return array('code' => '4000', 
                      'data' => array(
-                                'posts' => $this -> locations
+                                'locations' => $this -> locations
                             )
             );
     }
@@ -119,7 +119,7 @@ class LocationsResource implements Resource {
 
         return array('code' => '4000', 
                      'data' => array(
-                                'posts' => $this -> locations
+                                'locations' => $this -> locations
                             )
             );
     }
