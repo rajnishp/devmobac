@@ -7,7 +7,7 @@
     {
        "internal_status":
        {
-           "code": "3000",
+           "code": "4000",
            "message": "Location Fetched"
        },
        "data":

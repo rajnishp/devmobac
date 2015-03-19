@@ -59,7 +59,7 @@
 
 
 		function toString (){
-			return $this -> id . ", " . $this -> chId. ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type;
+			return $this -> id . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type;
 		}
 		
 		function toArray() {

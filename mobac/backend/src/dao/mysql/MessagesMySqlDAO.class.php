@@ -173,7 +173,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$message = new Message($row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['id']);
 		return $message;
 
-		return $message;
+//		return $message;
 	}
 	
 	protected function getList($sqlQuery){

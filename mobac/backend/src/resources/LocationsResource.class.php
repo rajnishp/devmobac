@@ -54,10 +54,10 @@ class LocationsResource implements Resource {
         $locations = $locationObj -> toArray();
         
         if(! isset($locations ['id'])) 
-            return array('code' => '2011');
+            return array('code' => '4011');
 
         $this -> locations[] = $locations;
-        return array ('code' => '2001', 
+        return array ('code' => '4001', 
                         'data' => array(
                             'locations' => $this -> locations
                         )
@@ -73,7 +73,7 @@ class LocationsResource implements Resource {
 			$result = $this -> getListOfAllLocations();
 
 		if (!is_array($result)) {
-		    return array('code' => '6004');
+		    return array('code' => '4004');
 		}
 
 		return $result;
@@ -87,13 +87,13 @@ class LocationsResource implements Resource {
 		$locationObj = $this -> mobacDAO -> load($locationId);
 
         if(empty($locationObj)) 
-                return array('code' => '2004');        
+                return array('code' => '4004');        
              
         $this -> locations [] = $locationObj-> toArray();
         
         $logger -> debug ('Fetched list of Channels: ' . json_encode($this -> locations));
 
-        return array('code' => '2000', 
+        return array('code' => '4000', 
                      'data' => array(
                                 'posts' => $this -> locations
                             )
@@ -109,7 +109,7 @@ class LocationsResource implements Resource {
         //print_r($listOfLocationObjs); exit;
 
         if(empty($listOfLocationObjs)) 
-                return array('code' => '2004');
+                return array('code' => '4004');
 
         foreach ($listOfLocationObjs as $locationObj) {
                 $location = $locationObj -> toArray();
@@ -117,7 +117,7 @@ class LocationsResource implements Resource {
         }
         $logger -> debug ('Fetched list of Locations: ' . json_encode($this -> locations));
 
-        return array('code' => '2000', 
+        return array('code' => '4000', 
                      'data' => array(
                                 'posts' => $this -> locations
                             )
