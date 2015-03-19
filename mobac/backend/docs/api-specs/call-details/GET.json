@@ -1,0 +1,34 @@
+/call-details
+
+	GET "http://api.loc.mobac.com/v0/call-details/"
+
+	Response:
+
+
+    {
+       "internal_status":
+       {
+           "code": "5000",
+           "message": "Call Details Fetched"
+       },
+       "data":
+       {
+           "CallDetails":
+           [
+               {
+                   "id": "5",
+                   "secondParty": "2147483647",
+                   "callDuration": "00:00:00",
+                   "time": "0000-00-00 00:00:00",
+                   "type": "Local"
+               },
+               {
+                   "id": "6",
+                   "secondParty": "2147483647",
+                   "callDuration": "33:12:12",
+                   "time": "0000-00-00 00:00:00",
+                   "type": "Local"
+               }
+           ]
+       }
+    }

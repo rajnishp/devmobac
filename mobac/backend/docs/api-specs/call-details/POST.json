@@ -1,0 +1,37 @@
+/call-details
+
+	POST "http://api.loc.mobac.com/v0/call-details"
+
+	POST Data:
+	{
+	  	"root": {
+  		"second_party": "8901414422",
+        "call_duration": "23: 34: 12",
+      	"time": "2015-03-19 04:11:21",
+        "type": "LOCAL"
+	  }
+	}
+
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "5001",
+           "message": "Call Detail Saved"
+       },
+       "data":
+       {
+           "CallDetails":
+           [
+               {
+                   "id": 0,
+                   "secondParty": "8901414422",
+                   "callDuration": "23: 34: 12",
+                   "time": "2015-03-19 04:11:21",
+                   "type": "LOCAL"
+               }
+           ]
+       }
+    }

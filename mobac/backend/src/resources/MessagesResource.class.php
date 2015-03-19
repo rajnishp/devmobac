@@ -5,7 +5,7 @@
  */
 require_once 'resources/Resource.interface.php';
 require_once 'dao/DAOFactory.class.php';
-require_once 'models/Post.class.php';
+require_once 'models/Message.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
@@ -69,7 +69,7 @@ class MessagesResource implements Resource {
             $result = $this -> getListOfAllMessages();
 
         if (!is_array($result)) {
-            return array('code' => '6004');
+            return array('code' => '2004');
         }
 
         return $result;

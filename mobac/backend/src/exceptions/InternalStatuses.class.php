@@ -43,25 +43,25 @@
                             'message' => 'Entity Already Exists', 'otherHeaders' => array()),
 
 
-            /* [2000 - 2999] - Post Resource Exceptions  */
+            /* [2000 - 2999] - Messages Resource Exceptions  */
             '2000' => array('httpStatusCode' => 200, 
-                            'message' => 'Post Fetched', 'otherHeaders' => array()),
+                            'message' => 'Messages Fetched', 'otherHeaders' => array()),
             '2001' => array('httpStatusCode' => 200, 
-                            'message' => 'Post Created', 'otherHeaders' => array()),
+                            'message' => 'Message saved', 'otherHeaders' => array()),
             '2002' => array('httpStatusCode' => 200, 
-                            'message' => 'Post Updated', 'otherHeaders' => array()),
+                            'message' => 'Message Updated', 'otherHeaders' => array()),
             '2003' => array('httpStatusCode' => 200, 
-                            'message' => 'Post Deleted', 'otherHeaders' => array()),
+                            'message' => 'Message Deleted', 'otherHeaders' => array()),
             '2004' => array('httpStatusCode' => 404, 
-                            'message' => 'Post Not Found', 'otherHeaders' => array()),
+                            'message' => 'Message Not Found', 'otherHeaders' => array()),
             '2010' => array('httpStatusCode' => 500, 
-                            'message' => 'Post Could Not Be Fetched', 'otherHeaders' => array()),
+                            'message' => 'Message Could Not Be Fetched', 'otherHeaders' => array()),
             '2011' => array('httpStatusCode' => 500, 
-                            'message' => 'Post Could Not Be Created', 'otherHeaders' => array()),
+                            'message' => 'Message Could Not Be Created', 'otherHeaders' => array()),
             '2012' => array('httpStatusCode' => 500, 
-                            'message' => 'Post Could Not Be Updated', 'otherHeaders' => array()),
+                            'message' => 'Message Could Not Be Updated', 'otherHeaders' => array()),
             '2013' => array('httpStatusCode' => 500, 
-                            'message' => 'Post Could Not Be Deleted', 'otherHeaders' => array()),
+                            'message' => 'Message Could Not Be Deleted', 'otherHeaders' => array()),
 
 
             /* [3000 - 3999] - Validator Exceptions  */
@@ -127,44 +127,45 @@
             '3119' => array('httpStatusCode' => 400, 
                             'message' => 'Failed To Validate Field', 'otherHeaders' => array()),*/
 
-            /* [4000 - 4999] - Data-Field-Type Resource Exceptions  */
+            /* [4000 - 4999] - Location Resource Exceptions  */
             '4000' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field-Type Fetched', 'otherHeaders' => array()),
+                            'message' => 'Location Fetched', 'otherHeaders' => array()),
             '4001' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field-Type Created', 'otherHeaders' => array()),
+                            'message' => 'Location Saved', 'otherHeaders' => array()),
             '4002' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field-Type Updated', 'otherHeaders' => array()),
+                            'message' => 'Location Updated', 'otherHeaders' => array()),
             '4003' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field-Type Deleted', 'otherHeaders' => array()),
+                            'message' => 'Location Deleted', 'otherHeaders' => array()),
             '4004' => array('httpStatusCode' => 404, 
-                            'message' => 'Data-Field-Type Not Found', 'otherHeaders' => array()),
+                            'message' => 'Location Not Found', 'otherHeaders' => array()),
             '4010' => array('httpStatusCode' => 500, 
-                            'message' => 'Data-Field-Type Could Not Be Fetched', 'otherHeaders' => array()),
+                            'message' => 'Location Could Not Be Fetched', 'otherHeaders' => array()),
+            '4011' => array('httpStatusCode' => 500, 
+                            'message' => 'Location Could Not Be saved', 'otherHeaders' => array()),
 
-            /* [5000 - 5999] - Data-Field Resource Exceptions  */
+            /* [5000 - 5999] - call-details Resource Exceptions  */
             '5000' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field Fetched', 'otherHeaders' => array()),
+                            'message' => 'call-details Fetched', 'otherHeaders' => array()),
             '5001' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field Created', 'otherHeaders' => array()),
+                            'message' => 'call-details Saved', 'otherHeaders' => array()),
             '5002' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field Updated', 'otherHeaders' => array()),
+                            'message' => 'call-details Updated', 'otherHeaders' => array()),
             '5003' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field Deleted', 'otherHeaders' => array()),
+                            'message' => 'call-details Deleted', 'otherHeaders' => array()),
             '5004' => array('httpStatusCode' => 404, 
-                            'message' => 'Data-Field Not Found', 'otherHeaders' => array()),
+                            'message' => 'call-details Not Found', 'otherHeaders' => array()),
             '5005' => array('httpStatusCode' => 404, 
-                            'message' => 'Data-Field-Type Not Found', 'otherHeaders' => array()),
+                            'message' => 'call-details Not Found', 'otherHeaders' => array()),
             '5006' => array('httpStatusCode' => 404, 
                             'message' => 'Data-Field-Validator Not Found', 'otherHeaders' => array()),
             '5010' => array('httpStatusCode' => 500, 
                             'message' => 'Data-Field Could Not Be Fetched', 'otherHeaders' => array()),
             '5011' => array('httpStatusCode' => 200, 
-                            'message' => 'Data-Field Could Not Be Created', 'otherHeaders' => array()),
+                            'message' => 'call-detail Could Not Be Saved', 'otherHeaders' => array()),
             '5012' => array('httpStatusCode' => 200, 
                             'message' => 'Data-Field Could Not Be Updated', 'otherHeaders' => array()),
             '5013' => array('httpStatusCode' => 200, 
                             'message' => 'Data-Field Could Not Be Deleted', 'otherHeaders' => array()),
-
 
             /* [6000 - 6999] - Organization Resource Exceptions  */
             '6000' => array('httpStatusCode' => 200, 
