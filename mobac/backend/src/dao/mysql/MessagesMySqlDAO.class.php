@@ -58,16 +58,18 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 */
 	public function insert($message){
 		$sql = 'INSERT INTO messages (from_to, message_text, time, type) VALUES (?, ?, ?, ?)';
-		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($message->getFromTo());
+		$sqlQuery = new SqlQuery($sql);
+
+		$sqlQuery->set($message->getFromTo());
 		$sqlQuery->set($message->getMessageText());
 		$sqlQuery->set($message->getTime());
 		$sqlQuery->set($message->getType());
 
+
 		$id = $this->executeInsert($sqlQuery);	
-		$message->setId = $setId;
-		return $message->setId;
+		$message-> setId($id);
+		return $id;
 	}
 	
 	/**

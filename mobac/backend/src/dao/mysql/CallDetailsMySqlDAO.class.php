@@ -57,17 +57,18 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
  	 * @param CallDetailsMySql callDetail
  	 */
 	public function insert($callDetail){
+		
 		$sql = 'INSERT INTO call_details (second_party, call_duration, time, type) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($callDetail->getSecondParty());
+		$sqlQuery->set($callDetail->getSecondParty());
 		$sqlQuery->set($callDetail->getCallDuration());
 		$sqlQuery->set($callDetail->getTime());
 		$sqlQuery->set($callDetail->getType());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$callDetail->setId = $setId;
-		return $callDetail->setId;
+		$callDetail -> setId($id);
+		return $id;
 	}
 	
 	/**
