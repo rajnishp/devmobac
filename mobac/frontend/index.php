@@ -21,29 +21,17 @@ if ($user_id != "admin") {
 	<meta name="author" content="rahul lahoria">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.css" media="screen">
-<link rel="stylesheet" href="css/bootswatch.css">
+  <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+  <link rel="stylesheet" href="css/bootswatch.css">
 	
   <link rel="stylesheet" href="css/jquery-dataTables.css">
 
 
-<script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
+  <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
 
 
 	<script data-main="js/main" src="js/libs/require/require.js"></script>
-  <style>
-      .renderjson a { text-decoration: none; }
-      .renderjson .disclosure { color: crimson;
-      font-size: 150%; }
-      .renderjson .syntax { color: grey; }
-      .renderjson .string { color: darkred; }
-      .renderjson .number { color: darkcyan; }
-      .renderjson .boolean { color: blueviolet; }
-      .renderjson .key { color: darkblue; }
-      .renderjson .keyword { color: blue; }
-      .renderjson .object.syntax { color: lightseagreen; }
-      .renderjson .array.syntax { color: orange; }
-  </style>
+  
 </head>
 <body>
 

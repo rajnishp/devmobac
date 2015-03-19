@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(14) NOT NULL AUTO_INCREMENT,
   `from_to` int(20) NOT NULL,
-  `duration` varchar(70) NOT NULL,
+  `message_text` varchar(160) NOT NULL,
   `time` datetime NOT NULL,
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
