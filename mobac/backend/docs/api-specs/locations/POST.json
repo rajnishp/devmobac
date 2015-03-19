@@ -1,0 +1,25 @@
+/locations
+
+	POST: "http://api.loc.mobac.com/v0/locations/"
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2001",
+           "message": "Post Created"
+       },
+       "data":
+       {
+           "locations":
+           [
+               {
+                   "id": 11,
+                   "latitude": "23.34343434",
+                   "longitude": "45.556565",
+                   "time": "2015-03-20 01:26:02"
+               }
+           ]
+       }
+    }	

@@ -1,0 +1,31 @@
+/locations
+
+
+  GET: "http://api.loc.mobac.com/v0/locations/"
+  Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2000",
+           "message": "Location Fetched"
+       },
+       "data":
+       {
+           "posts":
+           [
+               {
+                   "id": "5",
+                   "latitude": "12.933704",
+                   "longitude": "77.662201",
+                   "time": "2015-03-19 01:24:00"
+               },
+               {
+                   "id": "6",
+                   "latitude": "12.925804",
+                   "longitude": "77.666855",
+                   "time": "2015-03-19 01:26:02"
+               }
+           ]
+       }
+    }
