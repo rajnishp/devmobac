@@ -1,0 +1,13 @@
+/call-details/<call-detail_ID>
+
+	DELETE "http://api.loc.mobac.com/v0/call-details/1"
+
+	Response: 
+	
+    {
+       "internal_status":
+       {
+           "code": "5003",
+           "message": "Call Detail Deleted"
+       }
+    }

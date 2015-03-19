@@ -1,0 +1,13 @@
+/messages/<message_id>
+	
+	DELETE "http://api.loc.mobac.com/v0/messages/2"
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2003",
+           "message": "Message Deleted"
+       }
+    }

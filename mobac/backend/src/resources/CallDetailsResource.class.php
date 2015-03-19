@@ -26,7 +26,29 @@ class CallDetailsResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data) {    }
+    public function delete ($resourceVals, $data) {
+        global $logger, $warnings_payload; 
+
+        $callDetailId = $resourceVals ['call-details'];
+
+        if (! isset($callDetailId)) {
+            $warnings_payload [] = 'DELETE call to /call-details must be succeeded ' .  
+                                        'by /callDetailId i.e. DELETE /call-details/callDetailId';
+            throw new UnsupportedResourceMethodException();
+        }
+
+        $logger -> debug ("Delete call detail with Id: " . $callDetailId);-
+        
+        $result = $this -> mobacDAO -> delete($callDetailId);
+        $logger -> debug ("Call detail Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '5003');
+        else 
+            $result = array('code' => '5004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data) {    }
 
