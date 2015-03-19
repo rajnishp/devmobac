@@ -29,7 +29,7 @@ define([
         console.log("inside render success");  
         console.log(locations);
         var template = _.template(locationsListTemplate, {locations: locations.models[0].attributes.data.locations});
-        $('#location-list-template').html(template); 
+        //$('#location-list-template').html(template); 
         console.log(template);
         that.$el.html(template);
         $('#locationsTable').DataTable();
