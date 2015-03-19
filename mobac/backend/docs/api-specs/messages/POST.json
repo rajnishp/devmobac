@@ -1,0 +1,36 @@
+/messages
+
+	POST: "http://api.loc.mobac.com/v0/messages/"
+
+	POST data:
+	{
+	  "root": {
+  			"fromTo": "8901414422",
+        "messageText": "This is first post message",
+      	"time": "2015-03-19 04:11:21",
+        "type": "2"
+	  }
+	}
+	
+	Response: 
+
+    {
+       "internal_status":
+       {
+           "code": "2001",
+           "message": "Message saved"
+       },
+       "data":
+       {
+           "messageTexts":
+           [
+               {
+                   "id": 0,
+                   "fromTo": "8901414422",
+                   "messageText": "This is first post message",
+                   "time": "2015-03-19 04:11:21",
+                   "type": "2"
+               }
+           ]
+       }
+    }

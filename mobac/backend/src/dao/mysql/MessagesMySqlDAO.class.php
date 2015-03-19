@@ -57,17 +57,17 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param MessagesMySql message
  	 */
 	public function insert($message){
-		$sql = 'INSERT INTO messages (from_to, duration, time, type) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO messages (from_to, message_text, time, type) VALUES (?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($message->fromTo);
-		$sqlQuery->set($message->duration);
-		$sqlQuery->set($message->time);
-		$sqlQuery->set($message->type);
+		$sqlQuery->setNumber($message->getFromTo());
+		$sqlQuery->set($message->getMessageText());
+		$sqlQuery->set($message->getTime());
+		$sqlQuery->set($message->getType());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$message->id = $id;
-		return $id;
+		$message->setId = $setId;
+		return $message->setId;
 	}
 	
 	/**
@@ -76,11 +76,11 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param MessagesMySql message
  	 */
 	public function update($message){
-		$sql = 'UPDATE messages SET from_to = ?, duration = ?, time = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE messages SET from_to = ?, message_text = ?, time = ?, type = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($message->fromTo);
-		$sqlQuery->set($message->duration);
+		$sqlQuery->set($message->messageText);
 		$sqlQuery->set($message->time);
 		$sqlQuery->set($message->type);
 
@@ -104,8 +104,8 @@ class MessagesMySqlDAO implements MessagesDAO{
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByDuration($value){
-		$sql = 'SELECT * FROM messages WHERE duration = ?';
+	public function queryByMessageText($value){
+		$sql = 'SELECT * FROM messages WHERE message_text = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
@@ -133,8 +133,8 @@ class MessagesMySqlDAO implements MessagesDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByDuration($value){
-		$sql = 'DELETE FROM messages WHERE duration = ?';
+	public function deleteByMessageText($value){
+		$sql = 'DELETE FROM messages WHERE message_text = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
@@ -162,13 +162,16 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @return MessagesMySql 
 	 */
 	protected function readRow($row){
-		$message = new Message();
+		/*$message = new Message();
 		
 		$message->id = $row['id'];
 		$message->fromTo = $row['from_to'];
-		$message->duration = $row['duration'];
+		$message->messageText = $row['message_text'];
 		$message->time = $row['time'];
-		$message->type = $row['type'];
+		$message->type = $row['type'];*/
+
+		$message = new Message($row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['id']);
+		return $message;
 
 		return $message;
 	}

@@ -53,7 +53,7 @@ interface MessagesDAO{
 
 	public function queryByFromTo($value);
 
-	public function queryByDuration($value);
+	public function queryByMessageText($value);
 
 	public function queryByTime($value);
 
@@ -62,7 +62,7 @@ interface MessagesDAO{
 
 	public function deleteByFromTo($value);
 
-	public function deleteByDuration($value);
+	public function deleteByMessageText($value);
 
 	public function deleteByTime($value);
 
