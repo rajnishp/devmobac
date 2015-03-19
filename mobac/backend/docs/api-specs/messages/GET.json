@@ -1,0 +1,40 @@
+/messages
+
+	GET: "http://api.loc.mobac.com/v0/messages/"
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2000",
+           "message": "Messages Fetched"
+       },
+       "data":
+       {
+           "messages":
+           [
+               {
+                   "id": "1",
+                   "fromTo": "2147483647",
+                   "messageText": "First message Text",
+                   "time": "2014-12-12 12:21:21",
+                   "type": "2"
+               },
+               {
+                   "id": "2",
+                   "fromTo": "8901414422",
+                   "messageText": "Second message Text",
+                   "time": "2015-03-19 04:11:21",
+                   "type": "2"
+               },
+               {
+                   "id": "3",
+                   "fromTo": "123456789",
+                   "messageText": "Three message Text",
+                   "time": "2015-03-19 04:21:21",
+                   "type": "2"
+               }
+           ]
+       }
+    }

@@ -47,8 +47,8 @@ class LocationsMySqlDAO implements LocationsDAO{
 	public function delete($id){
 		$sql = 'DELETE FROM locations WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
-		return $this->executeUpdate($sqlQuery);
+		$sqlQuery -> setNumber($id);
+		return $this -> executeUpdate($sqlQuery);
 	}
 	
 	/**
@@ -60,12 +60,12 @@ class LocationsMySqlDAO implements LocationsDAO{
 		$sql = 'INSERT INTO locations (latitude, longitude, time) VALUES (?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($location->getLatitude());
-		$sqlQuery->set($location->getLongitude());
-		$sqlQuery->set($location->getTime());
+		$sqlQuery -> set($location-> getLatitude());
+		$sqlQuery -> set($location-> getLongitude());
+		$sqlQuery -> set($location-> getTime());
 
-		$id = $this->executeInsert($sqlQuery);	
-		$location->setId($id);
+		$id = $this -> executeInsert($sqlQuery);	
+		$location -> setId($id);
 		//$location-> id = $id;
 		return $location;
 	}

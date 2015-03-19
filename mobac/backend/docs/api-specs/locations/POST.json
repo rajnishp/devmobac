@@ -2,24 +2,34 @@
 
 	POST: "http://api.loc.mobac.com/v0/locations/"
 
+  POST data:
+  {
+    "root": {
+        "latitude": "23.4454546546", 
+        "longitude": "22.22222222222", 
+        "time": "2015-03-19 04:31:21"
+    }
+  }
+
+
 	Response:
 
     {
        "internal_status":
        {
-           "code": "2001",
-           "message": "Post Created"
+           "code": "3001",
+           "message": "location Saved"
        },
        "data":
        {
            "locations":
            [
                {
-                   "id": 11,
-                   "latitude": "23.34343434",
-                   "longitude": "45.556565",
-                   "time": "2015-03-20 01:26:02"
+                   "id": 12,
+                   "latitude": "23.4454546546",
+                   "longitude": "22.22222222222",
+                   "time": "2015-03-19 04:31:21"
                }
            ]
        }
-    }	
+    }

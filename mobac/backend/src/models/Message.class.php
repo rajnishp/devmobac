@@ -9,14 +9,14 @@
 		
 		private $id;
 		private $fromTo;
-		private $duration;
+		private $messageText;
 		private $time;
 		private $type;
 	
-	function __construct($fromTo, $duration, $time, $type, $id = null){
+	function __construct($fromTo, $message_text, $time, $type, $id = null){
 			$this->id = $id;
 			$this->fromTo = $fromTo;
-			$this->duration = $duration;
+			$this->messageText = $messageText;
 			$this->time = $time;
 			$this->type = $type;
 
@@ -37,11 +37,11 @@
 				return $this-> fromTo;
 		}
 
-		function setDuration($duration){
-			$this -> duration = $duration;
+		function setMessageText($messageText){
+			$this -> messageText = $messageText;
 		}
-		function getDuration(){
-				return $this-> duration;
+		function getMessageText(){
+				return $this-> messageText;
 		}
 
 		function setTime($time){
@@ -60,14 +60,14 @@
 
 
 		function toString (){
-			return $this -> id . ", " . $this -> chId. ", " . $this -> fromTo. ", " . $this -> duration. ", " . $this -> time. ", " . $this -> type;
+			return $this -> id . ", " . $this -> chId. ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> type;
 		}
 		
 		function toArray() {
 			return array (
 						id => $this->id,
 						fromTo => $this->fromTo,
-						duration => $this->duration,
+						messageText => $this->messageText,
 						time => $this->time,
 						type => $this->type
 				);
