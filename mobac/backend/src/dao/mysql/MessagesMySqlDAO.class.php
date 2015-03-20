@@ -13,21 +13,21 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @param String $id primary key
 	 * @return MessagesMySql 
 	 */
-	public function load($id, $user_id){
+	public function load($id, $userId){
 		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
-		$sqlQuery->set($user_id);
+		$sqlQuery->set($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($user_id){
+	public function queryAll($userId){
 		$sql = 'SELECT * FROM messages WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($user_id);
+		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -36,7 +36,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 *
 	 * @param $orderColumn column name
 	 */
-	public function queryAllOrderBy($orderColumn, $user_id){
+	public function queryAllOrderBy($orderColumn, $userId){
 		$sql = 'SELECT * FROM messages WHERE user_id = ? ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
@@ -46,21 +46,13 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * Delete record from table
  	 * @param message primary key
  	 */
-	public function delete($id, $user_id){
+	public function delete($id, $userId){
 
 		//$sql = 'DELETE FROM messages WHERE id = ? AND user_id = ?';
 		$sql = "UPDATE messages SET status = 1 WHERE id = ? AND user_id = ?";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
-		$sqlQuery->setNumber($user_id);
-//print_r($sqlQuery); exit;
-
-	/*	$sqlUpdate = 'UPDATE messages SET status = '2' WHERE id = ? AND user_id = ?';
-		$sqlQueryUpdate = new SqlQuery($sqlUpdate);
-		$sqlQueryUpdate -> set($id);
-		$sqlQueryUpdate -> set($user_id);
-		return $this -> executeUpdate ($sqlQueryUpdate);
-	*/
+		$sqlQuery->setNumber($userId);
 		return $this -> executeUpdate($sqlQuery);
 	}
 	
@@ -91,50 +83,51 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 *
  	 * @param MessagesMySql message
  	 */
-	public function update($message, $user_id){
+	public function update($message, $userId){
 		$sql = 'UPDATE messages SET from_to = ?, message_text = ?, time = ?, type = ? WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($message->fromTo);
-		$sqlQuery->set($message->messageText);
-		$sqlQuery->set($message->time);
-		$sqlQuery->set($message->type);
+		$sqlQuery->setNumber($message -> fromTo);
+		$sqlQuery->set($message -> messageText);
+		$sqlQuery->set($message -> time);
+		$sqlQuery->set($message -> type);
 
-		$sqlQuery->setNumber($message->id);
+		$sqlQuery->setNumber($message -> id);
+		$sqlQuery->set($message -> userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	/**
  	 * Delete all rows
  	 */
-	public function clean($user_id){
+	public function clean($userId){
 		$sql = 'DELETE FROM messages WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryByFromTo($value, $user_id){
+	public function queryByFromTo($value, $userId){
 		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByMessageText($value, $user_id){
+	public function queryByMessageText($value, $userId){
 		$sql = 'SELECT * FROM messages WHERE message_text = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByTime($value, $user_id){
+	public function queryByTime($value, $userId){
 		$sql = 'SELECT * FROM messages WHERE time = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByType($value, $user_id){
+	public function queryByType($value, $userId){
 		$sql = 'SELECT * FROM messages WHERE type = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
@@ -142,28 +135,28 @@ class MessagesMySqlDAO implements MessagesDAO{
 	}
 
 
-	public function deleteByFromTo($value, $user_id){
+	public function deleteByFromTo($value, $userId){
 		$sql = 'DELETE FROM messages WHERE from_to = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByMessageText($value, $user_id){
+	public function deleteByMessageText($value, $userId){
 		$sql = 'DELETE FROM messages WHERE message_text = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByTime($value, $user_id){
+	public function deleteByTime($value, $userId){
 		$sql = 'DELETE FROM messages WHERE time = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByType($value, $user_id){
+	public function deleteByType($value, $userId){
 		$sql = 'DELETE FROM messages WHERE type = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
@@ -177,7 +170,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 *
 	 * @return MessagesMySql 
 	 */
-	protected function readRow($row, $user_id){
+	protected function readRow($row){
 		/*$message = new Message();
 		
 		$message->id = $row['id'];
@@ -186,7 +179,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$message->time = $row['time'];
 		$message->type = $row['type'];*/
 
-		$message = new Message($row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id']);
+		$message = new Message($row['user_id'], $row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id']);
 		return $message;
 
 //		return $message;

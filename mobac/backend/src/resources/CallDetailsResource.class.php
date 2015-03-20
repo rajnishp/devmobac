@@ -29,6 +29,9 @@ class CallDetailsResource implements Resource {
     public function delete ($resourceVals, $data) {
         global $logger, $warnings_payload; 
 
+// $userId is set temporally, update it
+        $userId = 2;
+
         $callDetailId = $resourceVals ['call-details'];
 
         if (! isset($callDetailId)) {
@@ -39,7 +42,7 @@ class CallDetailsResource implements Resource {
 
         $logger -> debug ("Delete call detail with Id: " . $callDetailId);-
         
-        $result = $this -> mobacDAO -> delete($callDetailId);
+        $result = $this -> mobacDAO -> delete($callDetailId, $userId);
         $logger -> debug ("Call detail Deleted? " . $result);
 
         if ($result) 
@@ -55,6 +58,9 @@ class CallDetailsResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
+// $userId is set temporally, update it
+        $userId = 2;
+
         $callDetailId = $resourceVals ['call-details'];
         if (isset($messageTextId)) {
             $warnings_payload [] = 'POST call to /call-details must not have ' . 
@@ -64,7 +70,7 @@ class CallDetailsResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $callDetailObj = new CallDetail($data ['second_party'], $data ['call_duration'], $data ['time'],$data ['type'], 0);
+        $callDetailObj = new CallDetail($userId, $data ['second_party'], $data ['call_duration'], $data ['time'],$data ['type'], 0);
         $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
 
         $this -> mobacDAO -> insert($callDetailObj);
@@ -84,11 +90,14 @@ class CallDetailsResource implements Resource {
 
     public function get($resourceVals, $data) {
 
+// $userId is set temporally, update it
+        $userId = 2;
+
         $callDetailId = $resourceVals ['call-details'];
         if (isset($callDetailObj))
-            $result = $this->getCallDetail($callDetailId);
+            $result = $this->getCallDetail($callDetailId, $userId);
         else
-            $result = $this -> getListOfAllCallDetails();
+            $result = $this -> getListOfAllCallDetails($userId);
 
         if (!is_array($result)) {
             return array('code' => '5004');
@@ -97,12 +106,12 @@ class CallDetailsResource implements Resource {
         return $result;
     }
 
-    private function getCallDetail($locationId) {
+    private function getCallDetail($locationId, $userId) {
     
         global $logger;
         $logger->debug('Fetch call detail...');
 
-        $callDetailObj = $this -> mobacDAO -> load($callDetailId);
+        $callDetailObj = $this -> mobacDAO -> load($callDetailId, $userId);
 
         if(empty($callDetailObj)) 
                 return array('code' => '5004');        
@@ -118,12 +127,12 @@ class CallDetailsResource implements Resource {
             );
     }
 
-    private function getListOfAllCallDetails() {
+    private function getListOfAllCallDetails($userId) {
     
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        $listOfcallDetailObj = $this -> mobacDAO -> queryAll();
+        $listOfcallDetailObj = $this -> mobacDAO -> queryAll($userId);
         
         if(empty($listOfcallDetailObj)) 
                 return array('code' => '5004');

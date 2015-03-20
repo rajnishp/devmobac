@@ -13,24 +13,24 @@ interface CallDetailsDAO{
 	 * @param String $id primary key
 	 * @Return CallDetails 
 	 */
-	public function load($id);
+	public function load($id, $userId);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll();
+	public function queryAll($userId);
 	
 	/**
 	 * Get all records from table ordered by field
 	 * @Param $orderColumn column name
 	 */
-	public function queryAllOrderBy($orderColumn);
+	public function queryAllOrderBy($orderColumn, $userId);
 	
 	/**
  	 * Delete record from table
  	 * @param callDetail primary key
  	 */
-	public function delete($id);
+	public function delete($id, $userId);
 	
 	/**
  	 * Insert record to table
@@ -44,29 +44,29 @@ interface CallDetailsDAO{
  	 *
  	 * @param CallDetails callDetail
  	 */
-	public function update($callDetail);	
+	public function update($callDetail, $userId);	
 
 	/**
 	 * Delete all rows
 	 */
-	public function clean();
+	public function clean($userId);
 
-	public function queryBySecondParty($value);
+	public function queryBySecondParty($value, $userId);
 
-	public function queryByCallDuration($value);
+	public function queryByCallDuration($value, $userId);
 
-	public function queryByTime($value);
+	public function queryByTime($value, $userId);
 
-	public function queryByType($value);
+	public function queryByType($value, $userId);
 
 
-	public function deleteBySecondParty($value);
+	public function deleteBySecondParty($value, $userId);
 
-	public function deleteByCallDuration($value);
+	public function deleteByCallDuration($value, $userId);
 
-	public function deleteByTime($value);
+	public function deleteByTime($value, $userId);
 
-	public function deleteByType($value);
+	public function deleteByType($value, $userId);
 
 
 }

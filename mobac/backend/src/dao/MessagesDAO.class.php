@@ -13,24 +13,24 @@ interface MessagesDAO{
 	 * @param String $id primary key
 	 * @Return Messages 
 	 */
-	public function load($id, $user_id);
+	public function load($id, $userId);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($user_id);
+	public function queryAll($userId);
 	
 	/**
 	 * Get all records from table ordered by field
 	 * @Param $orderColumn column name
 	 */
-	public function queryAllOrderBy($orderColumn, $user_id);
+	public function queryAllOrderBy($orderColumn, $userId);
 	
 	/**
  	 * Delete record from table
  	 * @param message primary key
  	 */
-	public function delete($id, $user_id);
+	public function delete($id, $userId);
 	
 	/**
  	 * Insert record to table
@@ -44,29 +44,29 @@ interface MessagesDAO{
  	 *
  	 * @param Messages message
  	 */
-	public function update($message, $user_id);	
+	public function update($message, $userId);	
 
 	/**
 	 * Delete all rows
 	 */
-	public function clean($user_id);
+	public function clean($userId);
 
-	public function queryByFromTo($value, $user_id);
+	public function queryByFromTo($value, $userId);
 
-	public function queryByMessageText($value, $user_id);
+	public function queryByMessageText($value, $userId);
 
-	public function queryByTime($value, $user_id);
+	public function queryByTime($value, $userId);
 
-	public function queryByType($value, $user_id);
+	public function queryByType($value, $userId);
 
 
-	public function deleteByFromTo($value, $user_id);
+	public function deleteByFromTo($value, $userId);
 
-	public function deleteByMessageText($value, $user_id);
+	public function deleteByMessageText($value, $userId);
 
-	public function deleteByTime($value, $user_id);
+	public function deleteByTime($value, $userId);
 
-	public function deleteByType($value, $user_id);
+	public function deleteByType($value, $userId);
 
 
 }
