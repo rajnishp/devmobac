@@ -49,10 +49,11 @@ class MessagesMySqlDAO implements MessagesDAO{
 	public function delete($id, $user_id){
 
 		//$sql = 'DELETE FROM messages WHERE id = ? AND user_id = ?';
-		$sql = "UPDATE messages SET status = '2' WHERE id = ? AND user_id = ?";
+		$sql = "UPDATE messages SET status = 1 WHERE id = ? AND user_id = ?";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		$sqlQuery->setNumber($user_id);
+//print_r($sqlQuery); exit;
 
 	/*	$sqlUpdate = 'UPDATE messages SET status = '2' WHERE id = ? AND user_id = ?';
 		$sqlQueryUpdate = new SqlQuery($sqlUpdate);
@@ -60,7 +61,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$sqlQueryUpdate -> set($user_id);
 		return $this -> executeUpdate ($sqlQueryUpdate);
 	*/
-		return $this->executeUpdate($sqlQuery);
+		return $this -> executeUpdate($sqlQuery);
 	}
 	
 	/**
