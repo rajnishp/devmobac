@@ -16,7 +16,8 @@ class MessagesMySqlDAO implements MessagesDAO{
 	public function load($id, $user_id){
 		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
+		$sqlQuery->set($id);
+		$sqlQuery->set($user_id);
 		return $this->getRow($sqlQuery);
 	}
 
@@ -26,6 +27,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	public function queryAll($user_id){
 		$sql = 'SELECT * FROM messages WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($user_id);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -45,9 +47,19 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param message primary key
  	 */
 	public function delete($id, $user_id){
-		$sql = 'DELETE FROM messages WHERE id = ? AND user_id = ?';
+
+		//$sql = 'DELETE FROM messages WHERE id = ? AND user_id = ?';
+		$sql = "UPDATE messages SET status = '2' WHERE id = ? AND user_id = ?";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($user_id);
+
+	/*	$sqlUpdate = 'UPDATE messages SET status = '2' WHERE id = ? AND user_id = ?';
+		$sqlQueryUpdate = new SqlQuery($sqlUpdate);
+		$sqlQueryUpdate -> set($id);
+		$sqlQueryUpdate -> set($user_id);
+		return $this -> executeUpdate ($sqlQueryUpdate);
+	*/
 		return $this->executeUpdate($sqlQuery);
 	}
 	
@@ -173,7 +185,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$message->time = $row['time'];
 		$message->type = $row['type'];*/
 
-		$message = new Message($row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['id']);
+		$message = new Message($row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id']);
 		return $message;
 
 //		return $message;
