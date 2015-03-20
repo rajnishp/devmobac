@@ -8,17 +8,21 @@
 	class Message{
 		
 		private $id;
+		private $userId;
 		private $fromTo;
 		private $messageText;
 		private $time;
 		private $type;
+		private $status;
 	
-	function __construct($fromTo, $messageText, $time, $type, $id = null){
+	function __construct($userId, $fromTo, $messageText, $time, $type, $status, $id = null){
 			$this-> id = $id;
+			$this-> userId = $userId;
 			$this-> fromTo = $fromTo;
 			$this-> messageText = $messageText;
 			$this-> time = $time;
 			$this-> type = $type;
+			$this-> status = $status;
 
 			
 		}
@@ -27,7 +31,14 @@
 			$this -> id = $id;
 		}
 		function getId(){
-				return $this->id;
+				return $this-> id;
+		}
+
+		function setUserId($userId){
+			$this -> userId = $userId;
+		}
+		function getUserId(){
+				return $this-> userId;
 		}
 
 		function setFromTo($fromTo){
@@ -58,18 +69,26 @@
 				return $this-> type;
 		}
 
+		function setStatus($status){
+			$this -> status = $status;
+		}
+		function getStatus(){
+				return $this-> status;
+		}
 
 		function toString (){
-			return $this -> id . ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> type;
+			return $this -> id . ", " . $this -> userId . ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> typeid . ", " . $this -> status;
 		}
 		
 		function toArray() {
 			return array (
 						id => $this->id,
+						userId => $this->userId,
 						fromTo => $this->fromTo,
 						messageText => $this->messageText,
 						time => $this->time,
-						type => $this->type
+						type => $this->type,
+						status => $this->status
 				);
 		}	
 	}

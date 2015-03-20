@@ -29,6 +29,11 @@
                     $this -> resource = new LocationsResource();
                 break;
 
+                case '/user': 
+                    require_once 'resources/UserResource.class.php';
+                    $this -> resource = new UserResource();
+                break;
+
                 default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();

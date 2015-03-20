@@ -55,6 +55,9 @@ class MessagesResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
+// $user_id is set temporally, update it
+        $user_id = 2;
+
         $messageTextId = $resourceVals ['messages'];
         if (isset($messageTextId)) {
             $warnings_payload [] = 'POST call to /messages must not have ' . 
@@ -64,7 +67,7 @@ class MessagesResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $messageTextObj = new Message($data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
+        $messageTextObj = new Message($user_id, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
         $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
 
         $this -> mobacDAO -> insert($messageTextObj);
