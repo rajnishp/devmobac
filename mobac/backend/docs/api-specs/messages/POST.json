@@ -3,14 +3,15 @@
 	POST: "http://api.loc.mobac.com/v0/messages/"
 
 	POST data:
-	{
-	  "root": {
-  			"fromTo": "8901414422",
-        "messageText": "This is first post message",
-      	"time": "2015-03-19 04:11:21",
-        "type": "2"
-	  }
-	}
+	
+  {
+    "root": {
+      "fromTo": "8901414422",
+                 "messageText": "This is first post message",
+                 "time": "2015-03-19 04:11:21",
+                 "type": "Inbox"
+    }
+  }
 	
 	Response: 
 
@@ -25,11 +26,13 @@
            "messageTexts":
            [
                {
-                   "id": 0,
+                   "id": 14,
+                   "userId": 2,
                    "fromTo": "8901414422",
                    "messageText": "This is first post message",
                    "time": "2015-03-19 04:11:21",
-                   "type": "2"
+                   "type": "Inbox",
+                   "status": 0
                }
            ]
        }
