@@ -72,8 +72,9 @@ if ($user_id != "admin") {
         
       </div>
       <div class='col-md-10' >
-        <div id="map_canvas" style="width:100%; height:100%"></div>
+        <div id="map_canvas" style="width:100%; height:100%">
           Loading Mobac UI....
+          
         </div>
       </div> 
   </div>

@@ -35,8 +35,6 @@ define([
     var initialize = function () {
 
         app_router.on('route:defaultAction', function () {
-
-            // We have no matching route, lets display the home page
             console.log("defaultAction");
             var messagesListView = new MessagesListView();
             messagesListView.render();
