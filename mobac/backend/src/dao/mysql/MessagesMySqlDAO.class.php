@@ -14,7 +14,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @return MessagesMySql 
 	 */
 	public function load($id){
-		$sql = 'SELECT * FROM messages WHERE id = ?';
+		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		return $this->getRow($sqlQuery);
@@ -24,7 +24,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * Get all records from table
 	 */
 	public function queryAll(){
-		$sql = 'SELECT * FROM messages';
+		$sql = 'SELECT * FROM messages WHERE AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
@@ -35,7 +35,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn){
-		$sql = 'SELECT * FROM messages ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM messages WHERE AND user_id = ? ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
@@ -45,7 +45,7 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param message primary key
  	 */
 	public function delete($id){
-		$sql = 'DELETE FROM messages WHERE id = ?';
+		$sql = 'DELETE FROM messages WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		return $this->executeUpdate($sqlQuery);
@@ -57,7 +57,7 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param MessagesMySql message
  	 */
 	public function insert($message){
-		$sql = 'INSERT INTO messages (from_to, message_text, time, type) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO messages (user_id, from_to, message_text, time, type) VALUES (?, ?, ?, ?, ?)';
 		
 		$sqlQuery = new SqlQuery($sql);
 
@@ -78,7 +78,7 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * @param MessagesMySql message
  	 */
 	public function update($message){
-		$sql = 'UPDATE messages SET from_to = ?, message_text = ?, time = ?, type = ? WHERE id = ?';
+		$sql = 'UPDATE messages SET from_to = ?, message_text = ?, time = ?, type = ? WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($message->fromTo);
@@ -94,34 +94,34 @@ class MessagesMySqlDAO implements MessagesDAO{
  	 * Delete all rows
  	 */
 	public function clean(){
-		$sql = 'DELETE FROM messages';
+		$sql = 'DELETE FROM messages AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function queryByFromTo($value){
-		$sql = 'SELECT * FROM messages WHERE from_to = ?';
+		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByMessageText($value){
-		$sql = 'SELECT * FROM messages WHERE message_text = ?';
+		$sql = 'SELECT * FROM messages WHERE message_text = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByTime($value){
-		$sql = 'SELECT * FROM messages WHERE time = ?';
+		$sql = 'SELECT * FROM messages WHERE time = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByType($value){
-		$sql = 'SELECT * FROM messages WHERE type = ?';
+		$sql = 'SELECT * FROM messages WHERE type = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
@@ -129,28 +129,28 @@ class MessagesMySqlDAO implements MessagesDAO{
 
 
 	public function deleteByFromTo($value){
-		$sql = 'DELETE FROM messages WHERE from_to = ?';
+		$sql = 'DELETE FROM messages WHERE from_to = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByMessageText($value){
-		$sql = 'DELETE FROM messages WHERE message_text = ?';
+		$sql = 'DELETE FROM messages WHERE message_text = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByTime($value){
-		$sql = 'DELETE FROM messages WHERE time = ?';
+		$sql = 'DELETE FROM messages WHERE time = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function deleteByType($value){
-		$sql = 'DELETE FROM messages WHERE type = ?';
+		$sql = 'DELETE FROM messages WHERE type = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
