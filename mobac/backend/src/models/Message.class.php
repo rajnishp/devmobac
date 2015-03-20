@@ -13,12 +13,12 @@
 		private $time;
 		private $type;
 	
-	function __construct($fromTo, $message_text, $time, $type, $id = null){
-			$this->id = $id;
-			$this->fromTo = $fromTo;
-			$this->messageText = $messageText;
-			$this->time = $time;
-			$this->type = $type;
+	function __construct($fromTo, $messageText, $time, $type, $id = null){
+			$this-> id = $id;
+			$this-> fromTo = $fromTo;
+			$this-> messageText = $messageText;
+			$this-> time = $time;
+			$this-> type = $type;
 
 			
 		}
@@ -60,7 +60,7 @@
 
 
 		function toString (){
-			return $this -> id . ", " . $this -> chId. ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> type;
+			return $this -> id . ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> type;
 		}
 		
 		function toArray() {

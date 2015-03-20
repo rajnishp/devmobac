@@ -30,7 +30,28 @@ class LocationsResource implements Resource {
     }
 
     
-    public function delete ($resourceVals, $data) {     }
+    public function delete ($resourceVals, $data) {
+        global $logger, $warnings_payload; 
+
+        $locationId = $resourceVals ['locations'];
+
+        if (! isset($locationId)) {
+            $warnings_payload [] = 'DELETE call to /locations must be succeeded ' .  
+                                        'by /locationId i.e. DELETE /locations/locationId';
+            throw new UnsupportedResourceMethodException();
+        }
+        $logger -> debug ("Delete message with Id: " . $locationId);-
+        
+        $result = $this -> mobacDAO -> delete($locationId);
+        $logger -> debug ("Location Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '4003');
+        else 
+            $result = array('code' => '4004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data) {    }
 

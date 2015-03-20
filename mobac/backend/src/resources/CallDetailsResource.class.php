@@ -113,7 +113,7 @@ class CallDetailsResource implements Resource {
 
         return array('code' => '5000', 
                      'data' => array(
-                                'messages' => $this -> CallDetails
+                                'CallDetails' => $this -> CallDetails
                             )
             );
     }

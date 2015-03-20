@@ -64,7 +64,7 @@ class MessagesResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $messageTextObj = new Message($data ['from_to'], $data ['message_text'], $data ['time'],$data ['type'], 0);
+        $messageTextObj = new Message($data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
         $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
 
         $this -> mobacDAO -> insert($messageTextObj);
@@ -97,7 +97,7 @@ class MessagesResource implements Resource {
         return $result;
     }
 
-    private function getMessage($locationId) {
+    private function getMessage($messageTextId) {
     
         global $logger;
         $logger->debug('Fetch message...');
