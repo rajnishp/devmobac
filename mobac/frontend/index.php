@@ -19,25 +19,18 @@ if ($user_id != "admin") {
 	<title>Mobac</title>
 	<meta name="description" content="">
 	<meta name="author" content="rahul lahoria">
-
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+ 
   <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-  <link rel="stylesheet" href="css/bootswatch.css">
-	
+  <link rel="stylesheet" href="css/bootswatch.css">	
   <link rel="stylesheet" href="css/jquery-dataTables.css">
-
-
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
-
-
 	<script data-main="js/main" src="js/libs/require/require.js"></script>
   
 </head>
 <body>
-
-
-
-  
+ 
   <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -58,11 +51,11 @@ if ($user_id != "admin") {
           
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" >Messages</a></li>
-            <li><a href="#" >Call Details</a></li>
+            <li><a href="#/messages" >Messages</a></li>
+            <li><a href="#/callDetails" >Call Details</a></li>
             <li><a href="#/locations" >Locations</a></li>
-            <li><a href="#" >Home</a></li>
-        	<!-- <li ><a href="#/channels" >Channels</a></li>
+          <!--  <li><a href="#/messages" >Home</a></li>
+        	 <li ><a href="#/channels" >Channels</a></li>
         	<li><a href="#/datafields">Data fields</a></li>
         	<li><a href="#/validators">Validators</a></li>
         	<li><a href="#/conflicts">Conflicts Customers</a></li> --> 
@@ -72,28 +65,15 @@ if ($user_id != "admin") {
       </div>
     </div>
 
-
     <br/>
-
 <div class="container">
   <div class='row'>
       <div class='col-md-1'>
         
       </div>
       <div class='col-md-10' >
-        <div id="page">
+        <div id="map_canvas" style="width:100%; height:100%"></div>
           Loading Mobac UI....
-        </div>
-      </div> 
-  </div>
-
-  <div class='row'>
-      <div class='col-md-1'>
-        
-      </div>
-      <div class='col-md-8' >
-        <div id="page2">
-          
         </div>
       </div> 
   </div>

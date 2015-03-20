@@ -4,14 +4,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/posts/PostsListView',
+    'views/messages/MessagesListView',
     'views/posts/PostEditView',
-    'views/locations/LocationsListView'
+    'views/locations/MapView',
+    'models/location/Map'
     
 ], function ($, _, Backbone,
-        PostsListView,
+        MessagesListView,
         PostEditView,
-        LocationsListView
+        MapView,
+        Map
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -23,7 +25,7 @@ define([
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
-                    
+
         }
     });
 
@@ -32,20 +34,25 @@ define([
     //console.log("new router request");
     var initialize = function () {
 
-        app_router.on('route:defaultAction', function (actions) {
+        app_router.on('route:defaultAction', function () {
 
             // We have no matching route, lets display the home page
             console.log("defaultAction");
-            var postsListView = new PostsListView();
-            postsListView.render();
+            var messagesListView = new MessagesListView();
+            messagesListView.render();
         });
 
-        app_router.on('route:locations', function (locations) {
-
+        app_router.on('route:locations', function () {
+            var mapView = new MapView();
+            mapView.init();
             // We have no matching route, lets display the home page
-            console.log("locationView");
+            /*console.log("locationView");
             var locationsListView = new LocationsListView();
-            locationsListView.render();
+            locationsListView.render();*/
+         /*   var map = new Map({zoom: 8, maxZoom: 18, minZoom: 8});
+            map.initMap({coords: {latitude: -34.397, longitude: 150.644}});
+            var mapView = new MapView({model: map});
+            mapView.render();*/
         });
 
         var postEditView = new PostEditView();
