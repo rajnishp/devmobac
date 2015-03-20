@@ -5,6 +5,7 @@ define([
     'underscore',
     'backbone',
     'views/messages/MessagesListView',
+    'views/callDetails/CallDetailsListView',
     'views/posts/PostEditView',
     'views/locations/MapView',
     'models/location/Map'
@@ -13,6 +14,7 @@ define([
         MessagesListView,
         PostEditView,
         MapView,
+        CallDetailsListView,
         Map
         ) {
 
@@ -21,7 +23,7 @@ define([
             // Define some URL routes
             
             'edit/:id': 'editPost',
-            'new': 'editPost',
+            'callDetails': 'callDetails',
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
@@ -53,13 +55,11 @@ define([
             mapView.render();*/
         });
 
-        var postEditView = new PostEditView();
-        app_router.on('route:editPost', function (id) {
+        app_router.on('route:callDetails', function () {
 
-            // We have no matching route, lets display the home page
-            console.log("edit PostEditView");
-
-            postEditView.render({id: id});
+            console.log("edit callDetailsListView");
+            var callDetailsListView = new CallDetailsListView();
+            callDetailsListView.render();
         });
 
 
