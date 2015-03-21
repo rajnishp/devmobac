@@ -13,24 +13,24 @@ interface LocationsDAO{
 	 * @param String $id primary key
 	 * @Return Locations 
 	 */
-	public function load($id);
+	public function load($id, $userId);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll();
+	public function queryAll($userId);
 	
 	/**
 	 * Get all records from table ordered by field
 	 * @Param $orderColumn column name
 	 */
-	public function queryAllOrderBy($orderColumn);
+	public function queryAllOrderBy($orderColumn, $userId);
 	
 	/**
  	 * Delete record from table
  	 * @param location primary key
  	 */
-	public function delete($id);
+	public function delete($id, $userId);
 	
 	/**
  	 * Insert record to table
@@ -44,25 +44,29 @@ interface LocationsDAO{
  	 *
  	 * @param Locations location
  	 */
-	public function update($location);	
+	public function update($location, $userId);	
 
 	/**
 	 * Delete all rows
 	 */
-	public function clean();
+	public function clean($userId);
 
-	public function queryByLatitude($value);
+	public function queryByLatitude($value, $userId);
 
-	public function queryByLongitude($value);
+	public function queryByLongitude($value, $userId);
 
-	public function queryByTime($value);
+	public function queryByFromTime($value, $userId);
+
+	public function queryByToTime($value, $userId);
 
 
-	public function deleteByLatitude($value);
+	public function deleteByLatitude($value, $userId);
 
-	public function deleteByLongitude($value);
+	public function deleteByLongitude($value, $userId);
 
-	public function deleteByTime($value);
+	public function deleteByFromTime($value, $userId);
+
+	public function deleteByToTime($value, $userId);
 
 
 }

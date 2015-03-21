@@ -67,7 +67,7 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 		$sqlQuery->set($userInfo->password);
 
 		$id = $this->executeInsert($sqlQuery);	
-		$userInfo->id = $id;
+		$userInfo-> setId($id);
 		return $id;
 	}
 	
@@ -180,13 +180,14 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 	protected function readRow($row){
 		$userInfo = new UserInfo();
 		
-		$userInfo->id = $row['id'];
+		/*$userInfo->id = $row['id'];
 		$userInfo->firstName = $row['first_name'];
 		$userInfo->lastName = $row['last_name'];
 		$userInfo->email = $row['email'];
 		$userInfo->phoneNo = $row['phone_no'];
 		$userInfo->password = $row['password'];
-
+*/
+		$userInfo = new UserInfo($row['first_name'], $row['last_name'], $row['email'], $row['phone_no'], $row['password'], $row['status'], $row['id']);
 		return $userInfo;
 	}
 	

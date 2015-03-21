@@ -13,19 +13,21 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 * @param String $id primary key
 	 * @return CallDetailsMySql 
 	 */
-	public function load($id){
-		$sql = 'SELECT * FROM call_details WHERE id = ?';
+	public function load($id, $userId){
+		$sql = 'SELECT * FROM call_details WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		$sqlQuery->set($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll(){
-		$sql = 'SELECT * FROM call_details';
+	public function queryAll($userId){
+		$sql = 'SELECT * FROM call_details WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -34,9 +36,10 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 *
 	 * @param $orderColumn column name
 	 */
-	public function queryAllOrderBy($orderColumn){
-		$sql = 'SELECT * FROM call_details ORDER BY '.$orderColumn;
+	public function queryAllOrderBy($orderColumn, $userId){
+		$sql = 'SELECT * FROM call_details WHERE user_id = ? ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -44,10 +47,12 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
  	 * Delete record from table
  	 * @param callDetail primary key
  	 */
-	public function delete($id){
-		$sql = 'DELETE FROM call_details WHERE id = ?';
+	public function delete($id, $userId){
+		//$sql = 'DELETE FROM call_details WHERE id = ? AND user_id = ?';
+		$sql = 'UPDATE call_details SET status = 1 WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 	
@@ -58,16 +63,19 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
  	 */
 	public function insert($callDetail){
 		
-		$sql = 'INSERT INTO call_details (second_party, call_duration, time, type) VALUES (?, ?, ?, ?)';
+		$sql = 'INSERT INTO call_details (user_id, second_party, call_duration, time, type) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
+		$sqlQuery->set($callDetail->getUserId());
 		$sqlQuery->set($callDetail->getSecondParty());
 		$sqlQuery->set($callDetail->getCallDuration());
 		$sqlQuery->set($callDetail->getTime());
 		$sqlQuery->set($callDetail->getType());
-
+	
+	
 		$id = $this->executeInsert($sqlQuery);	
-		$callDetail -> setId($id);
+		$callDetail -> setId($id);	
+	
 		return $id;
 	}
 	
@@ -76,82 +84,92 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
  	 *
  	 * @param CallDetailsMySql callDetail
  	 */
-	public function update($callDetail){
-		$sql = 'UPDATE call_details SET second_party = ?, call_duration = ?, time = ?, type = ? WHERE id = ?';
+	public function update($callDetail, $userId){
+		$sql = 'UPDATE call_details SET second_party = ?, call_duration = ?, time = ?, type = ? WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($callDetail->secondParty);
-		$sqlQuery->set($callDetail->callDuration);
-		$sqlQuery->set($callDetail->time);
-		$sqlQuery->set($callDetail->type);
+		$sqlQuery->setNumber($callDetail -> secondParty);
+		$sqlQuery->set($callDetail -> callDuration);
+		$sqlQuery->set($callDetail -> time);
+		$sqlQuery->set($callDetail -> type);
 
-		$sqlQuery->setNumber($callDetail->id);
+		$sqlQuery->setNumber($callDetail -> id);
+		$sqlQuery->set($callDetail -> userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	/**
  	 * Delete all rows
  	 */
-	public function clean(){
-		$sql = 'DELETE FROM call_details';
+	public function clean($userId){
+		$sql = 'DELETE FROM call_details AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function queryBySecondParty($value){
-		$sql = 'SELECT * FROM call_details WHERE second_party = ?';
+	public function queryBySecondParty($value, $userId){
+		$sql = 'SELECT * FROM call_details WHERE second_party = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery -> setNumber($value);
+		$sqlQuery -> set($userId);
+		return $this -> getList($sqlQuery);
+	}
+
+	public function queryByCallDuration($value, $userId){
+		$sql = 'SELECT * FROM call_details WHERE call_duration = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByTime($value, $userId){
+		$sql = 'SELECT * FROM call_details WHERE time = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByType($value, $userId){
+		$sql = 'SELECT * FROM call_details WHERE type = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
+		return $this->getList($sqlQuery);
+	}
+
+
+	public function deleteBySecondParty($value, $userId){
+		$sql = 'DELETE FROM call_details WHERE second_party = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryByCallDuration($value){
-		$sql = 'SELECT * FROM call_details WHERE call_duration = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryByTime($value){
-		$sql = 'SELECT * FROM call_details WHERE time = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryByType($value){
-		$sql = 'SELECT * FROM call_details WHERE type = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($value);
-		return $this->getList($sqlQuery);
-	}
-
-
-	public function deleteBySecondParty($value){
-		$sql = 'DELETE FROM call_details WHERE second_party = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByCallDuration($value){
-		$sql = 'DELETE FROM call_details WHERE call_duration = ?';
+	public function deleteByCallDuration($value, $userId){
+		$sql = 'DELETE FROM call_details WHERE call_duration = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByTime($value){
-		$sql = 'DELETE FROM call_details WHERE time = ?';
+	public function deleteByTime($value, $userId){
+		$sql = 'DELETE FROM call_details WHERE time = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByType($value){
-		$sql = 'DELETE FROM call_details WHERE type = ?';
+	public function deleteByType($value, $userId){
+		$sql = 'DELETE FROM call_details WHERE type = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
+		$sqlQuery->set($userId);
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -171,7 +189,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 		$callDetail->time = $row['time'];
 		$callDetail->type = $row['type'];
 */
-		$callDetail = new CallDetail($row['second_party'], $row['call_duration'], $row['time'],$row['type'], $row['id']);
+		$callDetail = new CallDetail($row['user_id'], $row['second_party'], $row['call_duration'], $row['time'],$row['type'], $row['status'], $row['id']);
 		
 		return $callDetail;
 	}

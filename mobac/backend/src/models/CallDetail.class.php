@@ -8,17 +8,21 @@
 	class CallDetail{
 		
 		private $id;
+		private $userId;
 		private $secondParty;
 		private $callDuration;
 		private $time;
 		private $type;
+		private $status;
 
-		function __construct($secondParty, $callDuration, $time, $type, $id = null){
+		function __construct($userId, $secondParty, $callDuration, $time, $type, $id = null){
 			$this->id = $id;
+			$this-> userId = $userId;
 			$this->secondParty = $secondParty;
 			$this->callDuration = $callDuration;
 			$this->time = $time;
 			$this->type = $type;
+			$this-> status = $status;
 			
 		}
 		
@@ -27,6 +31,13 @@
 		}
 		function getId(){
 			return $this->id;
+		}
+
+		function setUserId($userId){
+			$this -> userId = $userId;
+		}
+		function getUserId(){
+				return $this-> userId;
 		}
 
 		function setSecondParty($secondParty){
@@ -57,18 +68,27 @@
 			return $this-> type;
 		}
 
+		function setStatus($status){
+			$this -> status = $status;
+		}
+		function getStatus(){
+				return $this-> status;
+		}
+
 
 		function toString (){
-			return $this -> id . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type;
+			return $this -> id . ", " . $this -> userId . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type. ", " . $this -> status;
 		}
 		
 		function toArray() {
 			return array (
 						id => $this->id,
+						userId => $this->userId,
 						secondParty => $this->secondParty,
 						callDuration => $this->callDuration,
 						time => $this->time,
-						type => $this->type
+						type => $this->type,
+						status => $this->status
 				);
 		}
 		

@@ -33,6 +33,9 @@ class LocationsResource implements Resource {
     public function delete ($resourceVals, $data) {
         global $logger, $warnings_payload; 
 
+// $userId is set temporally, update it
+        $userId = 2;
+
         $locationId = $resourceVals ['locations'];
 
         if (! isset($locationId)) {
@@ -42,7 +45,7 @@ class LocationsResource implements Resource {
         }
         $logger -> debug ("Delete message with Id: " . $locationId);-
         
-        $result = $this -> mobacDAO -> delete($locationId);
+        $result = $this -> mobacDAO -> delete($locationId, $userId);
         $logger -> debug ("Location Deleted? " . $result);
 
         if ($result) 
@@ -58,6 +61,9 @@ class LocationsResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
+// $userId is set temporally, update it
+        $userId = 2;
+
         $locationId = $resourceVals ['locations'];
         if (isset($locationId)) {
             $warnings_payload [] = 'POST call to /locations must not have ' . 
@@ -67,7 +73,7 @@ class LocationsResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $locationObj = new Location($data ['latitude'], $data ['longitude'], $data ['time'], 0);
+        $locationObj = new Location($userId, $data ['latitude'], $data ['longitude'], $data ['from_time'], $data ['to_time'], 0);
         $logger -> debug ("POSTed location: " . $locationObj -> toString());
 
         $this -> mobacDAO -> insert($locationObj);
@@ -86,12 +92,15 @@ class LocationsResource implements Resource {
     }
 
     public function get($resourceVals, $data) {
+
+// $userId is set temporally, update it
+        $userId = 2;
 		
 		$locationId = $resourceVals ['locations'];
 		if (isset($locationId))
-			$result = $this->getLocation($locationId);
+			$result = $this->getLocation($locationId, $userId);
 		else
-			$result = $this -> getListOfAllLocations();
+			$result = $this -> getListOfAllLocations($userId);
 
 		if (!is_array($result)) {
 		    return array('code' => '4004');
@@ -100,12 +109,12 @@ class LocationsResource implements Resource {
 		return $result;
     }
 
-    private function getLocation($locationId) {
+    private function getLocation($locationId, $userId) {
 	
     	global $logger;
 		$logger->debug('Fetch location...');
 
-		$locationObj = $this -> mobacDAO -> load($locationId);
+		$locationObj = $this -> mobacDAO -> load($locationId, $userId);
 
         if(empty($locationObj)) 
                 return array('code' => '4004');        
@@ -121,12 +130,12 @@ class LocationsResource implements Resource {
             );
     }
 
-    private function getListOfAllLocations() {
+    private function getListOfAllLocations($userId) {
 	
     	global $logger;
 		$logger->debug('Fetch list of all locations...');
 
-		$listOfLocationObjs = $this -> mobacDAO -> queryAll();
+		$listOfLocationObjs = $this -> mobacDAO -> queryAll($userId);
         //print_r($listOfLocationObjs); exit;
 
         if(empty($listOfLocationObjs)) 

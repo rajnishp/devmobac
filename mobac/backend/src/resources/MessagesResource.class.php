@@ -30,8 +30,8 @@ class MessagesResource implements Resource {
         
         global $logger, $warnings_payload;
          
-// $user_id is set temporally, update it
-        $user_id = 2;
+// $userId is set temporally, update it
+        $userId = 2;
 
         $messageId = $resourceVals ['messages'];
 
@@ -42,7 +42,7 @@ class MessagesResource implements Resource {
         }
         $logger -> debug ("Delete message with Id: " . $messageId);-
         
-        $result = $this -> mobacDAO -> delete($messageId, $user_id);
+        $result = $this -> mobacDAO -> delete($messageId, $userId);
         $logger -> debug ("Message Deleted? " . $result);
 
         if ($result) 
@@ -58,8 +58,8 @@ class MessagesResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
-// $user_id is set temporally, update it
-        $user_id = 3;
+// $userId is set temporally, update it
+        $userId = 3;
 
         $messageTextId = $resourceVals ['messages'];
         if (isset($messageTextId)) {
@@ -70,7 +70,7 @@ class MessagesResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $messageTextObj = new Message($user_id, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
+        $messageTextObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
         $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
 
         $this -> mobacDAO -> insert($messageTextObj);
@@ -90,13 +90,13 @@ class MessagesResource implements Resource {
 
     public function get($resourceVals, $data) {
 
-        $user_id = 2;
+        $userId = 2;
 
         $messageTextId = $resourceVals ['messages'];
         if (isset($messageTextId))
-            $result = $this->getMessage($messageTextId, $user_id);
+            $result = $this->getMessage($messageTextId, $userId);
         else
-            $result = $this -> getListOfAllMessages($user_id);
+            $result = $this -> getListOfAllMessages($userId);
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -105,12 +105,12 @@ class MessagesResource implements Resource {
         return $result;
     }
 
-    private function getMessage($messageTextId, $user_id) {
+    private function getMessage($messageTextId, $userId) {
     
         global $logger;
         $logger->debug('Fetch message...');
 
-        $messageTextObj = $this -> mobacDAO -> load($messageTextId, $user_id);
+        $messageTextObj = $this -> mobacDAO -> load($messageTextId, $userId);
 
         if(empty($messageTextObj)) 
                 return array('code' => '2004');        
@@ -126,12 +126,12 @@ class MessagesResource implements Resource {
             );
     }
 
-    private function getListOfAllMessages($user_id) {
+    private function getListOfAllMessages($userId) {
     
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        $listOfmessageTextObjs = $this -> mobacDAO -> queryAll($user_id);
+        $listOfmessageTextObjs = $this -> mobacDAO -> queryAll($userId);
         
         if(empty($listOfmessageTextObjs)) 
                 return array('code' => '2004');
