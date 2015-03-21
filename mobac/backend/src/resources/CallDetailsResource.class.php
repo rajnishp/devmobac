@@ -106,7 +106,7 @@ class CallDetailsResource implements Resource {
         return $result;
     }
 
-    private function getCallDetail($locationId, $userId) {
+    private function getCallDetail($callDetailId, $userId) {
     
         global $logger;
         $logger->debug('Fetch call detail...');

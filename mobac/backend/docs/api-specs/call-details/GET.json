@@ -4,30 +4,73 @@
 
 	Response:
 
-
     {
        "internal_status":
        {
            "code": "5000",
-           "message": "Call Details Fetched"
+           "message": "call-detail Fetched"
        },
        "data":
        {
            "CallDetails":
            [
                {
-                   "id": "5",
-                   "secondParty": "2147483647",
+                   "id": "21",
+                   "userId": "2",
+                   "secondParty": "",
                    "callDuration": "00:00:00",
-                   "time": "0000-00-00 00:00:00",
-                   "type": "Local"
+                   "time": "2015-03-19 04:11:21",
+                   "type": "Missed",
+                   "status": "0"
                },
                {
-                   "id": "6",
-                   "secondParty": "2147483647",
-                   "callDuration": "33:12:12",
-                   "time": "0000-00-00 00:00:00",
-                   "type": "Local"
+                   "id": "22",
+                   "userId": "2",
+                   "secondParty": "",
+                   "callDuration": "00:00:00",
+                   "time": "2015-03-21 04:11:21",
+                   "type": "Incoming",
+                   "status": "0"
+               },
+               {
+                   "id": "24",
+                   "userId": "2",
+                   "secondParty": "",
+                   "callDuration": "00:00:00",
+                   "time": "2015-03-21 02:18:21",
+                   "type": "Outgoing",
+                   "status": "0"
+               }
+           ]
+       }
+    }
+
+
+
+/call-details/<callDetailId>
+
+  GET "http://api.loc.mobac.com/v0/call-details/26"
+
+  Response:
+
+    {
+       "internal_status":
+       {
+           "code": "5000",
+           "message": "call-detail Fetched"
+       },
+       "data":
+       {
+           "CallDetails":
+           [
+               {
+                   "id": "26",
+                   "userId": "2",
+                   "secondParty": "123123123",
+                   "callDuration": "00:01:23",
+                   "time": "2015-03-21 02:18:21",
+                   "type": "Outgoing",
+                   "status": "1"
                }
            ]
        }
