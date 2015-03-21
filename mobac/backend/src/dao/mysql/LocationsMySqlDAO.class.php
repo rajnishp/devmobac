@@ -62,15 +62,16 @@ class LocationsMySqlDAO implements LocationsDAO{
  	 * @param LocationsMySql location
  	 */
 	public function insert($location){
-		$sql = 'INSERT INTO locations (user_id, latitude, longitude, from_time, to_time) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO locations (user_id, latitude, longitude, from_time, to_time, status) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($message->getUserId());
+		$sqlQuery->set($location->getUserId());
 		$sqlQuery -> set($location-> getLatitude());
 		$sqlQuery -> set($location-> getLongitude());
 		$sqlQuery -> set($location-> getFromTime());
 		$sqlQuery -> set($location-> getToTime());
-
+		$sqlQuery -> set($location-> getStatus());
+		
 		$id = $this -> executeInsert($sqlQuery);	
 		$location -> setId($id);
 		//$location-> id = $id;

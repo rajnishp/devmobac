@@ -24,8 +24,6 @@
 			$this-> phoneNo = $phoneNo;
 			$this-> password = $password;
 			$this-> status = $status;
-
-			
 		}
 		
 		function setId($id){

@@ -33,7 +33,7 @@ class LocationsResource implements Resource {
     public function delete ($resourceVals, $data) {
         global $logger, $warnings_payload; 
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
 
         $locationId = $resourceVals ['locations'];
@@ -61,7 +61,7 @@ class LocationsResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
 
         $locationId = $resourceVals ['locations'];
@@ -73,7 +73,7 @@ class LocationsResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $locationObj = new Location($userId, $data ['latitude'], $data ['longitude'], $data ['from_time'], $data ['to_time'], 0);
+        $locationObj = new Location($userId, $data ['latitude'], $data ['longitude'], $data ['fromTime'], $data ['toTime'], 0);
         $logger -> debug ("POSTed location: " . $locationObj -> toString());
 
         $this -> mobacDAO -> insert($locationObj);

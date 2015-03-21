@@ -1,6 +1,5 @@
 /locations
 
-
   GET: "http://api.loc.mobac.com/v0/locations/"
   Response:
 
@@ -15,22 +14,60 @@
            "locations":
            [
                {
-                   "id": "6",
+                   "id": "19",
                    "userId": "2",
-                   "latitude": "12.925804",
-                   "longitude": "77.666855",
-                   "formTime": "2015-03-19 01:26:02",
-                   "toTime": "0000-00-00 00:00:00",
-                   "status": "1"
+                   "latitude": "222.111115",
+                   "longitude": "222.111633",
+                   "fromTime": "0000-00-00 00:00:00",
+                   "toTime": "2015-03-21 06:34:00",
+                   "status": "0"
                },
                {
-                   "id": "9",
+                   "id": "20",
                    "userId": "2",
-                   "latitude": "23.343433",
-                   "longitude": "45.556564",
-                   "formTime": "2015-03-20 01:26:02",
-                   "toTime": "0000-00-00 00:00:00",
+                   "latitude": "222.111115",
+                   "longitude": "222.111633",
+                   "fromTime": "0000-00-00 00:00:00",
+                   "toTime": "2015-03-21 06:34:00",
                    "status": "0"
+               },
+               {
+                   "id": "21",
+                   "userId": "2",
+                   "latitude": "222.111115",
+                   "longitude": "222.111633",
+                   "fromTime": "2015-12-20 02:10:00",
+                   "toTime": "2015-03-21 06:34:00",
+                   "status": "0"
+               }
+           ]
+       }
+    }
+
+
+/locations/<location_Id>
+
+  GET: "http://api.loc.mobac.com/v0/locations/22"
+  Response:
+
+    {
+       "internal_status":
+       {
+           "code": "4000",
+           "message": "Location Fetched"
+       },
+       "data":
+       {
+           "locations":
+           [
+               {
+                   "id": "22",
+                   "userId": "2",
+                   "latitude": "333.111115",
+                   "longitude": "222.111633",
+                   "fromTime": "2015-12-20 02:10:00",
+                   "toTime": "2015-03-21 06:34:00",
+                   "status": "1"
                }
            ]
        }

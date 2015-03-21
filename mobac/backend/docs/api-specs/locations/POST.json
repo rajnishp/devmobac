@@ -4,10 +4,11 @@
 
   POST data:
   {
-    "root": {
-        "latitude": "23.4454546546", 
-        "longitude": "22.22222222222", 
-        "time": "2015-03-19 04:31:21"
+    "root":{
+         "latitude": "333.1111125804",
+         "longitude": "222.1116255",
+         "fromTime": "2015-12-20 02:10:00",
+         "toTime": "2015-03-21 06:34:00"
     }
   }
 
@@ -18,17 +19,20 @@
        "internal_status":
        {
            "code": "4001",
-           "message": "location Saved"
+           "message": "Location Saved"
        },
        "data":
        {
            "locations":
            [
                {
-                   "id": 12,
-                   "latitude": "23.4454546546",
-                   "longitude": "22.22222222222",
-                   "time": "2015-03-19 04:31:21"
+                   "id": 23,
+                   "userId": 2,
+                   "latitude": "333.1111125804",
+                   "longitude": "222.1116255",
+                   "fromTime": "2015-12-20 02:10:00",
+                   "toTime": "2015-03-21 06:34:00",
+                   "status": 0
                }
            ]
        }

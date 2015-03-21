@@ -86,7 +86,7 @@
 						userId => $this->userId,
 						latitude => $this->latitude,
 						longitude => $this->longitude,
-						formTime => $this->fromTime,
+						fromTime => $this->fromTime,
 						toTime => $this->toTime,
 						status => $this->status
 					);
