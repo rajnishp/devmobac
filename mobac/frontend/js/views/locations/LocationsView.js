@@ -27,13 +27,14 @@ define([
           var template = _.template(locationsTemplate, {locations: locations.models[0].attributes.data.locations});
           $('#locations-list-template').html(template); 
           console.log(template);
+          console.log(locations.models[0].attributes.data.locations[0].fromTime);
           that.$el.html(template);
           var center = new google.maps.LatLng(locations.models[0].attributes.data.locations[0].latitude, locations.models[0].attributes.data.locations[0].longitude);
           var mapOptions = {
-            center: center,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
+                            center: center,
+                            zoom: 16,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                          };
           var loc1 = new google.maps.Marker({
                         position:center,
                         icon: {
@@ -45,16 +46,16 @@ define([
                           fillColor:"green",
                           fillOpacity:0.4
                         },
-                        title: locations.models[0].attributes.data.locations[0].formTime
+                        title : locations.models[0].attributes.data.locations[0].fromTime
                       });
           var map = new google.maps.Map($('#map_canvas')[0], mapOptions);
           loc1.setMap(map);
-            var infowindow = new google.maps.InfoWindow({
-                content: locations.models[0].attributes.data.locations[0].formTime
-            });
-            google.maps.event.addListener(loc1, 'click', function() {
-              infowindow.open(map,loc1);
-            });
+          var infowindow = new google.maps.InfoWindow({
+            content: locations.models[0].attributes.data.locations[0].fromTime
+          });
+          google.maps.event.addListener(loc1, 'click', function() {
+            infowindow.open(map,loc1);
+          });
 
         // $('#locationsTable').createMap();
           return map;
