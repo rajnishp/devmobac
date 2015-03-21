@@ -21,7 +21,7 @@ define([
             // Define some URL routes
             
             'edit/:id': 'editPost',
-            'callDetails': 'callDetails',
+            'call-details': 'call-details',
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
@@ -53,7 +53,7 @@ define([
             mapView.render();*/
         });
 
-        app_router.on('route:callDetails', function () {
+        app_router.on('route:call-details', function () {
             console.log("list callDetailsListView");
             var callDetailsListView = new CallDetailsListView();
             console.log(callDetailsListView);

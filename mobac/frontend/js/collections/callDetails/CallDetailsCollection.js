@@ -14,7 +14,7 @@ define([
       },
       
       url : function() {
-        return window.BASE_URL+'/callDetails';
+        return window.BASE_URL+'/call-details';
       }        
      
   });

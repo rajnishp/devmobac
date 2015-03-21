@@ -20,15 +20,15 @@ define([
     render: function () {
       var that = this;
       
-      var callDetails = new CallDetailsCollection();
+      var CallDetails = new CallDetailsCollection();
       console.log("inside render");
-      callDetails.fetch({
-        success: function (callDetails) {
+      CallDetails.fetch({
+        success: function (CallDetails) {
            //defining teplate
         console.log("inside render success");  
         console.log(CallDetails);
-        var template = _.template(CallDetailsTemplate, {callDetails: callDetails.models[0].attributes.data.callDetails});
-        $('#callDetails-list-template').html(template); 
+        var template = _.template(CallDetailsTemplate, {CallDetails: CallDetails.models[0].attributes.data.CallDetails});
+        $('#CallDetails-list-template').html(template); 
         console.log(template);
         that.$el.html(template);
         $('#callDetailsTable').DataTable();

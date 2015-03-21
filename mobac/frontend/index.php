@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id'])) {
 
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/messages" >Messages</a></li>
-            <li><a href="#/callDetails" >Call Details</a></li>
+            <li><a href="#/call-details" >Call Details</a></li>
             <li><a href="#/locations" >Locations</a></li>
           <!--  <li><a href="#/messages" >Home</a></li>
         	 <li ><a href="#/channels" >Channels</a></li>

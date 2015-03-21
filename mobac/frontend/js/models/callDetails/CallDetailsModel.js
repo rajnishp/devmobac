@@ -11,8 +11,8 @@ define([
 
  	url : function() {
  		if(this.id == null)
-        	return window.BASE_URL+'/callDetails';
-        return window.BASE_URL+'/callDetails/'+ this.id;
+        	return window.BASE_URL+'/call-details';
+        return window.BASE_URL+'/call-details/'+ this.id;
       } 
     });
 

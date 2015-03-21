@@ -7,14 +7,14 @@
       </tr>
     </thead>
     <tbody>
-      <% _.each(callDetails, function(callDetails) { %>
+      <% _.each(CallDetails, function(CallDetails) { %>
         <tr>
-          <td><%= callDetails.id %></td>
-          <td><%= callDetails.second_party %></td>
-          <td><%= callDetails.call_duration %></td>
-          <td><%= callDetails.time %></td>
-          <td><%= callDetails.type %></td>
-          <td><a class="btn" href="#/delete/<%= callDetails.id %>">Delete</a></td>
+          <td><%= CallDetails.id %></td>
+          <td><%= CallDetails.secondParty %></td>
+          <td><%= CallDetails.callDuration %></td>
+          <td><%= CallDetails.time %></td>
+          <td><%= CallDetails.type %></td>
+          <td><a class="btn" href="#/delete/<%= CallDetails.id %>">Delete</a></td>
         </tr>
       <% }); %>
     </tbody>
