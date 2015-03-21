@@ -17,7 +17,9 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 		$sql = 'SELECT * FROM user_info WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		
 		return $this->getRow($sqlQuery);
+
 	}
 
 	/**
@@ -60,14 +62,14 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 		$sql = 'INSERT INTO user_info (first_name, last_name, email, phone_no, password) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($userInfo->firstName);
-		$sqlQuery->set($userInfo->lastName);
-		$sqlQuery->set($userInfo->email);
-		$sqlQuery->setNumber($userInfo->phoneNo);
-		$sqlQuery->set($userInfo->password);
+		$sqlQuery->set($userInfo-> getFirstName());
+		$sqlQuery->set($userInfo-> getLastName());
+		$sqlQuery->set($userInfo-> getEmail());
+		$sqlQuery->set($userInfo-> getPhoneNo());
+		$sqlQuery->set($userInfo-> getPassword());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$userInfo-> setId($id);
+		$userInfo -> setId($id);
 		return $id;
 	}
 	

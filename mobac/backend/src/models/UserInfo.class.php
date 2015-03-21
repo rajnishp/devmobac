@@ -82,11 +82,10 @@
 		function toArray() {
 			return array (
 						id => $this-> id,
-						userId => $this-> firstName,
-						fromTo => $this-> lastName,
-						messageText => $this-> email,
-						time => $this-> phoneNo,
-						type => $this-> password,
+						firstName => $this-> firstName,
+						lastName => $this-> lastName,
+						email => $this-> email,
+						phoneNo => $this-> phoneNo,
 						status => $this-> status
 				);
 		}
