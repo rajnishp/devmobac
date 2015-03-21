@@ -70,7 +70,7 @@ class CallDetailsResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $callDetailObj = new CallDetail($userId, $data ['second_party'], $data ['call_duration'], $data ['time'],$data ['type'], 0);
+        $callDetailObj = new CallDetail($userId, $data ['secondParty'], $data ['callDuration'], $data ['time'],$data ['type'], 0);
         $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
 
         $this -> mobacDAO -> insert($callDetailObj);
@@ -94,7 +94,7 @@ class CallDetailsResource implements Resource {
         $userId = 2;
 
         $callDetailId = $resourceVals ['call-details'];
-        if (isset($callDetailObj))
+        if (isset($callDetailId))
             $result = $this->getCallDetail($callDetailId, $userId);
         else
             $result = $this -> getListOfAllCallDetails($userId);
@@ -106,7 +106,7 @@ class CallDetailsResource implements Resource {
         return $result;
     }
 
-    private function getCallDetail($locationId, $userId) {
+    private function getCallDetail($callDetailId, $userId) {
     
         global $logger;
         $logger->debug('Fetch call detail...');

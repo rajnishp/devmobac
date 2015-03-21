@@ -14,9 +14,9 @@ class LocationsMySqlDAO implements LocationsDAO{
 	 * @return LocationsMySql 
 	 */
 	public function load($id, $userId){
-		$sql = 'SELECT * FROM locations WHERE id = ? AND user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE id = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
+		$sqlQuery->set($id);
 		$sqlQuery->set($userId);
 		return $this->getRow($sqlQuery);
 	}
@@ -25,7 +25,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	 * Get all records from table
 	 */
 	public function queryAll($userId){
-		$sql = 'SELECT * FROM locations WHERE user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
@@ -37,7 +37,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn, $userId){
-		$sql = 'SELECT * FROM locations WHERE user_id = ? ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM locations WHERE user_id = ? AND status = 0 ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
@@ -49,7 +49,7 @@ class LocationsMySqlDAO implements LocationsDAO{
  	 */
 	public function delete($id, $userId){
 		//$sql = 'DELETE FROM locations WHERE id = ? AND user_id = ?';
-		$sql = 'UPDATE locations SET status = 1 WHERE id = ? AND user_id = ?';
+		$sql = 'UPDATE locations SET status = 1 WHERE id = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery -> setNumber($id);
 		$sqlQuery->set($userId);
@@ -108,7 +108,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	}
 
 	public function queryByLatitude($value, $userId){
-		$sql = 'SELECT * FROM locations WHERE latitude = ? AND user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE latitude = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -116,7 +116,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	}
 
 	public function queryByLongitude($value, $userId){
-		$sql = 'SELECT * FROM locations WHERE longitude = ? AND user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE longitude = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -124,7 +124,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	}
 
 	public function queryByFromTime($value, $userId){
-		$sql = 'SELECT * FROM locations WHERE from_time = ? AND user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE from_time = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -132,7 +132,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	}
 
 	public function queryByToTime($value, $userId){
-		$sql = 'SELECT * FROM locations WHERE to_time = ? AND user_id = ?';
+		$sql = 'SELECT * FROM locations WHERE to_time = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);

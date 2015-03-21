@@ -15,14 +15,14 @@
 		private $type;
 		private $status;
 
-		function __construct($userId, $secondParty, $callDuration, $time, $type, $id = null){
-			$this->id = $id;
-			$this-> userId = $userId;
-			$this->secondParty = $secondParty;
-			$this->callDuration = $callDuration;
-			$this->time = $time;
-			$this->type = $type;
-			$this-> status = $status;
+		function __construct($userId, $secondParty, $callDuration, $time, $type, $status, $id = null){
+			$this -> id = $id;
+			$this -> userId = $userId;
+			$this -> secondParty = $secondParty;
+			$this -> callDuration = $callDuration;
+			$this -> time = $time;
+			$this -> type = $type;
+			$this -> status = $status;
 			
 		}
 		
@@ -30,7 +30,7 @@
 			$this -> id = $id;
 		}
 		function getId(){
-			return $this->id;
+			return $this -> id;
 		}
 
 		function setUserId($userId){
