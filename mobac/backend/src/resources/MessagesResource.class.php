@@ -90,7 +90,7 @@ class MessagesResource implements Resource {
 
     public function get($resourceVals, $data) {
 
-        $userId = 2;
+        $userId = 3;
 
         $messageTextId = $resourceVals ['messages'];
         if (isset($messageTextId))

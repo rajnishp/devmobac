@@ -14,8 +14,9 @@
 		private $time;
 		private $type;
 		private $status;
+		private $callerName;
 
-		function __construct($userId, $secondParty, $callDuration, $time, $type, $status, $id = null){
+		function __construct($userId, $secondParty, $callDuration, $time, $type, $status, $callerName, $id = null){
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> secondParty = $secondParty;
@@ -23,7 +24,7 @@
 			$this -> time = $time;
 			$this -> type = $type;
 			$this -> status = $status;
-			
+			$this -> callerName = $callerName;
 		}
 		
 		function setId($id){
@@ -75,20 +76,27 @@
 				return $this-> status;
 		}
 
+		function setCallerName($callerName){
+			$this -> callerName = $callerName;
+		}
+		function getCallerName(){
+			return $this -> callerName;
+		}
 
 		function toString (){
-			return $this -> id . ", " . $this -> userId . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type. ", " . $this -> status;
+			return $this -> id . ", " . $this -> userId . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type. ", " . $this -> status. ", " . $this -> callerName;
 		}
 		
 		function toArray() {
 			return array (
-						id => $this->id,
-						userId => $this->userId,
-						secondParty => $this->secondParty,
-						callDuration => $this->callDuration,
-						time => $this->time,
-						type => $this->type,
-						status => $this->status
+						id => $this -> id,
+						userId => $this -> userId,
+						secondParty => $this -> secondParty,
+						callDuration => $this -> callDuration,
+						time => $this -> time,
+						type => $this -> type,
+						status => $this -> status,
+						callerName => $this -> callerName
 				);
 		}
 		
