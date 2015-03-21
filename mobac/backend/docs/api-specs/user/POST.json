@@ -1,0 +1,40 @@
+/user
+	
+	POST "http://api.loc.mobac.com/v0/user"
+
+	POST Data:
+
+	{
+      "root": {
+               "firstName": "Rajnish",
+               "lastName": "Panwar",
+               "email": "rajnish_pawar90@yahoo.com",
+               "phoneNo": "890141422",
+               "password": "redhat"    
+        }
+	}
+	
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2001",
+           "message": "Message saved"
+       },
+       "data":
+       {
+           "userDetail":
+           [
+               {
+                   "id": 7,
+                   "firstName": "Rajnish",
+  	               "lastName": "Panwar",
+  	               "email": "rajnish_pawar90@yahoo.com",
+  	               "phoneNo": "890141422",
+  	               "password": "redhat",    
+                   "status": 0
+               }
+           ]
+       }
+    }

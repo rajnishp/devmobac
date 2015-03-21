@@ -1,0 +1,28 @@
+/user
+
+	GET ""
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "2000",
+           "message": "Messages Fetched"
+       },
+       "data":
+       {
+           "user":
+           [
+               {
+                   "id": "7",
+                   "firstName": "Rajnish",
+  	               "lastName": "Panwar",
+  	               "email": "rajnish_pawar90@yahoo.com",
+  	               "phoneNo": "890141422",
+  	               "password": "redhat",    
+                   "status": "0"
+               }
+           ]
+       }
+    }

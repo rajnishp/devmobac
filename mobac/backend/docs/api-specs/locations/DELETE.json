@@ -1,0 +1,13 @@
+/locations/<location_Id>
+
+	DELETE "http://api.loc.mobac.com/v0/locations/8"
+
+	Response:
+
+    {
+       "internal_status":
+       {
+           "code": "4003",
+           "message": "Location Deleted"
+       }
+    }
