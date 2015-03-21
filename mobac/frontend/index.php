@@ -1,12 +1,11 @@
 <?php 
-session_start();
-/* 
-$user_id = $_SESSION['user_id'];
-if ($user_id != "admin") {
+session_start(); 
+/*$user_id = $_SESSION['user_id'];
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
-}
-*/
+}*/
+
 ?>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -72,9 +71,9 @@ if ($user_id != "admin") {
         
       </div>
       <div class='col-md-10' >
-        <div id="map_canvas" style="width:100%; height:100%">
+        <div id="page" style="width:100%; height:100%">
           Loading Mobac UI....
-          
+
         </div>
       </div> 
   </div>

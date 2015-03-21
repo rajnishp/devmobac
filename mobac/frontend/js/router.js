@@ -7,15 +7,13 @@ define([
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
     'views/posts/PostEditView',
-    'views/locations/MapView',
-    'models/location/Map'
+    'views/locations/LocationsView'
     
 ], function ($, _, Backbone,
         MessagesListView,
-        PostEditView,
-        MapView,
         CallDetailsListView,
-        Map
+        PostEditView,
+        LocationsView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -43,12 +41,12 @@ define([
         });
 
         app_router.on('route:locations', function () {
-            var mapView = new MapView();
-            mapView.init();
+           // var mapView = new MapView();
+           // mapView.init();
             // We have no matching route, lets display the home page
-            /*console.log("locationView");
-            var locationsListView = new LocationsListView();
-            locationsListView.render();*/
+            console.log("locationView");
+            var locationsView = new LocationsView();
+            locationsView.render();
          /*   var map = new Map({zoom: 8, maxZoom: 18, minZoom: 8});
             map.initMap({coords: {latitude: -34.397, longitude: 150.644}});
             var mapView = new MapView({model: map});
@@ -56,9 +54,9 @@ define([
         });
 
         app_router.on('route:callDetails', function () {
-
-            console.log("edit callDetailsListView");
+            console.log("list callDetailsListView");
             var callDetailsListView = new CallDetailsListView();
+            console.log(callDetailsListView);
             callDetailsListView.render();
         });
 

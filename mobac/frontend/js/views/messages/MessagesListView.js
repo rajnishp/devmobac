@@ -8,7 +8,7 @@ define([
 
     var MessagesView = Backbone.View.extend({
 
-     el : $("#map_canvas"),
+     el : $("#page"),
      initialize : function() {
      
       var that = this;
@@ -26,7 +26,7 @@ define([
            //defining teplate
         console.log("inside render success");  
         console.log(messages);
-        var template = _.template(messagesListTemplate, {messages: messages.models[0].attributes.data.messages});
+        var template = _.template(MessagesTemplate, {messages: messages.models[0].attributes.data.messages});
         $('#messages-list-template').html(template); 
         console.log(template);
         that.$el.html(template);
