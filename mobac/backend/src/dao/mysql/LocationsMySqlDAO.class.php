@@ -16,7 +16,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	public function load($id, $userId){
 		$sql = 'SELECT * FROM locations WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
+		$sqlQuery->set($id);
 		$sqlQuery->set($userId);
 		return $this->getRow($sqlQuery);
 	}
