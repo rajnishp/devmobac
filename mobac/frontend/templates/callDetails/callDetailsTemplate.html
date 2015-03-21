@@ -3,18 +3,15 @@
   <table class="display" id='callDetailsTable' width="100%" cellspacing="0">
     <thead>
       <tr>
-        <th> ID</th><th>From/To</th><th>Duration</th><th>Time</th><th>Type</th><th>Edit/Delete</th>
+        <th>Name</th><th>Phone no.</th><th>Count</th>
       </tr>
     </thead>
     <tbody>
-      <% _.each(CallDetails, function(CallDetails) { %>
+      <% _.each(Numbers, function(Number) { %>
         <tr>
-          <td><%= CallDetails.id %></td>
-          <td><%= CallDetails.secondParty %></td>
-          <td><%= CallDetails.callDuration %></td>
-          <td><%= CallDetails.time %></td>
-          <td><%= CallDetails.type %></td>
-          <td><a class="btn" href="#/delete/<%= CallDetails.id %>">Delete</a></td>
+          <td><%= Number.name %></td>
+          <td><a class="btn" href="#/call-details/<%= Number.number %>"><%= Number.number %></a></td>
+          <td><%= Number.count %></td>
         </tr>
       <% }); %>
     </tbody>
