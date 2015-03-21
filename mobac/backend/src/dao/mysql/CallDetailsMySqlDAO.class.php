@@ -14,7 +14,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 * @return CallDetailsMySql 
 	 */
 	public function load($id, $userId){
-		$sql = 'SELECT * FROM call_details WHERE id = ? AND user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE id = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
 		$sqlQuery->set($userId);
@@ -25,7 +25,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 * Get all records from table
 	 */
 	public function queryAll($userId){
-		$sql = 'SELECT * FROM call_details WHERE user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
@@ -37,7 +37,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn, $userId){
-		$sql = 'SELECT * FROM call_details WHERE user_id = ? ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM call_details WHERE user_id = ? AND status = 0 ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
@@ -108,7 +108,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	}
 
 	public function queryBySecondParty($value, $userId){
-		$sql = 'SELECT * FROM call_details WHERE second_party = ? AND user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE second_party = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery -> setNumber($value);
 		$sqlQuery -> set($userId);
@@ -116,7 +116,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	}
 
 	public function queryByCallDuration($value, $userId){
-		$sql = 'SELECT * FROM call_details WHERE call_duration = ? AND user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE call_duration = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -124,7 +124,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	}
 
 	public function queryByTime($value, $userId){
-		$sql = 'SELECT * FROM call_details WHERE time = ? AND user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE time = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -132,7 +132,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	}
 
 	public function queryByType($value, $userId){
-		$sql = 'SELECT * FROM call_details WHERE type = ? AND user_id = ?';
+		$sql = 'SELECT * FROM call_details WHERE type = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		$sqlQuery->set($userId);
@@ -141,7 +141,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 
 
 	public function deleteBySecondParty($value, $userId){
-		$sql = 'DELETE FROM call_details WHERE second_party = ? AND user_id = ?';
+		$sql = 'DELETE FROM call_details WHERE second_party = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		$sqlQuery->set($userId);

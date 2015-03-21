@@ -14,7 +14,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @return MessagesMySql 
 	 */
 	public function load($id, $userId){
-		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
 		$sqlQuery->set($userId);
@@ -25,7 +25,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * Get all records from table
 	 */
 	public function queryAll($userId){
-		$sql = 'SELECT * FROM messages WHERE user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
@@ -37,7 +37,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn, $userId){
-		$sql = 'SELECT * FROM messages WHERE user_id = ? ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM messages WHERE user_id = ? AND status = 0 ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
@@ -107,28 +107,28 @@ class MessagesMySqlDAO implements MessagesDAO{
 	}
 
 	public function queryByFromTo($value, $userId){
-		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByMessageText($value, $userId){
-		$sql = 'SELECT * FROM messages WHERE message_text = ? AND user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE message_text = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByTime($value, $userId){
-		$sql = 'SELECT * FROM messages WHERE time = ? AND user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE time = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
 	public function queryByType($value, $userId){
-		$sql = 'SELECT * FROM messages WHERE type = ? AND user_id = ?';
+		$sql = 'SELECT * FROM messages WHERE type = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
