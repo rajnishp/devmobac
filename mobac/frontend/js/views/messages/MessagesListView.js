@@ -24,6 +24,7 @@ define([
       console.log(options);
       messages.fetch({
         success: function (messages) {
+          console.log(messages);
           messagesData = messages.models[0].attributes.data.messages;
           if(options.number == "" || options.number == "messages" || options.number == undefined){
               var numbers = [];
@@ -59,7 +60,7 @@ define([
               }
             });
             var template = _.template(MessageDetailsTemplate, {Details: Details});
-            $('#MessageDetails-list-template').html(template); 
+            $('#messageDetails-list-template').html(template); 
             
             that.$el.html(template);
             $('#messageDetailsTable').DataTable();
