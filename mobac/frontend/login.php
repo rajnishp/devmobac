@@ -25,20 +25,16 @@ if (isset($_POST['login__username'])){
 <html class="wf-myriadpro-n6-active wf-museosans-n3-active wf-museosans-n5-active wf-museosans-n7-active wf-myriadpro-n4-active wf-active"><head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <title>Mobac | Keep your mobile back</title>
-      <link rel="shortcut icon" type="image/ico" href="https://intouch.capillary.in/images/favicon_v2.ico">
       <link rel="stylesheet" type="text/css" href="css/validationEngine.css" media="screen" title="no title" charset="utf-8">
       <link rel="stylesheet" type="text/css" href="css/newLogin.css">
       <style type="text/css">.tk-museo-sans{font-family:"museo-sans",sans-serif;}.tk-myriad-pro{font-family:"myriad-pro",sans-serif;}</style>
       <link href="css/d.css" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<h1 class="c-disp-none">Mobac Keep your mobile back</h1>
-	</header>
 	<article class="c-login-art">
     <section class="c-login-cont">
+    <h2>Mobac Keep your mobile back</h2>
 			<span class="c-login-contIn">
-				<span class="c-logo"><img src="imgs/c-logo-common.png" alt="Capillary Technologies"></span>
 				<span class="c-logo-head">Log In to Mobac</span>
         <form id="form_login" method="post">
     	    <span class="c-login-sep">

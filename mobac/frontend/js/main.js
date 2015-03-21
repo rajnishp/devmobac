@@ -10,7 +10,9 @@ require.config({
     backbone: 'libs/backbone/backbone-min',
     templates: '../templates',
     renderjson: 'libs/renderjson/renderjson',
-    datatable: 'libs/datatable/jquery-dataTables-min'
+    datatable: 'libs/datatable/jquery-dataTables-min',
+    google_maps: 'libs/google/google_maps',
+    maps: 'libs/google/maps'
   }
 
 });

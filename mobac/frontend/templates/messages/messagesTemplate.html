@@ -1,0 +1,21 @@
+<h4>List of Messages</h4> <hr />
+<br/>
+  <table class="display" id='messagesTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th> ID</th><th>From/To</th><th>Message</th><th>Time</th><th>Type</th><th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(messages, function(messages) { %>
+        <tr>
+          <td><%= messages.id %></td>
+          <td><%= messages.fromTo %></td>
+          <td><%= messages.messageText %></td>
+          <td><%= messages.time %></td>
+          <td><%= messages.type %></td>
+          <td><a class="btn" href="#/delete/<%= messages.id %>">Delete</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

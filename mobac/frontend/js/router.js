@@ -4,14 +4,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/posts/PostsListView',
+    'views/messages/MessagesListView',
+    'views/callDetails/CallDetailsListView',
     'views/posts/PostEditView',
-    'views/locations/LocationsListView'
+    'views/locations/LocationsView'
     
 ], function ($, _, Backbone,
-        PostsListView,
+        MessagesListView,
+        CallDetailsListView,
         PostEditView,
-        LocationsListView
+        LocationsView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -19,11 +21,11 @@ define([
             // Define some URL routes
             
             'edit/:id': 'editPost',
-            'new': 'editPost',
+            'callDetails': 'callDetails',
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
-                    
+
         }
     });
 
@@ -32,29 +34,30 @@ define([
     //console.log("new router request");
     var initialize = function () {
 
-        app_router.on('route:defaultAction', function (actions) {
-
-            // We have no matching route, lets display the home page
+        app_router.on('route:defaultAction', function () {
             console.log("defaultAction");
-            var postsListView = new PostsListView();
-            postsListView.render();
+            var messagesListView = new MessagesListView();
+            messagesListView.render();
         });
 
-        app_router.on('route:locations', function (locations) {
-
+        app_router.on('route:locations', function () {
+           // var mapView = new MapView();
+           // mapView.init();
             // We have no matching route, lets display the home page
             console.log("locationView");
-            var locationsListView = new LocationsListView();
-            locationsListView.render();
+            var locationsView = new LocationsView();
+            locationsView.render();
+         /*   var map = new Map({zoom: 8, maxZoom: 18, minZoom: 8});
+            map.initMap({coords: {latitude: -34.397, longitude: 150.644}});
+            var mapView = new MapView({model: map});
+            mapView.render();*/
         });
 
-        var postEditView = new PostEditView();
-        app_router.on('route:editPost', function (id) {
-
-            // We have no matching route, lets display the home page
-            console.log("edit PostEditView");
-
-            postEditView.render({id: id});
+        app_router.on('route:callDetails', function () {
+            console.log("list callDetailsListView");
+            var callDetailsListView = new CallDetailsListView();
+            console.log(callDetailsListView);
+            callDetailsListView.render();
         });
 
 
