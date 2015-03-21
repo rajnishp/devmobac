@@ -3,18 +3,15 @@
   <table class="display" id='messagesTable' width="100%" cellspacing="0">
     <thead>
       <tr>
-        <th> ID</th><th>From/To</th><th>Message</th><th>Time</th><th>Type</th><th>Edit/Delete</th>
+        <th>Name</th><th>Phone no.</th><th>Count</th>
       </tr>
     </thead>
     <tbody>
-      <% _.each(messages, function(messages) { %>
+      <% _.each(Numbers, function(Number) { %>
         <tr>
-          <td><%= messages.id %></td>
-          <td><%= messages.fromTo %></td>
-          <td><%= messages.messageText %></td>
-          <td><%= messages.time %></td>
-          <td><%= messages.type %></td>
-          <td><a class="btn" href="#/delete/<%= messages.id %>">Delete</a></td>
+          <td><%= Number.name %></td>
+          <td><a class="btn" href="#/<%= Number.number %>"><%= Number.number %></a></td>
+          <td><%= Number.count %></td>
         </tr>
       <% }); %>
     </tbody>

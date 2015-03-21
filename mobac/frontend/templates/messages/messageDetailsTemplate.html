@@ -1,0 +1,21 @@
+<h4>Details</h4> <hr />
+<br/>
+  <table class="display" id='messageDetailsTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th> ID</th><th>Number</th><th>Message</th><th>Time</th><th>Type</th><th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(Details, function(Detail) { %>
+        <tr>
+          <td><%= Detail.id %></td>
+          <td><%= Detail.fromTo %></td>
+          <td><%= Detail.messageText %></td>
+          <td><%= Detail.time %></td>
+          <td><%= Detail.type %></td>
+          <td><a class="btn" href="#/delete/<%= Detail.id %>">Delete</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

@@ -18,24 +18,21 @@ define([
     render: function () {
       var that = this;
       var locations = new LocationsCollection();
-      console.log("inside render");
+      
       locations.fetch({
         success: function (locations) {
-         //defining teplate
-          console.log("inside render success");  
-          console.log(locations);
+         
           var template = _.template(locationsTemplate, {locations: locations.models[0].attributes.data.locations});
           $('#locations-list-template').html(template); 
-          console.log(template);
-          console.log(locations.models[0].attributes.data.locations[0].fromTime);
           that.$el.html(template);
-          var center = new google.maps.LatLng(locations.models[0].attributes.data.locations[0].latitude, locations.models[0].attributes.data.locations[0].longitude);
+          locationData = locations.models[0].attributes.data.locations ;
+          var center = new google.maps.LatLng(locationData[locationData.length-1].latitude, locationData[locationData.length-1].longitude);
           var mapOptions = {
                             center: center,
-                            zoom: 16,
+                            zoom: 12,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                           };
-          var loc1 = new google.maps.Marker({
+          var loc = new google.maps.Marker({
                         position:center,
                         icon: {
                           path: google.maps.SymbolPath.CIRCLE,
@@ -46,18 +43,35 @@ define([
                           fillColor:"green",
                           fillOpacity:0.4
                         },
-                        title : locations.models[0].attributes.data.locations[0].fromTime
+                        title : locationData[locationData.length-1].fromTime
                       });
           var map = new google.maps.Map($('#map_canvas')[0], mapOptions);
-          loc1.setMap(map);
+          loc.setMap(map);
+          for (i = 0; i < locationData.length-1; i++) {
+            var newcenter = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
+            
+            var newloc = new google.maps.Marker({
+                        position:newcenter,
+                        icon: {
+                          path: google.maps.SymbolPath.CIRCLE,
+                          scale:10,
+                          strokeColor:"red",
+                          strokeOpacity:0.6,
+                          strokeWeight:9,
+                          fillColor:"green",
+                          fillOpacity:0.4
+                        },
+                        title : locationData[i].fromTime
+                      });
+           
+            newloc.setMap(map);
+          }
           var infowindow = new google.maps.InfoWindow({
             content: locations.models[0].attributes.data.locations[0].fromTime
           });
-          google.maps.event.addListener(loc1, 'click', function() {
-            infowindow.open(map,loc1);
+          google.maps.event.addListener(loc, 'click', function() {
+            infowindow.open(map,loc);
           });
-
-        // $('#locationsTable').createMap();
           return map;
         }
       });

@@ -22,6 +22,8 @@ define([
             
             'edit/:id': 'editPost',
             'call-details': 'call-details',
+            'call-details/:phone': 'call-details',
+            '#/messages/:number': 'defaultAction',
             'locations': 'locations',
             // Default
             '*actions': 'defaultAction'
@@ -34,10 +36,10 @@ define([
     //console.log("new router request");
     var initialize = function () {
 
-        app_router.on('route:defaultAction', function () {
+        app_router.on('route:defaultAction', function (number) {
             console.log("defaultAction");
             var messagesListView = new MessagesListView();
-            messagesListView.render();
+            messagesListView.render({number : number});
         });
 
         app_router.on('route:locations', function () {
@@ -53,11 +55,11 @@ define([
             mapView.render();*/
         });
 
-        app_router.on('route:call-details', function () {
+        app_router.on('route:call-details', function (phone) {
             console.log("list callDetailsListView");
             var callDetailsListView = new CallDetailsListView();
-            console.log(callDetailsListView);
-            callDetailsListView.render();
+
+            callDetailsListView.render({phone : phone});
         });
 
 
