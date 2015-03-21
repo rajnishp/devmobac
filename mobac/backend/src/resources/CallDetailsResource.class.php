@@ -6,6 +6,9 @@
 require_once 'resources/Resource.interface.php';
 require_once 'dao/DAOFactory.class.php';
 require_once 'models/CallDetail.class.php';
+
+//require_once 'models/Contact.class.php';
+
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
@@ -13,10 +16,12 @@ class CallDetailsResource implements Resource {
 
     private $mobacDAO;
     private $CallDetails;
+    //private $Contacts;
 
     public function __construct() {
 		$DAOFactory = new DAOFactory();
 		$this -> mobacDAO = $DAOFactory -> getCallDetailsDAO();
+    //    $this -> mobacDAO = $DAOFactory -> getContactsDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
@@ -29,7 +34,7 @@ class CallDetailsResource implements Resource {
     public function delete ($resourceVals, $data) {
         global $logger, $warnings_payload; 
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
 
         $callDetailId = $resourceVals ['call-details'];
@@ -58,9 +63,8 @@ class CallDetailsResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
-
         $callDetailId = $resourceVals ['call-details'];
         if (isset($messageTextId)) {
             $warnings_payload [] = 'POST call to /call-details must not have ' . 
@@ -68,7 +72,35 @@ class CallDetailsResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }
 
-        //$this -> sanitize($data);
+        if( isset( $data["callDetails"] ) ){
+            
+            foreach ($data["callDetails"] as $key => $value) {
+
+                $callDetailObj = new CallDetail(
+                                                    $userId, 
+                                                    $value ['secondParty'], 
+                                                    $value ['callDuration'], 
+                                                    $value ['time'],$value ['type'], 
+                                                    0, 
+                                                    $value['callerName']
+                                                );
+
+                $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
+
+                $this -> mobacDAO -> insert($callDetailObj);
+
+                $CallDetails = $callDetailObj -> toArray();
+
+                if(! isset($CallDetails ['id'])) 
+                    return array('code' => '5011');
+
+                $this -> CallDetails[] = $CallDetails;
+                
+            }
+
+
+        } else {
+        
 
         $callDetailObj = new CallDetail($userId, $data ['secondParty'], $data ['callDuration'], $data ['time'],$data ['type'], 0, $data['callerName']);
         $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
@@ -81,6 +113,8 @@ class CallDetailsResource implements Resource {
             return array('code' => '5011');
 
         $this -> CallDetails[] = $CallDetails;
+        }
+
         return array ('code' => '5001', 
                         'data' => array(
                             'CallDetails' => $this -> CallDetails
@@ -88,9 +122,10 @@ class CallDetailsResource implements Resource {
         );
     }
 
+
     public function get($resourceVals, $data) {
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
 
         $callDetailId = $resourceVals ['call-details'];
