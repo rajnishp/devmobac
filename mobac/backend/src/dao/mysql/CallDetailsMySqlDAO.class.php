@@ -63,7 +63,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
  	 */
 	public function insert($callDetail){
 		
-		$sql = 'INSERT INTO call_details (user_id, second_party, call_duration, time, type) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO call_details (user_id, second_party, call_duration, time, type, caller_name) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($callDetail->getUserId());
@@ -71,7 +71,8 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 		$sqlQuery->set($callDetail->getCallDuration());
 		$sqlQuery->set($callDetail->getTime());
 		$sqlQuery->set($callDetail->getType());
-	
+		$sqlQuery->set($callDetail->getCallerName());
+
 		$id = $this->executeInsert($sqlQuery);	
 		$callDetail -> setId($id);	
 	
@@ -188,8 +189,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 		$callDetail->time = $row['time'];
 		$callDetail->type = $row['type'];
 */
-		$callDetail = new CallDetail($row['user_id'], $row['second_party'], $row['call_duration'], $row['time'],$row['type'], $row['status'], $row['id']);
-//		print_r($callDetail); exit;
+		$callDetail = new CallDetail($row['user_id'], $row['second_party'], $row['call_duration'], $row['time'], $row['type'], $row['status'], $row['caller_name'], $row['id']);
 		return $callDetail;
 	}
 	

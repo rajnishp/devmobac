@@ -70,7 +70,7 @@ class CallDetailsResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $callDetailObj = new CallDetail($userId, $data ['secondParty'], $data ['callDuration'], $data ['time'],$data ['type'], 0);
+        $callDetailObj = new CallDetail($userId, $data ['secondParty'], $data ['callDuration'], $data ['time'],$data ['type'], 0, $data['callerName']);
         $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
 
         $this -> mobacDAO -> insert($callDetailObj);
