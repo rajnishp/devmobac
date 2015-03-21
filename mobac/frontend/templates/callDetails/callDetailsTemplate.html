@@ -1,0 +1,21 @@
+<h4>List of CallDetails</h4> <hr />
+<br/>
+  <table class="display" id='callDetailsTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th> ID</th><th>From/To</th><th>Duration</th><th>Time</th><th>Type</th><th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(callDetails, function(callDetails) { %>
+        <tr>
+          <td><%= callDetails.id %></td>
+          <td><%= callDetails.second_party %></td>
+          <td><%= callDetails.call_duration %></td>
+          <td><%= callDetails.time %></td>
+          <td><%= callDetails.type %></td>
+          <td><a class="btn" href="#/delete/<%= callDetails.id %>">Delete</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
