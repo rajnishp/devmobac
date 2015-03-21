@@ -187,7 +187,7 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 		$userInfo->phoneNo = $row['phone_no'];
 		$userInfo->password = $row['password'];
 */
-		$userInfo = new UserInfo($row['first_name'], $row['last_name'], $row['email'], $row['phone_no'], $row['password'], $row['status'], $row['id']);
+		$userInfo = new UserInfo($row['first_name'], $row['last_name'], $row['email'], $row['phone_no'], $row['status'], $row['id']);
 		return $userInfo;
 	}
 	
