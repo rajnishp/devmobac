@@ -6,13 +6,11 @@ define([
     'backbone',
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
-    'views/posts/PostEditView',
     'views/locations/LocationsView'
     
 ], function ($, _, Backbone,
         MessagesListView,
         CallDetailsListView,
-        PostEditView,
         LocationsView
         ) {
 
@@ -25,7 +23,6 @@ define([
             'call-details/:phone': 'call-details',
             '#/messages/:number': 'defaultAction',
             'locations': 'locations',
-            // Default
             '*actions': 'defaultAction'
 
         }
@@ -43,25 +40,17 @@ define([
         });
 
         app_router.on('route:locations', function () {
-           // var mapView = new MapView();
-           // mapView.init();
-            // We have no matching route, lets display the home page
             console.log("locationView");
             var locationsView = new LocationsView();
             locationsView.render();
-         /*   var map = new Map({zoom: 8, maxZoom: 18, minZoom: 8});
-            map.initMap({coords: {latitude: -34.397, longitude: 150.644}});
-            var mapView = new MapView({model: map});
-            mapView.render();*/
+        
         });
 
         app_router.on('route:call-details', function (phone) {
             console.log("list callDetailsListView");
             var callDetailsListView = new CallDetailsListView();
-
             callDetailsListView.render({phone : phone});
         });
-
 
         // Unlike the above, we don't call render on this view as it will handle
         // the render call internally after it loads data. Further more we load it

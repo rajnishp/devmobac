@@ -14,7 +14,7 @@
           <td><%= Detail.messageText %></td>
           <td><%= Detail.time %></td>
           <td><%= Detail.type %></td>
-          <td><a class="btn" href="#/delete/<%= Detail.id %>">Delete</a></td>
+          <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delmessage">Delete</button></td>
         </tr>
       <% }); %>
     </tbody>

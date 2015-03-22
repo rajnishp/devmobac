@@ -27,40 +27,40 @@ define([
       console.log(this);
       var postDetails = {};
         //console.log(ev.currentTarget);
-        postDetails.root = $(ev.currentTarget).serializeObject1();
+      postDetails.root = $(ev.currentTarget).serializeObject1();
 
-        if(this.post != null)
-          var post = new PostModel({id: this.post.id});
-        else
-          var post = new PostModel({id: null});
-        
-        console.log(postDetails);
-        
-        post.save(postDetails,{
+      if(this.post != null)
+        var post = new PostModel({id: this.post.id});
+      else
+        var post = new PostModel({id: null});
+      
+      console.log(postDetails);
+      
+      post.save(postDetails,{
 
-          success: function (post) {
-            console.log(post.toJSON);
-            alert(" added successfuly");
-            that.bind("reset", that.clearView);
-            //that.render({id: null});
+        success: function (post) {
+          console.log(post.toJSON);
+          alert(" added successfuly");
+          that.bind("reset", that.clearView);
+          //that.render({id: null});
 
-            delete post;
-            delete this.post;
-            window.app_router.navigate('posts', {trigger:true});
-            
-          },
-          error: function (postDetails,response) {
+          delete post;
+          delete this.post;
+          window.app_router.navigate('posts', {trigger:true});
+          
+        },
+        error: function (postDetails,response) {
 
-            console.log(JSON.parse(response.responseText));
-            alert(JSON.parse(response.responseText).internal_status.message );
+          console.log(JSON.parse(response.responseText));
+          alert(JSON.parse(response.responseText).internal_status.message );
 
 
 
-          }
+        }
 
-        });
-        return false;
-      },
+      });
+      return false;
+    },
       deletePost: function (ev) {
         var that = this;
         
