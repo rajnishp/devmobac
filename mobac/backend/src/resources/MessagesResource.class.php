@@ -137,6 +137,7 @@ class MessagesResource implements Resource {
                 return array('code' => '2004');
 
         foreach ($listOfmessageTextObjs as $messageTextObj) {
+                print_r($messageTextObj -> toArray());
                 $this -> messages [] = $messageTextObj -> toArray();
                 
         }
