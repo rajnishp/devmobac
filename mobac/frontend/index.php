@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
       <div class="container">
         <div class="navbar-header">
           <a href="index.php" class="navbar-brand">
-          	<img src ='imgs/logo-dpower4.png' style="width:50px; height:50px"/>
+          	<img src ='imgs/mobeclogo.png' style="width:60px; height:40px"/>
           		
           </a>
           <a href="index.php" class="navbar-brand">
