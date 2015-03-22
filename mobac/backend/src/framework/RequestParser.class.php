@@ -102,7 +102,7 @@ class RequestParser
                 if ($format === 'json') {
                     $logger -> debug("Parsing JSON POST Data ...");
                     $postData = json_decode($rawPostData, true);
-                    
+               
                     if ($postData == false) {
                         $logger -> debug("Malformed JSON POST Data!");
                         require_once 'exceptions/MalformedRequestDataException.class.php';

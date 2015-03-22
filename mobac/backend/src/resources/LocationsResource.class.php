@@ -60,30 +60,56 @@ class LocationsResource implements Resource {
 
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
-
         // $userId is set temporally, update it
         $userId = 2;
-
         $locationId = $resourceVals ['locations'];
         if (isset($locationId)) {
             $warnings_payload [] = 'POST call to /locations must not have ' . 
                                         '/location_ID appended i.e. POST /locations';
             throw new UnsupportedResourceMethodException();
         }
+        if( isset( $data["locations"] ) ){
+            foreach ($data["locations"] as $key => $value) {
+                $locationObj = new Location(
+                                                $userId, 
+                                                $value ['latitude'], 
+                                                $value ['longitude'], 
+                                                $value ['fromTime'], 
+                                                $value ['toTime'], 
+                                                0
+                                            );
+                $logger -> debug ("POSTed location: " . $locationObj -> toString());
 
-        //$this -> sanitize($data);
+                $this -> mobacDAO -> insert($locationObj);
 
-        $locationObj = new Location($userId, $data ['latitude'], $data ['longitude'], $data ['fromTime'], $data ['toTime'], 0);
-        $logger -> debug ("POSTed location: " . $locationObj -> toString());
+                $locations = $locationObj -> toArray();
+                
+                if(! isset($locations ['id'])) 
+                    return array('code' => '4011');
 
-        $this -> mobacDAO -> insert($locationObj);
+                $this -> locations[] = $locations;   
+            }
+        } else {
 
-        $locations = $locationObj -> toArray();
-        
-        if(! isset($locations ['id'])) 
-            return array('code' => '4011');
+            $locationObj = new Location(
+                                            $userId, 
+                                            $data ['latitude'], 
+                                            $data ['longitude'], 
+                                            $data ['fromTime'], 
+                                            $data ['toTime'], 
+                                            0
+                                        );
+            $logger -> debug ("POSTed location: " . $locationObj -> toString());
 
-        $this -> locations[] = $locations;
+            $this -> mobacDAO -> insert($locationObj);
+
+            $locations = $locationObj -> toArray();
+            
+            if(! isset($locations ['id'])) 
+                return array('code' => '4011');
+
+            $this -> locations[] = $locations;
+        }
         return array ('code' => '4001', 
                         'data' => array(
                             'locations' => $this -> locations

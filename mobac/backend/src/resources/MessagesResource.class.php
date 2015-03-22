@@ -70,17 +70,47 @@ class MessagesResource implements Resource {
 
         //$this -> sanitize($data);
 
-        $messageTextObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
-        $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
+        if( isset( $data["messages"] ) ){
+            
+            foreach ($data["messages"] as $key => $value) {
+                $messageTextObj = new Message(
+                                                $userId, 
+                                                $value ['fromTo'], 
+                                                $value ['messageText'], 
+                                                $value ['time'],
+                                                $value ['type'], 
+                                                0
+                                            );
 
-        $this -> mobacDAO -> insert($messageTextObj);
+                $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
 
-        $messageTexts = $messageTextObj -> toArray();
-        
-        if(! isset($messageTexts ['id'])) 
-            return array('code' => '2011');
+                $this -> mobacDAO -> insert($messageTextObj);
 
-        $this -> messageTexts[] = $messageTexts;
+                $messageTexts = $messageTextObj -> toArray();
+                
+                if(! isset($messageTexts ['id'])) 
+                    return array('code' => '2011');
+
+                $this -> messageTexts[] = $messageTexts;
+            }
+
+
+        } 
+        else {
+
+            $messageTextObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
+            $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
+
+            $this -> mobacDAO -> insert($messageTextObj);
+
+            $messageTexts = $messageTextObj -> toArray();
+            
+            if(! isset($messageTexts ['id'])) 
+                return array('code' => '2011');
+
+            $this -> messageTexts[] = $messageTexts;
+        }
+
         return array ('code' => '2001', 
                         'data' => array(
                             'messageTexts' => $this -> messageTexts
@@ -137,7 +167,7 @@ class MessagesResource implements Resource {
                 return array('code' => '2004');
 
         foreach ($listOfmessageTextObjs as $messageTextObj) {
-                print_r($messageTextObj -> toArray());
+                //print_r($messageTextObj -> toArray()); exit;
                 $this -> messages [] = $messageTextObj -> toArray();
                 
         }
