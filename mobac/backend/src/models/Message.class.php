@@ -16,13 +16,13 @@
 		private $status;
 	
 	function __construct($userId, $fromTo, $messageText, $time, $type, $status, $id = null){
-			$this-> id = $id;
-			$this-> userId = $userId;
-			$this-> fromTo = $fromTo;
-			$this-> messageText = $messageText;
-			$this-> time = $time;
-			$this-> type = $type;
-			$this-> status = $status;
+			$this -> id = $id;
+			$this -> userId = $userId;
+			$this -> fromTo = $fromTo;
+			$this -> messageText = $messageText;
+			$this -> time = $time;
+			$this -> type = $type;
+			$this -> status = $status;
 
 			
 		}
@@ -82,13 +82,13 @@
 		
 		function toArray() {
 			return array (
-						id => $this->id,
-						userId => $this->userId,
-						fromTo => $this->fromTo,
-						messageText => $this->messageText,
-						time => $this->time,
-						type => $this->type,
-						status => $this->status
+						id => $this-> id,
+						userId => $this-> userId,
+						fromTo => $this-> fromTo,
+						messageText => $this-> messageText,
+						time => $this-> time,
+						type => $this-> type,
+						status => $this-> status
 				);
 		}	
 	}
