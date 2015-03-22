@@ -30,7 +30,7 @@ class MessagesResource implements Resource {
         
         global $logger, $warnings_payload;
          
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 2;
 
         $messageId = $resourceVals ['messages'];
@@ -58,11 +58,11 @@ class MessagesResource implements Resource {
     public function post ($resourceVals, $data) {
         global $logger, $warnings_payload;
 
-// $userId is set temporally, update it
+        // $userId is set temporally, update it
         $userId = 3;
 
-        $messageTextId = $resourceVals ['messages'];
-        if (isset($messageTextId)) {
+        $messageId = $resourceVals ['messages'];
+        if (isset($messageId)) {
             $warnings_payload [] = 'POST call to /messages must not have ' . 
                                         '/messages_ID appended i.e. POST /messages';
             throw new UnsupportedResourceMethodException();
@@ -73,7 +73,7 @@ class MessagesResource implements Resource {
         if( isset( $data["messages"] ) ){
             
             foreach ($data["messages"] as $key => $value) {
-                $messageTextObj = new Message(
+                $messageObj = new Message(
                                                 $userId, 
                                                 $value ['fromTo'], 
                                                 $value ['messageText'], 
@@ -82,38 +82,38 @@ class MessagesResource implements Resource {
                                                 0
                                             );
 
-                $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
+                $logger -> debug ("POSTed message: " . $messageObj -> toString());
 
-                $this -> mobacDAO -> insert($messageTextObj);
+                $this -> mobacDAO -> insert($messageObj);
 
-                $messageTexts = $messageTextObj -> toArray();
+                $messages = $messageObj -> toArray();
                 
-                if(! isset($messageTexts ['id'])) 
+                if(! isset($messages ['id'])) 
                     return array('code' => '2011');
 
-                $this -> messageTexts[] = $messageTexts;
+                $this -> messages[] = $messages;
             }
 
 
         } 
         else {
 
-            $messageTextObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
-            $logger -> debug ("POSTed message: " . $messageTextObj -> toString());
+            $messageObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
+            $logger -> debug ("POSTed message: " . $messageObj -> toString());
 
-            $this -> mobacDAO -> insert($messageTextObj);
+            $this -> mobacDAO -> insert($messageObj);
 
-            $messageTexts = $messageTextObj -> toArray();
+            $messages = $messageObj -> toArray();
             
-            if(! isset($messageTexts ['id'])) 
+            if(! isset($messages ['id'])) 
                 return array('code' => '2011');
 
-            $this -> messageTexts[] = $messageTexts;
+            $this -> messages[] = $messages;
         }
 
         return array ('code' => '2001', 
                         'data' => array(
-                            'messageTexts' => $this -> messageTexts
+                            'messages' => $this -> messages
                         )
         );
     }
@@ -122,9 +122,9 @@ class MessagesResource implements Resource {
 
         $userId = 3;
 
-        $messageTextId = $resourceVals ['messages'];
-        if (isset($messageTextId))
-            $result = $this->getMessage($messageTextId, $userId);
+        $messageId = $resourceVals ['messages'];
+        if (isset($messageId))
+            $result = $this->getMessage($messageId, $userId);
         else
             $result = $this -> getListOfAllMessages($userId);
 
@@ -135,23 +135,23 @@ class MessagesResource implements Resource {
         return $result;
     }
 
-    private function getMessage($messageTextId, $userId) {
+    private function getMessage($messageId, $userId) {
     
         global $logger;
         $logger->debug('Fetch message...');
 
-        $messageTextObj = $this -> mobacDAO -> load($messageTextId, $userId);
+        $messageObj = $this -> mobacDAO -> load($messageId, $userId);
 
-        if(empty($messageTextObj)) 
+        if(empty($messageObj)) 
                 return array('code' => '2004');        
              
-        $this -> messageTexts [] = $messageTextObj-> toArray();
+        $this -> messages [] = $messageObj-> toArray();
         
-        $logger -> debug ('Fetched list of Messages: ' . json_encode($this -> messageTexts));
+        $logger -> debug ('Fetched list of Messages: ' . json_encode($this -> messages));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'messages' => $this -> messageTexts
+                                'messages' => $this -> messages
                             )
             );
     }
@@ -161,14 +161,14 @@ class MessagesResource implements Resource {
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        $listOfmessageTextObjs = $this -> mobacDAO -> queryAll($userId);
+        $listOfmessageObjs = $this -> mobacDAO -> queryAll($userId);
         
-        if(empty($listOfmessageTextObjs)) 
+        if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');
 
-        foreach ($listOfmessageTextObjs as $messageTextObj) {
-                //print_r($messageTextObj -> toArray()); exit;
-                $this -> messages [] = $messageTextObj -> toArray();
+        foreach ($listOfmessageObjs as $messageObj) {
+                //print_r($messageObj -> toArray()); exit;
+                $this -> messages [] = $messageObj -> toArray();
                 
         }
         $logger -> debug ('Fetched list of messages: ' . json_encode($this -> messages));
