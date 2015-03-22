@@ -49,7 +49,7 @@ class LocationsMySqlDAO implements LocationsDAO{
  	 */
 	public function delete($id, $userId){
 		//$sql = 'DELETE FROM locations WHERE id = ? AND user_id = ?';
-		$sql = 'UPDATE locations SET status = 1 WHERE id = ? AND user_id = ? AND status = 0';
+		$sql = 'UPDATE locations SET status = 1 WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery -> setNumber($id);
 		$sqlQuery->set($userId);

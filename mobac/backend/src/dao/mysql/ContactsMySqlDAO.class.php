@@ -60,11 +60,11 @@ class ContactsMySqlDAO implements ContactsDAO{
 		$sql = 'INSERT INTO contacts (name, phone_no) VALUES (?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($contact->name);
-		$sqlQuery->set($contact->phoneNo);
+		$sqlQuery->set($contact->getName());
+		$sqlQuery->set($contact->getPhoneNo());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$contact->id = $id;
+		$contact -> setId($id);
 		return $id;
 	}
 	

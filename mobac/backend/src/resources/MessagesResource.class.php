@@ -31,7 +31,7 @@ class MessagesResource implements Resource {
         global $logger, $warnings_payload;
          
         // $userId is set temporally, update it
-        $userId = 2;
+        $userId = 3;
 
         $messageId = $resourceVals ['messages'];
 
@@ -165,12 +165,25 @@ class MessagesResource implements Resource {
         
         if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');
-
+        $oldLength = 1;
+        $newLength = 0;
         foreach ($listOfmessageObjs as $messageObj) {
                 //print_r($messageObj -> toArray()); exit;
                 $this -> messages [] = $messageObj -> toArray();
-                
+                $newLength = intval( $messageObj ->getId() );
+                //echo $newLength;
+                //var_dump($newLength);
+                /*if($oldLength !=  $newLength ){
+                    echo "thiere $oldLenght" .  intval($newLength) . "\n" ;
+                    print_r($this -> messages);
+                    exit;
+                }
+                */$oldLength = intval( $messageObj ->getId() ) + 1;
+                var_dump( $oldLength);
+
+                $old = $messageObj -> toArray();
         }
+
         $logger -> debug ('Fetched list of messages: ' . json_encode($this -> messages));
 
         return array('code' => '2000', 

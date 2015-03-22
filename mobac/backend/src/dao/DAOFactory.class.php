@@ -69,6 +69,17 @@ class DAOFactory{
 		return new UserInfoMySqlExtDAO();
 	}
 
-
+	/**
+	 * @return ContactsDAO
+	 */
+	
+	public static function getContactsDAO(){
+		require_once('ContactsDAO.class.php');
+		require_once('models/Contact.class.php');
+		require_once('mysql/ContactsMySqlDAO.class.php');
+		require_once('mysql/ext/ContactsMySqlExtDAO.class.php');
+		
+		return new ContactsMySqlExtDAO();
+	}
 }
 ?>
