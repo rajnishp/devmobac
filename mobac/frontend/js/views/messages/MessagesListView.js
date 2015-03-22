@@ -42,10 +42,10 @@ define([
       var that = this;
       var options = options;
       var messages = new MessagesCollection();
-      console.log(options);
+      console.log(messages);
       messages.fetch({
         success: function (messages) {
-          console.log(messages);
+          
           messagesData = messages.models[0].attributes.data.messages;
           if(options.number == "" || options.number == "messages" || options.number == undefined){
               var numbers = [];

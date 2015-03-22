@@ -46,6 +46,7 @@ define([
       CallDetails.fetch({
         success: function (CallDetails) {  
         callDetailsData = CallDetails.models[0].attributes.data.CallDetails;
+        
         if(options.phone == undefined){
             var numbers = [];
             var flag = 0;
@@ -58,7 +59,7 @@ define([
                   }
               }
               if(flag == 0)
-                numbers.push({"number" : callD.secondParty, "name" : callD.callDuration, "count" : 1});
+                numbers.push({"number" : callD.secondParty, "name" : callD.callerName, "count" : 1});
               else
                 numbers[i].count = numbers[i].count + 1;
               flag = 0;
