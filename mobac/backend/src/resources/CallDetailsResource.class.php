@@ -66,7 +66,7 @@ class CallDetailsResource implements Resource {
         // $userId is set temporally, update it
         $userId = 2;
         $callDetailId = $resourceVals ['call-details'];
-        if (isset($messageTextId)) {
+        if (isset($callDetailId)) {
             $warnings_payload [] = 'POST call to /call-details must not have ' . 
                                         '/call-detail_ID appended i.e. POST /call-details';
             throw new UnsupportedResourceMethodException();

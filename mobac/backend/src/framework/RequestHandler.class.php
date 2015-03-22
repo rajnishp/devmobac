@@ -40,10 +40,12 @@
 
 			$result = $resource -> $method($resourceVals, $data);
 			$code = $result ['code'];
+
 			$message = $result ['message'];
+
 			$message = (isset($message) ? "; $message" : '');
 			$data = $result ['data'];
-			
+		
 			$response = array(
 				'httpStatusCode'=> trim(InternalStatuses :: $list [$code] ['httpStatusCode']),
 				'code' 			=> $code, 
