@@ -137,8 +137,8 @@ class MessagesResource implements Resource {
                 return array('code' => '2004');
 
         foreach ($listOfmessageTextObjs as $messageTextObj) {
-                $messageText = $messageTextObj -> toArray();
-                $this -> messages [] = $messageText;
+                $this -> messages [] = $messageTextObj -> toArray();
+                
         }
         $logger -> debug ('Fetched list of messages: ' . json_encode($this -> messages));
 
