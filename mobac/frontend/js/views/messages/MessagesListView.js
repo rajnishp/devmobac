@@ -4,27 +4,48 @@ define([
   'backbone',
   'collections/messages/MessagesCollection',
   'text!templates/messages/messagesTemplate.html',
-  'text!templates/messages/messageDetailsTemplate.html'
-  ], function($, _, Backbone, MessagesCollection, MessagesTemplate, MessageDetailsTemplate){
+  'text!templates/messages/messageDetailsTemplate.html',
+  'models/messages/MessagesModel'
+  ], function($, _, Backbone, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
      el : $("#page"),
+     events: {
+      'click #delmessage': 'deletemessage'
+     },
      initialize : function() {
      
       var that = this;
       
       that.bind("reset", that.clearView);
     },
-
+    deletemessage: function (options) {
+      var that = this;
+      
+      var rowId = options.target.attributes[1].value;
+      alert(rowId);
+      var message = new MessagesModel({id: rowId});
+      
+      message.destroy({
+        success: function () {
+          console.log('destroyed');
+          
+          delete that.message;
+          
+          delete message;
+          window.app_router.navigate('messages', {trigger:true}); 
+        }
+      });
+    },
     render: function (options) {
       var that = this;
       var options = options;
       var messages = new MessagesCollection();
-      console.log(options);
+      console.log(messages);
       messages.fetch({
         success: function (messages) {
-          console.log(messages);
+          
           messagesData = messages.models[0].attributes.data.messages;
           if(options.number == "" || options.number == "messages" || options.number == undefined){
               var numbers = [];
