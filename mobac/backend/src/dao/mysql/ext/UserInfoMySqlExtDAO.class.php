@@ -7,6 +7,12 @@
  */
 class UserInfoMySqlExtDAO extends UserInfoMySqlDAO{
 
+	public function queryByPhoneNo($value){
+		$sql = 'SELECT * FROM user_info WHERE phone_no = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
 	
 }
 ?>
