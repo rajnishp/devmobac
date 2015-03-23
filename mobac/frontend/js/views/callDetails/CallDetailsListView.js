@@ -2,11 +2,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'bootbox',
   'collections/callDetails/CallDetailsCollection',
   'text!templates/callDetails/callDetailsTemplate.html',
   'text!templates/callDetails/phoneDetailsTemplate.html',
   'models/callDetails/CallDetailsModel'
-  ], function($, _, Backbone, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
+  ], function($, _, Backbone, bootbox, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
 
     var CallDetailsView = Backbone.View.extend({
 
@@ -17,24 +18,27 @@ define([
      initialize : function() {
      
       var that = this;
-      console.log("i am in CallDetails");
+      
       that.bind("reset", that.clearView);
      },
      deleteCallDetails: function (options) {
-        var that = this;
-        
-        var rowId = options.target.attributes[2].value;
-        console.log(rowId);
-        var callDetails = new CallDetailsModel({id: rowId});
-        
-        callDetails.destroy({
-          success: function () {
-            console.log('destroyed');
+        bootbox.confirm("Do u really want to delete this?", function(result) {
+          if(result){
+            var that = this;
             
-            delete that.callDetails;
+            var rowId = options.target.attributes[2].value;
             
-            delete callDetails;
-            window.app_router.navigate('call-details', {trigger:true}); 
+            var callDetails = new CallDetailsModel({id: rowId});
+            
+            callDetails.destroy({
+              success: function () {
+                
+                delete that.callDetails;
+                
+                delete callDetails;
+                window.app_router.navigate('call-details', {trigger:true}); 
+              }
+            });
           }
         });
       },
@@ -46,7 +50,7 @@ define([
       CallDetails.fetch({
         success: function (CallDetails) {  
         callDetailsData = CallDetails.models[0].attributes.data.CallDetails;
-        
+
         if(options.phone == undefined){
             var numbers = [];
             var flag = 0;
@@ -77,7 +81,10 @@ define([
             _.each(callDetailsData, function(detail){
               var that = this;
               if (options.phone == detail.secondParty ) {
-                Details.push({"id" : detail.id, "secondParty" : detail.secondParty, "callDuration" : detail.callDuration, "time" : detail.time, "type" : detail.type});
+                var oldDate = detail.time;
+                var a = oldDate.split(/-|\s|:/); 
+                var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                Details.push({"id" : detail.id, "secondParty" : detail.secondParty, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
               }
             });
             
@@ -87,6 +94,7 @@ define([
             that.$el.html(template);
             $('#phoneDetailsTable').DataTable();
           }
+        $("#locationDate").html("");
         return that;
           }
       });
@@ -94,8 +102,6 @@ define([
     }
    
   });
-
-
   
   return CallDetailsView;
 
