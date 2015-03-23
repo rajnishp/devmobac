@@ -9,7 +9,7 @@
 	
     class RequestHandler {
 	
-		public static function process ($request) {
+		public static function process ($request, $userId) {
 			global $logger;
 
 			$apiVersion = $request -> getApiVersion();
@@ -38,7 +38,7 @@
 				throw new UnsupportedResourceMethodException();
 			}
 
-			$result = $resource -> $method($resourceVals, $data);
+			$result = $resource -> $method($resourceVals, $data, $userId);
 			$code = $result ['code'];
 
 			$message = $result ['message'];

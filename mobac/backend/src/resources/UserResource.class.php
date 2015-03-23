@@ -26,11 +26,11 @@ class UserResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data) {    }
+    public function delete ($resourceVals, $data, $userId) {    }
 
-    public function put ($resourceVals, $data) {    }
+    public function put ($resourceVals, $data, $userId) {    }
 
-    public function post ($resourceVals, $data) {
+    public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
         $UserInfoId = $resourceVals ['user'];
@@ -58,9 +58,9 @@ class UserResource implements Resource {
         );
     }
 
-    public function get($resourceVals, $data) {
+    public function get($resourceVals, $data, $userId) {
 
-        $userId = 1;
+        //$userId = 1;
 
         $UserInfoId = $resourceVals ['user'];
         if (isset($UserInfoId))
