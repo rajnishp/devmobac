@@ -74,7 +74,10 @@ if (!isset($_SESSION['user_id'])) {
         <div id="page" style="width:100%; height:100%">
           Loading Mobac UI....
 
-        </div>
+        </div>   
+      </div>
+      <div class="col-md-1" id='locationDate'>
+        
       </div> 
   </div>
 

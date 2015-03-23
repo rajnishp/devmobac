@@ -24,12 +24,11 @@ define([
       var that = this;
       
       var rowId = options.target.attributes[1].value;
-      alert(rowId);
+      
       var message = new MessagesModel({id: rowId});
       
       message.destroy({
         success: function () {
-          console.log('destroyed');
           
           delete that.message;
           
@@ -42,7 +41,7 @@ define([
       var that = this;
       var options = options;
       var messages = new MessagesCollection();
-      console.log(messages);
+      
       messages.fetch({
         success: function (messages) {
           
@@ -58,8 +57,12 @@ define([
                       break;
                     }
                 }
-                if(flag == 0)
-                  numbers.push({"number" : phone.fromTo, "name" : phone.time, "count" : 1});
+                if(flag == 0){
+                  var oldDate = phone.time;
+                  var a = oldDate.split(/-|\s|:/); 
+                  var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  numbers.push({"number" : phone.fromTo, "name" : date, "count" : 1});
+                }
                 else
                   numbers[i].count = numbers[i].count + 1;
                 flag = 0;
@@ -77,7 +80,11 @@ define([
             _.each(messagesData, function(detail){
               var that = this;
               if (options.number == detail.fromTo ) {
-                Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : detail.time, "type" : detail.type});
+                var oldDate = detail.time;
+                var a = oldDate.split(/-|\s|:/); 
+                var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]); 
+                
+                Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : date, "type" : detail.type});
               }
             });
             var template = _.template(MessageDetailsTemplate, {Details: Details});
@@ -86,7 +93,8 @@ define([
             that.$el.html(template);
             $('#messageDetailsTable').DataTable();
 
-          } 
+          }
+          $("#locationDate").html(""); 
           return that;
         }
       });
