@@ -165,8 +165,8 @@ class MessagesResource implements Resource {
         
         if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');
-        $oldLength = 1;
-        $newLength = 0;
+        //$oldLength = 1;
+        //$newLength = 0;
         foreach ($listOfmessageObjs as $messageObj) {
                 //print_r($messageObj -> toArray()); exit;
                 $this -> messages [] = $messageObj -> toArray();
@@ -178,8 +178,9 @@ class MessagesResource implements Resource {
                     print_r($this -> messages);
                     exit;
                 }
-                */$oldLength = intval( $messageObj ->getId() ) + 1;
-                var_dump( $oldLength);
+                */
+                //$oldLength = intval( $messageObj ->getId() ) + 1;
+                //var_dump( $oldLength);
 
                 $old = $messageObj -> toArray();
         }

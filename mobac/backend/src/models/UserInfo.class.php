@@ -86,7 +86,7 @@
 						lastName => $this-> lastName,
 						email => $this-> email,
 						phoneNo => $this-> phoneNo,
-						password => $this-> password,
+						password => "******",
 						status => $this-> status
 				);
 		}

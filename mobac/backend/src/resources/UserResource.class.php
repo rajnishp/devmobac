@@ -82,8 +82,6 @@ class UserResource implements Resource {
         global $logger;
         $logger->debug('Fetch User Detail...');
         $userInfoObj = $this -> mobacDAO -> load($userId);
-//print_r($userInfoObj);exit;
-//echo $userId;
 
         if(empty($userInfoObj)) 
                 return array('code' => '2004');        
