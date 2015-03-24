@@ -9,7 +9,7 @@ require_once 'resources/Resource.interface.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
-class IntouchCustomfieldsResource implements Resource {
+class IntouchCustomfieldsResource  {
 
     //private $orgDAO;
    // private $organizations;

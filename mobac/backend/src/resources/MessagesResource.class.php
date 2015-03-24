@@ -26,12 +26,12 @@ class MessagesResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data) {
+    public function delete ($resourceVals, $data, $userId) {
         
         global $logger, $warnings_payload;
          
         // $userId is set temporally, update it
-        $userId = 3;
+        //$userId = 3;
 
         $messageId = $resourceVals ['messages'];
 
@@ -53,13 +53,13 @@ class MessagesResource implements Resource {
         return $result;
     }
 
-    public function put ($resourceVals, $data) {    }
+    public function put ($resourceVals, $data, $userId) {    }
 
-    public function post ($resourceVals, $data) {
+    public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
         // $userId is set temporally, update it
-        $userId = 3;
+        //$userId = 3;
 
         $messageId = $resourceVals ['messages'];
         if (isset($messageId)) {
@@ -118,9 +118,9 @@ class MessagesResource implements Resource {
         );
     }
 
-    public function get($resourceVals, $data) {
+    public function get($resourceVals, $data, $userId) {
 
-        $userId = 3;
+        //$userId = 3;
 
         $messageId = $resourceVals ['messages'];
         if (isset($messageId))

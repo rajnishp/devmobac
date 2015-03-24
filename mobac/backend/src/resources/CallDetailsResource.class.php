@@ -32,11 +32,11 @@ class CallDetailsResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data) {
+    public function delete ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload; 
 
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
 
         $callDetailId = $resourceVals ['call-details'];
 
@@ -59,13 +59,14 @@ class CallDetailsResource implements Resource {
         return $result;
     }
 
-    public function put ($resourceVals, $data) {    }
+    public function put ($resourceVals, $data, $userId) {    }
 
-    public function post ($resourceVals, $data) {
+    public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
+        
         $callDetailId = $resourceVals ['call-details'];
         if (isset($callDetailId)) {
             $warnings_payload [] = 'POST call to /call-details must not have ' . 
@@ -154,10 +155,10 @@ class CallDetailsResource implements Resource {
     }
 
 
-    public function get($resourceVals, $data) {
+    public function get($resourceVals, $data, $userId) {
 
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
 
         $callDetailId = $resourceVals ['call-details'];
         if (isset($callDetailId))

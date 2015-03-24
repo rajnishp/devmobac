@@ -14,10 +14,13 @@
 	require_once 'framework/RequestParser.class.php';
 	require_once 'framework/RequestHandler.class.php';
 	require_once 'framework/ResponseHandler.class.php';	
+	
+	require_once 'auth/Auth.class.php';
 
 	class ApiService {
 
 		private static $pageTimer;
+		private static $userId;
 
 		/* Intial setup logic */
 		public static function setup() {
@@ -66,7 +69,7 @@
 				$logger -> debug ("REQUEST Object: " . $request -> toString());
 
 				/* Handle the request */
-				$rawResponse = RequestHandler :: process ($request);
+				$rawResponse = RequestHandler :: process ($request, self :: $userId);
 				$logger -> debug ("RESPONSE Object: " . json_encode($rawResponse));
 
 			} catch (ApiException $e) {
@@ -112,11 +115,19 @@
 		/* HTTP Basic authentication */
 		public static function authenticateRequest($server) {
 			global $logger;
+			
+			if (! isset($server ['HTTP_AUTH_KEY'])) 
+				throw new UnauthorizedException();
 
-			// If no auth set, return 401
-			//if (! isset($server ['PHP_AUTH_USER'])) 
-			//	throw new UnauthorizedException();
+			$authKey = $server ['HTTP_AUTH_KEY'];
+			$auth = new Auth();
 
-			return true;
+			self :: $userId = $auth -> getUserId ($authKey);
+			
+			if (self :: $userId != null )
+				return true;
+
+			throw new UnauthorizedException();
+
 		}
 	}

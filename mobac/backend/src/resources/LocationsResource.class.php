@@ -30,11 +30,11 @@ class LocationsResource implements Resource {
     }
 
     
-    public function delete ($resourceVals, $data) {
+    public function delete ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload; 
 
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
 
         $locationId = $resourceVals ['locations'];
 
@@ -56,12 +56,12 @@ class LocationsResource implements Resource {
         return $result;
     }
 
-    public function put ($resourceVals, $data) {    }
+    public function put ($resourceVals, $data, $userId) {    }
 
-    public function post ($resourceVals, $data) {
+    public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
         $locationId = $resourceVals ['locations'];
         if (isset($locationId)) {
             $warnings_payload [] = 'POST call to /locations must not have ' . 
@@ -117,10 +117,10 @@ class LocationsResource implements Resource {
         );
     }
 
-    public function get($resourceVals, $data) {
+    public function get($resourceVals, $data, $userId) {
 
-// $userId is set temporally, update it
-        $userId = 2;
+        // $userId is set temporally, update it
+        //$userId = 2;
 		
 		$locationId = $resourceVals ['locations'];
 		if (isset($locationId))
