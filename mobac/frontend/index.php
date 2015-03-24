@@ -23,6 +23,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="css/bootstrap.css" media="screen">
   <link rel="stylesheet" href="css/bootswatch.css">	
   <link rel="stylesheet" href="css/jquery-dataTables.css">
+  
   <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
 	<script data-main="js/main" src="js/libs/require/require.js"></script>

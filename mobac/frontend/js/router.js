@@ -23,7 +23,8 @@ define([
             '#/messages/:number': 'defaultAction',
             'locations': 'locations',
             'locations/:date': 'locations',
-            '*actions': 'defaultAction'
+            '*actions': 'defaultAction',
+            'login': 'login'
 
         }
     });
@@ -50,6 +51,11 @@ define([
             
             var callDetailsListView = new CallDetailsListView();
             callDetailsListView.render({phone : phone});
+        });
+
+        app_router.on('route:login', function () {
+            
+            alert('hi');
         });
 
         // Unlike the above, we don't call render on this view as it will handle

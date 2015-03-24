@@ -46,8 +46,13 @@ define([
       var that = this;
       var options = options; 
       var CallDetails = new CallDetailsCollection();
-      
+      sendAuthentication = function (xhr) {
+            xhr.setRequestHeader('Access-Control-Allow-Headers',true);
+            xhr.setRequestHeader('Auth-key','vcvdsdhHYYHBH$vhgfE');
+      };
       CallDetails.fetch({
+       headers : { 'Auth-key':'vcvdsdhHYYHBH$vhgfE' } ,
+        
         success: function (CallDetails) {  
         callDetailsData = CallDetails.models[0].attributes.data.CallDetails;
 

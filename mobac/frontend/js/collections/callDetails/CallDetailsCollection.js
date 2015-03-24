@@ -9,7 +9,7 @@ define([
       model: CallDetailsModel,
 
       initialize : function(models, options) {
-
+        
         console.log("starting CallDetails");
       },
       

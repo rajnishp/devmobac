@@ -35,7 +35,7 @@ define([
           $("#locationDate").html("");
           if(options.date == undefined){
             
-            var center = new google.maps.LatLng(locationData[locationData.length-1].latitude, locationData[locationData.length-1].longitude);
+            var center = new google.maps.LatLng(locationData[0].latitude, locationData[0].longitude);
             var mapOptions = {
                               center: center,
                               zoom: 12,
@@ -52,7 +52,7 @@ define([
                             fillColor:"green",
                             fillOpacity:0.4
                           },
-                          title : locationData[locationData.length-1].fromTime
+                          title : locationData[0].fromTime
                         });
             var map = new google.maps.Map($('#map_canvas')[0], mapOptions);
             loc.setMap(map);

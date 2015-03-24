@@ -25,3 +25,9 @@ jQuery.fn.serializeObject = function(){
 
   return objectData;
 }
+
+jQuery.fn.setHeader = function (xhr) {
+  //get key from cache
+  console.log("seting header");
+  xhr.setRequestHeader('auth-key', 'aqLJlmE2rRXBOy***************');
+}
