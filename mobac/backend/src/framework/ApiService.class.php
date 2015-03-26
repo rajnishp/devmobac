@@ -122,6 +122,17 @@
 
 				return true; 
 			}
+
+		
+			if ( $server ['REQUEST_METHOD'] == "POST" AND $server['REQUEST_URI'] == "/v0/user") {
+
+				$logger -> debug ("resource name there");
+				return true; 
+			}
+
+
+
+
 			if (! isset($server ['HTTP_AUTH_KEY'])) 
 				throw new UnauthorizedException();
 			
