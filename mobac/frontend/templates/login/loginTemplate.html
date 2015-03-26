@@ -4,15 +4,15 @@
   <span class="c-logo-head">Log In to Mobac</span><br/><br/>
   
   <form class = "edit-login-form" type="POST">
-    <span class="c-login-sep">
-      <label class="c-login-label" for="login__username">Username</label>
-     	<input name="username" autofocus="" placeholder="username"  autocapitalize="off" type="text">
-    </span><br/><br/>
-  	<span class="c-login-sep">
-  		<label class="c-login-label" for="login__password">Password</label>
-  			<input name="password" id="login__password" placeholder="password" autocomplete="off" type="password">
+    <div class="input-group">
+      <span class="input-group-addon">Username</span>
+     	<input name="username" autofocus="" placeholder="username"  autocapitalize="off" type="text" class="form-control">
+    </div><br/>
+  	<div class="input-group">
+      <span class="input-group-addon">Password</span>
+  			<input name="password" id="login__password" class="form-control" placeholder="password" autocomplete="off" type="password">
         <input name="project" type="hidden" value="Mobac">
-  	</span><br/><br/>
+  	</div><br/>
   	<span class="c-login-sep c-submit-sep">
   		<button  class="btn btn-success" id="login" type="submit">Log In</button>                		
   	</span>		

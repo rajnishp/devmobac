@@ -85,6 +85,6 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="footer"></div>
 </div>
-
+<div class="modal fade hide" id="base-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </body>
 </html>
