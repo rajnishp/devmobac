@@ -50,12 +50,19 @@
 			/* Set HTTP Status header */
 			$statusHeader = 'HTTP/1.0 ' . $httpStatusCode . ' ' . $httpStatusCodeMessage;
 			header($statusHeader);
+			
 			header('Access-Control-Allow-Origin: *');
             header("Access-Control-Allow-Credentials: true"); 
             header('Access-Control-Allow-Headers: X-Requested-With');
             header('Access-Control-Allow-Headers: Content-Type');
             header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
             header('Access-Control-Max-Age: 86400'); 
+
+           	if(array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)) {
+    			header('Access-Control-Allow-Headers: ' . $_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+  			} else {
+    			header('Access-Control-Allow-Headers: *');
+  			}
 
 
 			/* Set Other headers, if any */

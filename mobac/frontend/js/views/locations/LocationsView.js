@@ -19,7 +19,11 @@ define([
       var that = this;
       var locations = new LocationsCollection();
       
+      var key = $.readCookie("auth-key");
       locations.fetch({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('AUTH-KEY', key);
+        },
         success: function (locations) {
           Date.prototype.yyyymmdd = function() {
            var yyyy = this.getFullYear().toString();
@@ -166,6 +170,11 @@ define([
             $("#locationDate").append('<a href="#/locations/'+date+'" >'+view+'</a><br/>');
           }
           return map;
+        },
+        error: function (locations, response) {
+          var status = response.status;
+          if(status == "401")
+            window.app_router.navigate('default', {trigger:true});
         }
       });
     }

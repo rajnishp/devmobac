@@ -116,13 +116,22 @@
 		public static function authenticateRequest($server) {
 			global $logger;
 			
+			$logger -> debug ("request header : " . json_encode($server));
+			
+			if ( $server ['REQUEST_METHOD'] == "OPTIONS" ){
+
+				return true; 
+			}
 			if (! isset($server ['HTTP_AUTH_KEY'])) 
 				throw new UnauthorizedException();
-
+			
 			$authKey = $server ['HTTP_AUTH_KEY'];
+			$logger -> debug ("request header Authkey : " . $authKey);
+			
+
 			$auth = new Auth();
 
-			self :: $userId = $auth -> getUserId ($authKey);
+			self :: $userId = $auth -> getUserId($authKey);
 			
 			if (self :: $userId != null )
 				return true;

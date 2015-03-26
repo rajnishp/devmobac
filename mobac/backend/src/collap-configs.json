@@ -7,7 +7,7 @@
     	"social": {
     		"host": "localhost", 
     		"user": "root", 
-    		"password": "redhat11111p", 
+    		"password": "redhat@11111p", 
     		"database": "social3" 
         	}  
         }, 

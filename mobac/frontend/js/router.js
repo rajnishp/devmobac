@@ -6,12 +6,16 @@ define([
     'backbone',
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
-    'views/locations/LocationsView'
+    'views/locations/LocationsView',
+    'views/modal/modalView',
+    'views/login/loginView'
     
 ], function ($, _, Backbone,
         MessagesListView,
         CallDetailsListView,
-        LocationsView
+        LocationsView,
+        ModalView,
+        LoginView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -20,8 +24,12 @@ define([
             'edit/:id': 'editPost',
             'call-details': 'call-details',
             'call-details/:phone': 'call-details',
-            '#/messages/:number': 'defaultAction',
+            'call-details/:phone/delete': 'confirm',
+            'messages/:number': 'messages',
+            'messages/:number/delete': 'confirm',
+            'messages': 'messages',
             'locations': 'locations',
+            'logout': 'confirm',
             'locations/:date': 'locations',
             '*actions': 'defaultAction',
             'login': 'login'
@@ -34,7 +42,16 @@ define([
     //console.log("new router request");
     var initialize = function () {
 
-        app_router.on('route:defaultAction', function (number) {
+        app_router.on('route:defaultAction', function () {
+            var key = $.readCookie("auth-key");
+            if(key != null){
+                window.app_router.navigate('#/messages', {trigger:true});
+            }
+            var loginView = new LoginView();
+            loginView.render();
+        });
+
+        app_router.on('route:messages', function (number) {
             
             var messagesListView = new MessagesListView();
             messagesListView.render({number : number});
@@ -54,15 +71,20 @@ define([
         });
 
         app_router.on('route:login', function () {
-            
-            alert('hi');
+            var key = $.readCookie("auth-key");
+            if(key != null){
+                window.app_router.navigate('#/messages', {trigger:true});
+            }
+            var loginView = new LoginView();
+            loginView.render();
         });
 
-        // Unlike the above, we don't call render on this view as it will handle
-        // the render call internally after it loads data. Further more we load it
-        // outside of an on-route function to have it loaded no matter which page is
-        // loaded initially.
-        //var footerView = new FooterView();
+        app_router.on('route:confirm', function () {
+            var modalView = new ModalView();
+            modalView.render();
+            //$.createCookie("auth-key", "", -1);
+            //window.app_router.navigate('default', {trigger:true});
+        });
 
         Backbone.history.start();
     };

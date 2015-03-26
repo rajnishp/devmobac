@@ -2,11 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'datatable',
+  'views/modal/modalView',
   'collections/messages/MessagesCollection',
   'text!templates/messages/messagesTemplate.html',
   'text!templates/messages/messageDetailsTemplate.html',
   'models/messages/MessagesModel'
-  ], function($, _, Backbone, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
+  ], function($, _, Backbone, Datatable, ModalView, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
@@ -21,28 +23,49 @@ define([
       that.bind("reset", that.clearView);
     },
     deletemessage: function (options) {
-      var that = this;
       
-      var rowId = options.target.attributes[1].value;
-      
-      var message = new MessagesModel({id: rowId});
-      
-      message.destroy({
-        success: function () {
+      //var view = new ModalView();
+      var modal = new ModalView({
           
-          delete that.message;
-          
-          delete message;
-          window.app_router.navigate('messages', {trigger:true}); 
-        }
+          title: 'modal header',
+          animate: true
       });
+      modal.open(function(){ console.log('clicked OK') });//var view = new ModalView();
+      //view.show();
+      //var rowId = options.target.attributes[1].value
+      //window.app_router.navigate('#/messages/rowId/delete', {trigger:true});
+      /*Bootbox.confirm("Do u really want to delete this comment?", function(result) {
+        if(result){
+          var that = this;
+          
+          var rowId = options.target.attributes[1].value;
+          
+          var message = new MessagesModel({id: rowId});
+          
+          message.destroy({
+            success: function () {
+              
+              delete that.message;
+              
+              delete message;
+              window.app_router.navigate('messages', {trigger:true}); 
+            }
+          });
+        }
+      });*/
     },
     render: function (options) {
       var that = this;
       var options = options;
       var messages = new MessagesCollection();
       
+      var key = $.readCookie("auth-key");
+     
       messages.fetch({
+     
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('AUTH-KEY', key);
+        },
         success: function (messages) {
           
           messagesData = messages.models[0].attributes.data.messages;
@@ -94,8 +117,14 @@ define([
             $('#messageDetailsTable').DataTable();
 
           }
+          
           $("#locationDate").html(""); 
           return that;
+        },
+        error: function (messages, response) {
+          var status = response.status;
+          if(status == "401")
+            window.app_router.navigate('default', {trigger:true});
         }
       });
 
@@ -103,8 +132,6 @@ define([
    
   });
 
-
-  
   return MessagesView;
 
 });

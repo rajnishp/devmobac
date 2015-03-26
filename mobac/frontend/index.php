@@ -26,7 +26,8 @@ if (!isset($_SESSION['user_id'])) {
   
   <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
-	<script data-main="js/main" src="js/libs/require/require.js"></script>
+  <script data-main="js/main" src="js/libs/require/require.js"></script>
+	<script  src="js/libs/jquery/bootbox.js"></script>
   
 </head>
 <body>
@@ -54,11 +55,11 @@ if (!isset($_SESSION['user_id'])) {
             <li><a href="#/messages" >Messages</a></li>
             <li><a href="#/call-details" >Call Details</a></li>
             <li><a href="#/locations" >Locations</a></li>
-          <!--  <li><a href="#/messages" >Home</a></li>
-        	 <li ><a href="#/channels" >Channels</a></li>
+            <li id="logout"></li>
+        	 <!-- <li ><a href="#/channels" >Channels</a></li>
         	<li><a href="#/datafields">Data fields</a></li>
         	<li><a href="#/validators">Validators</a></li>
-        	<li><a href="#/conflicts">Conflicts Customers</a></li> --> 
+        	<li><a href="#/conflicts">Conflicts Customers</a></li> -->
           </ul>
 
         </div>
