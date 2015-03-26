@@ -61,7 +61,7 @@ define([
       },
       render: function () {
         var that = this;
-        $("#logout").html("");
+        
         var template = _.template(loginTemplate);
         //$('#login-template').html(template); 
         that.$el.html(template);

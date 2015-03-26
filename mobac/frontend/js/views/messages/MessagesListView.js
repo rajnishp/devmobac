@@ -24,14 +24,15 @@ define([
     },
     deletemessage: function (options) {
       
-      //var view = new ModalView();
-      var modal = new ModalView({
-          
+      var view = new ModalView();
+      /*var modal = new Backbone.BootstrapModal({
+          content: view,
           title: 'modal header',
           animate: true
       });
-      modal.open(function(){ console.log('clicked OK') });//var view = new ModalView();
-      //view.show();
+
+      modal.open(function(){ console.log('clicked OK') });*///var view = new ModalView();
+      view.show();
       //var rowId = options.target.attributes[1].value
       //window.app_router.navigate('#/messages/rowId/delete', {trigger:true});
       /*Bootbox.confirm("Do u really want to delete this comment?", function(result) {
