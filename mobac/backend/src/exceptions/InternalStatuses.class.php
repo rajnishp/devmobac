@@ -21,8 +21,8 @@
 
             /* [1000 - 1004] - Authorization Exceptions  */
             '1000' => array('httpStatusCode' => 400, 
-                            'message' => 'Authentication Required for Nucleus API Access; See http://nucleus.capillary.in/docs',
-                            'otherHeaders' => array('WWW-Authenticate: Basic realm="Capillary Nucleus Restricted"')
+                            'message' => 'Authentication Required for Mobac API Access;',
+                            'otherHeaders' => array('WWW-Authenticate: Basic realm="Dpower4 Mobac Restricted"')
             ), 
 
 
