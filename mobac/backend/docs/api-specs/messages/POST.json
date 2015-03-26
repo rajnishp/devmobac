@@ -37,3 +37,57 @@
            ]
        }
     }
+
+
+    POST : Post with bulk data for messages:
+
+    Posted Data: 
+    {
+      "root": {
+      "messages": [
+            {
+                   "fromTo": "8901414422",
+                   "messageText": "This is test bulk message",
+                   "time": "2015-03-19 05:51:21",
+                   "type": "Inbox"
+               },
+               {
+                   "fromTo": "1414422",
+                   "messageText": "This is fsecoenst post message",
+                   "time": "2015-03-19 04:11:21",
+                   "type": "Inbox"
+               }
+        ]
+      }
+    }
+
+    Response:
+
+    {
+      "internal_status": {
+          "code": "2001",
+          "message": "Message saved"
+      },
+      "data": {
+        "messages": [
+            {
+                "id": 422,
+                "userId": "12",
+                "fromTo": "8901414422",
+                "messageText": "This is test bulk message",
+                "time": "2015-03-19 05:51:21",
+                "type": "Inbox",
+                "status": 0
+            },
+            {
+                "id": 423,
+                "userId": "12",
+                "fromTo": "1414422",
+                "messageText": "This is fsecoenst post message",
+                "time": "2015-03-19 04:11:21",
+                "type": "Inbox",
+                "status": 0
+            }
+        ]
+    }
+  }

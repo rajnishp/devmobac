@@ -37,3 +37,73 @@
            ]
        }
     }
+
+
+    POST with bulk locations data:
+
+    Post data:
+
+    { 
+      "root": { 
+      "locations":[
+          {
+            "latitude": "23.343433",
+            "longitude": "45.556564",
+            "fromTime": "2015-03-20 01:26:02",
+            "toTime": "0000-00-00 00:00:00"
+          },
+          {
+            "latitude": "23.343433",
+            "longitude": "45.556564",
+            "fromTime": "2015-03-20 01:26:02",
+            "toTime": "0000-00-00 00:00:00"
+          },
+          {
+            "latitude": "23.343433",
+            "longitude": "45.556564",
+            "fromTime": "2015-03-20 01:26:02",
+            "toTime": "0000-00-00 00:00:00"
+          }
+         ]
+      }
+  }
+
+  Response:
+
+  {
+    "internal_status": {
+        "code": "4001",
+        "message": "Location Saved"
+    },
+    "data": {
+          "locations": [
+              {
+                  "id": 38,
+                  "userId": "12",
+                  "latitude": "23.343433",
+                  "longitude": "45.556564",
+                  "fromTime": "2015-03-20 01:26:02",
+                  "toTime": "0000-00-00 00:00:00",
+                  "status": 0
+              },
+              {
+                  "id": 39,
+                  "userId": "12",
+                  "latitude": "23.343433",
+                  "longitude": "45.556564",
+                  "fromTime": "2015-03-20 01:26:02",
+                  "toTime": "0000-00-00 00:00:00",
+                  "status": 0
+              },
+              {
+                  "id": 40,
+                  "userId": "12",
+                  "latitude": "23.343433",
+                  "longitude": "45.556564",
+                  "fromTime": "2015-03-20 01:26:02",
+                  "toTime": "0000-00-00 00:00:00",
+                  "status": 0
+              }
+          ]
+      }
+  }
