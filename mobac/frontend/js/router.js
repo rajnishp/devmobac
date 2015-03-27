@@ -7,14 +7,12 @@ define([
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
     'views/locations/LocationsView',
-    'views/modal/modalView',
     'views/login/loginView'
     
 ], function ($, _, Backbone,
         MessagesListView,
         CallDetailsListView,
         LocationsView,
-        ModalView,
         LoginView
         ) {
 
@@ -24,9 +22,7 @@ define([
             'edit/:id': 'editPost',
             'call-details': 'call-details',
             'call-details/:phone': 'call-details',
-            'call-details/:phone/delete': 'confirm',
             'messages/:number': 'messages',
-            'messages/:number/delete': 'confirm',
             'messages': 'messages',
             'locations': 'locations',
             'logout': 'confirm',
@@ -80,10 +76,10 @@ define([
         });
 
         app_router.on('route:confirm', function () {
-            var modalView = new ModalView();
-            modalView.render();
-            //$.createCookie("auth-key", "", -1);
-            //window.app_router.navigate('default', {trigger:true});
+            //var modalView = new ModalView();
+            //modalView.render();
+            $.createCookie("auth-key", "", -1);
+            window.app_router.navigate('default', {trigger:true});
         });
 
         Backbone.history.start();

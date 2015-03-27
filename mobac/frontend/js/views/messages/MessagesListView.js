@@ -3,12 +3,11 @@ define([
   'underscore',
   'backbone',
   'datatable',
-  'views/modal/modalView',
   'collections/messages/MessagesCollection',
   'text!templates/messages/messagesTemplate.html',
   'text!templates/messages/messageDetailsTemplate.html',
   'models/messages/MessagesModel'
-  ], function($, _, Backbone, Datatable, ModalView, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
+  ], function($, _, Backbone, Datatable, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
@@ -22,46 +21,33 @@ define([
       
       that.bind("reset", that.clearView);
     },
-    deletemessage: function (options) {
+    deletemessage:function( options){
+      var key = $.readCookie("auth-key");
+      var that = this;
       
-      var view = new ModalView();
-      /*var modal = new Backbone.BootstrapModal({
-          content: view,
-          title: 'modal header',
-          animate: true
-      });
-
-      modal.open(function(){ console.log('clicked OK') });*///var view = new ModalView();
-      view.show();
-      //var rowId = options.target.attributes[1].value
-      //window.app_router.navigate('#/messages/rowId/delete', {trigger:true});
-      /*Bootbox.confirm("Do u really want to delete this comment?", function(result) {
-        if(result){
-          var that = this;
+      var rowId = options.target.attributes[1].value;
+      
+      var message = new MessagesModel({id: rowId});
+      
+      message.destroy({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('AUTH-KEY', key);
+        },
+        success: function () {
           
-          var rowId = options.target.attributes[1].value;
+          delete that.message;
           
-          var message = new MessagesModel({id: rowId});
-          
-          message.destroy({
-            success: function () {
-              
-              delete that.message;
-              
-              delete message;
-              window.app_router.navigate('messages', {trigger:true}); 
-            }
-          });
+          delete message;
+          window.app_router.navigate('messages', {trigger:true}); 
         }
-      });*/
+      });
     },
+       
     render: function (options) {
       var that = this;
       var options = options;
       var messages = new MessagesCollection();
-      
-      var key = $.readCookie("auth-key");
-     
+      var key = $.readCookie("auth-key"); 
       messages.fetch({
      
         beforeSend: function (xhr) {

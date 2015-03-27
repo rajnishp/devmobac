@@ -2,11 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'datatable',
   'google_maps',
   'collections/locations/LocationsCollection',
   'text!templates/locations/locationsTemplate.html'
-], function($, _, Backbone, Datatable, GoogleMaps, LocationsCollection, locationsTemplate){
+], function($, _, Backbone, GoogleMaps, LocationsCollection, locationsTemplate){
   
  var MapView = Backbone.View.extend({
 
@@ -94,12 +93,13 @@ define([
             }
           }
           else {
+            var mylocation = [];
             for (i = 0; i < (locationData.length); i++) {
               var date = locationData[i].fromTime.split(' ')[0];
               if(options.date == date){
-                var center = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
+                var mylocation = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
                 var mapOptions = {
-                                  center: center,
+                                  center: mylocation,
                                   zoom: 12,
                                   mapTypeId: google.maps.MapTypeId.ROADMAP
                                 };
@@ -168,6 +168,12 @@ define([
               var view = day.ddmmyyyy();
             }
             $("#locationDate").append('<a href="#/locations/'+date+'" >'+view+'</a><br/>');
+            if(mylocation == ""){
+              document.getElementById("errLocation").innerHTML = "<b>No Location avialable for this date</b>";
+            }
+            else {
+              document.getElementById("errLocation").innerHTML = "";
+            }
           }
           return map;
         },

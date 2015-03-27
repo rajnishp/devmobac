@@ -12,8 +12,7 @@ require.config({
     renderjson: 'libs/renderjson/renderjson',
     datatable: 'libs/datatable/jquery-dataTables-min',
     google_maps: 'libs/google/google_maps',
-    maps: 'libs/google/maps',
-    bootbox: 'libs/jquery/bootbox'
+    maps: 'libs/google/maps'
   }
 
 });

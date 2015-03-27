@@ -78,8 +78,9 @@ if (!isset($_SESSION['user_id'])) {
 
         </div>   
       </div>
-      <div class="col-md-1" id='locationDate'>
-        
+      <div class="col-md-1">
+        <div id='locationDate'></div>
+        <div id='errLocation'></div>
       </div> 
   </div>
 

@@ -10,7 +10,7 @@ define([
   ], function($, _, Backbone, Datatable, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
 
     var CallDetailsView = Backbone.View.extend({
-      
+    
      el : $("#page"),
      events: {
       'click #delcall': 'deleteCallDetails'
@@ -24,12 +24,14 @@ define([
      deleteCallDetails: function (options) {
         
         var that = this;
-        
-        var rowId = options.target.attributes[2].value;
-        
+        var key = $.readCookie("auth-key");
+        var rowId = options.target.attributes[1].value;
         var callDetails = new CallDetailsModel({id: rowId});
         
         callDetails.destroy({
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('AUTH-KEY', key);
+          } ,
           success: function () {
             
             delete that.callDetails;
@@ -43,7 +45,6 @@ define([
       var that = this;
       var options = options; 
       var CallDetails = new CallDetailsCollection();
-      
       var key = $.readCookie("auth-key");
       CallDetails.fetch({
         
