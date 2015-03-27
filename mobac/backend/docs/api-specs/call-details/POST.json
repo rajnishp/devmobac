@@ -36,3 +36,63 @@
            ]
        }
     }
+
+
+POST : Post CallDetails with bulk data:
+    Post Data: 
+
+    {
+    "root": 
+      {
+        "callDetails": 
+          [
+            {
+                "callDuration": "70",
+                "callerName": "Rajnish",
+                "time": "2015-03-07 22:23:19",
+                "secondParty": "+918901414422",
+                "type": "OUTGOING"
+            },
+            {
+                "callDuration": "97",
+                "callerName": "Neeraj Sir",
+                "time": "2015-03-07 22:05:16",
+                "secondParty": "+918884500545",
+                "type": "OUTGOING"
+            }
+          ]
+      }
+    }
+
+    Response:
+
+    {
+    "internal_status": {
+        "code": "5001",
+        "message": "call-detail Saved"
+    },
+    "data": {
+        "CallDetails": [
+            {
+                "id": 10,
+                "userId": "12",
+                "secondParty": "+918901414422",
+                "callDuration": "70",
+                "time": "2015-03-07 22:23:19",
+                "type": "OUTGOING",
+                "status": 0,
+                "callerName": "Rajnish"
+            },
+            {
+                "id": 11,
+                "userId": "12",
+                "secondParty": "+918884500545",
+                "callDuration": "97",
+                "time": "2015-03-07 22:05:16",
+                "type": "OUTGOING",
+                "status": 0,
+                "callerName": "Neeraj Sir"
+            }
+        ]
+    }
+  }
