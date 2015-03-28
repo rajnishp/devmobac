@@ -3,11 +3,13 @@ define([
   'underscore',
   'backbone',
   'datatable',
+  'Bootstrap',
+  'Bootbox',
   'collections/callDetails/CallDetailsCollection',
   'text!templates/callDetails/callDetailsTemplate.html',
   'text!templates/callDetails/phoneDetailsTemplate.html',
   'models/callDetails/CallDetailsModel'
-  ], function($, _, Backbone, Datatable, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
+  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
 
     var CallDetailsView = Backbone.View.extend({
     
@@ -16,31 +18,37 @@ define([
       'click #delcall': 'deleteCallDetails'
      },
      initialize : function() {
-     
+      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
       
       that.bind("reset", that.clearView);
      },
      deleteCallDetails: function (options) {
-        
-        var that = this;
-        var key = $.readCookie("auth-key");
-        var rowId = options.target.attributes[1].value;
-        var callDetails = new CallDetailsModel({id: rowId});
-        
-        callDetails.destroy({
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader('AUTH-KEY', key);
-          } ,
-          success: function () {
-            
-            delete that.callDetails;
-            
-            delete callDetails;
-            window.app_router.navigate('call-details', {trigger:true}); 
-          }
-        });
-      },
+      Bootbox.confirm("Do u really want to delete this?", function(result) {
+        if(result){
+          var that = this;
+          var key = $.readCookie("auth-key");
+          var rowId = options.target.attributes[1].value;
+          var callDetails = new CallDetailsModel({id: rowId});
+          
+          callDetails.destroy({
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+            } ,
+            success: function () {
+              
+              delete that.callDetails;
+              delete callDetails;
+              Bootbox.alert("Deleted Successfully");
+              window.app_router.navigate('call-details', {trigger:true}); 
+            },
+            error: function (response) {
+              Bootbox.alert("Please try again");
+            }
+          });
+        }
+      });
+     },
     render: function (options) {
       var that = this;
       var options = options; 
@@ -72,7 +80,9 @@ define([
                 flag = 0;
 
               });
-
+              if(numbers == ""){
+                Bootbox.alert("Sorry No Data Available");
+              }
               var template = _.template(CallDetailsTemplate, {Numbers: numbers});
               $('#CallDetails-list-template').html(template); 
               
@@ -90,7 +100,9 @@ define([
                   Details.push({"id" : detail.id, "secondParty" : detail.secondParty, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
                 }
               });
-              
+              if(Details == ""){
+                Bootbox.alert("Sorry No Data Available");
+              }
               var template = _.template(PhoneDetailsTemplate, {Details: Details});
               $('#PhoneDetails-list-template').html(template); 
               
@@ -102,8 +114,13 @@ define([
         },
         error: function (CallDetails, response) {
           var status = response.status;
-          if(status == "401")
+          if(status == "401"){
+            Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
+          }
+          else {
+            Bootbox.alert("Please try again");
+          }
         }
       });
 

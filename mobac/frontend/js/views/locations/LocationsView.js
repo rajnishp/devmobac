@@ -2,15 +2,18 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'Bootstrap',
+  'Bootbox',
   'google_maps',
   'collections/locations/LocationsCollection',
   'text!templates/locations/locationsTemplate.html'
-], function($, _, Backbone, GoogleMaps, LocationsCollection, locationsTemplate){
+], function($, _, Backbone, Bootstrap, Bootbox, GoogleMaps, LocationsCollection, locationsTemplate){
   
  var MapView = Backbone.View.extend({
 
     el : $("#page"),
     initialize : function() {
+      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
     },
 
@@ -82,7 +85,9 @@ define([
                
                 newloc.setMap(map);
               }
-            
+              if(center == "" || center == undefined || center == null){
+                Bootbox.alert("No locations available");
+              }
                       
               var infowindow = new google.maps.InfoWindow({
                 content: locations.models[0].attributes.data.locations[0].fromTime
@@ -168,19 +173,22 @@ define([
               var view = day.ddmmyyyy();
             }
             $("#locationDate").append('<a href="#/locations/'+date+'" >'+view+'</a><br/>');
-            if(mylocation == ""){
-              document.getElementById("errLocation").innerHTML = "<b>No Location avialable for this date</b>";
-            }
-            else {
-              document.getElementById("errLocation").innerHTML = "";
-            }
+          }
+
+          if(mylocation == ""){
+            Bootbox.alert("No locations available for this date");
           }
           return map;
         },
         error: function (locations, response) {
           var status = response.status;
-          if(status == "401")
+          if(status == "401"){
+            Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
+          }
+          else {
+            Bootbox.alert("Please try again");
+          }
         }
       });
     }

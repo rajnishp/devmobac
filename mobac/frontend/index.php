@@ -26,8 +26,9 @@ if (!isset($_SESSION['user_id'])) {
   
   <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script src="js/libs/bootstrap/ga.js" async="" type="text/javascript"></script>
+  
   <script data-main="js/main" src="js/libs/require/require.js"></script>
-	<script  src="js/libs/jquery/bootbox.js"></script>
+	
   
 </head>
 <body>
@@ -35,11 +36,11 @@ if (!isset($_SESSION['user_id'])) {
   <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="index.php" class="navbar-brand">
+          <a href="#/messages" class="navbar-brand">
           	<img src ='imgs/mobeclogo.png' style="width:60px; height:40px"/>
           		
           </a>
-          <a href="index.php" class="navbar-brand">
+          <a href="#/messages" class="navbar-brand">
           		Mobac
           </a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -79,8 +80,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>   
       </div>
       <div class="col-md-1">
-        <div id='locationDate'></div>
-        <div id='errLocation'></div>
+        <div id='locationDate'></div
       </div> 
   </div>
 

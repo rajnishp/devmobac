@@ -2,9 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'Bootstrap',
+  'Bootbox',
   'text!templates/login/loginTemplate.html',
   'models/login/LoginModel'
-  ], function($, _, Backbone, loginTemplate, LoginModel){
+  ], function($, _, Backbone, Bootstrap, Bootbox, loginTemplate, LoginModel){
     
     var LoginView = Backbone.View.extend({
 
@@ -16,8 +18,6 @@ define([
       initialize : function() {
         var that = this;
         that.bind("reset", that.clearView);
-
-
       },
       login: function (ev) {
         var that = this;
@@ -33,15 +33,13 @@ define([
             //that.render({id: null});
             delete login;
             delete this.login;
-            $("#logout").html('<a href="#/logout">Log Out </a>');
+            document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
             var key = login.attributes.data["auth-key"];
             $.createCookie("auth-key", key, 2);
             window.app_router.navigate('#/messages', {trigger:true});
           },
           error: function (loginDetails,response) {
-            //window.app_router.navigate('messages', {trigger:true});
-            //console.log(JSON.parse(response.responseText));
-            //alert(JSON.parse(response.responseText).internal_status.message );
+            Bootbox.alert("Please try again");
           }
         });
         return false;

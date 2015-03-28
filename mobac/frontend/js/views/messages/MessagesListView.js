@@ -3,11 +3,13 @@ define([
   'underscore',
   'backbone',
   'datatable',
+  'Bootstrap',
+  'Bootbox',
   'collections/messages/MessagesCollection',
   'text!templates/messages/messagesTemplate.html',
   'text!templates/messages/messageDetailsTemplate.html',
   'models/messages/MessagesModel'
-  ], function($, _, Backbone, Datatable, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
+  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
@@ -16,29 +18,37 @@ define([
       'click #delmessage': 'deletemessage'
      },
      initialize : function() {
-     
+      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
-      
       that.bind("reset", that.clearView);
     },
     deletemessage:function( options){
-      var key = $.readCookie("auth-key");
-      var that = this;
-      
-      var rowId = options.target.attributes[1].value;
-      
-      var message = new MessagesModel({id: rowId});
-      
-      message.destroy({
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('AUTH-KEY', key);
-        },
-        success: function () {
+      Bootbox.confirm("Do u really want to delete this message?", function(result) {
+        if(result){
+          var key = $.readCookie("auth-key");
+          var that = this;
+          console.log(options);
+          var rowId = options.target.attributes[1].value;
           
-          delete that.message;
+          var message = new MessagesModel({id: rowId});
           
-          delete message;
-          window.app_router.navigate('messages', {trigger:true}); 
+          message.destroy({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('AUTH-KEY', key);
+            },
+            success: function () {
+              
+              delete that.message;
+              
+              delete message;
+              Bootbox.alert("Deleted Successfully");
+              //Backbone.history.loadUrl();
+              window.app_router.navigate('messages', {trigger:true}); 
+            },
+            error: function (response) {
+              Bootbox.alert("Please try again");
+            }
+          });
         }
       });
     },
@@ -78,7 +88,9 @@ define([
                 flag = 0;
 
               });
-
+              if(numbers == ""){
+                Bootbox.alert("Sorry No Data Available");
+              }
               var template = _.template(MessagesTemplate, {Numbers: numbers});
               $('#messages-list-template').html(template); 
               
@@ -97,6 +109,9 @@ define([
                 Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : date, "type" : detail.type});
               }
             });
+            if(Details == ""){
+                Bootbox.alert("Sorry No Data Available");
+             }
             var template = _.template(MessageDetailsTemplate, {Details: Details});
             $('#messageDetails-list-template').html(template); 
             
@@ -110,8 +125,13 @@ define([
         },
         error: function (messages, response) {
           var status = response.status;
-          if(status == "401")
+          if(status == "401"){
+            Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
+          }
+          else {
+            Bootbox.alert("Please try again");
+          }
         }
       });
 

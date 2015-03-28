@@ -4,12 +4,14 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'Bootstrap',
+    'Bootbox',
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
     'views/locations/LocationsView',
     'views/login/loginView'
     
-], function ($, _, Backbone,
+], function ($, _, Backbone, Bootstrap, Bootbox,
         MessagesListView,
         CallDetailsListView,
         LocationsView,
@@ -76,10 +78,12 @@ define([
         });
 
         app_router.on('route:confirm', function () {
-            //var modalView = new ModalView();
-            //modalView.render();
-            $.createCookie("auth-key", "", -1);
-            window.app_router.navigate('default', {trigger:true});
+            Bootbox.confirm("Are you sure?", function(result) {
+                if(result){
+                    $.createCookie("auth-key", "", -1);
+                    window.app_router.navigate('default', {trigger:true});
+                }
+            });
         });
 
         Backbone.history.start();
