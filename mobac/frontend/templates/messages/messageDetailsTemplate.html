@@ -1,21 +1,30 @@
 <h4>Details</h4> <hr />
 <br/>
+<div class='col-md-2'></div>
+<div class='col-md-8'>
   <table class="display" id='messageDetailsTable' width="100%" cellspacing="0">
     <thead>
       <tr>
-        <th> ID</th><th>Number</th><th>Message</th><th>Time</th><th>Type</th><th>Delete</th>
+        <th>Details</th><th>Delete</th>
       </tr>
-    </thead>
+    </thead> 
     <tbody>
       <% _.each(Details, function(Detail) { %>
-        <tr>
-          <td><%= Detail.id %></td>
-          <td><%= Detail.fromTo %></td>
-          <td><%= Detail.messageText %></td>
-          <td><%= Detail.time %></td>
-          <td><%= Detail.type %></td>
+        <% if(Detail.type == "Inbox"){ %>
+        <tr style="color:blue;">
+          <td style="text-align:left;"><%= Detail.messageText %><br/><br/>
+           From : <%= Detail.fromTo %><br/>
+          <%= Detail.time %></td>
           <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delmessage">Delete</button></td>
         </tr>
-      <% }); %>
+        <% } else { %>
+        <tr style="color:green;">
+          <td style="text-align:left;"><%= Detail.messageText %><br/><br/>
+           To : <%= Detail.fromTo %><br/>
+          <%= Detail.time %></td>
+          <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delmessage">Delete</button></td>
+        </tr>
+      <% } }); %>
     </tbody>
   </table>
+  </div>

@@ -1,21 +1,32 @@
-<h4>Details</h4> <hr />
+<h4> Call Details</h4> <hr />
 <br/>
-  <table class="display" id='phoneDetailsTable' width="100%" cellspacing="0">
+<div class='col-md-1'></div>
+<div class='col-md-10'>
+  <table class="display" id='phoneDetailsTable' width="100%" cellspacing="0" >
     <thead>
       <tr>
-        <th> ID</th><th>Phone</th><th>Duration</th><th>Time</th><th>Type</th><th>Delete</th>
+        <th>Details</th><th>Delete</th>
       </tr>
-    </thead>
+    </thead>  
     <tbody>
-      <% _.each(Details, function(Detail) { %>
-        <tr>
-          <td><%= Detail.id %></td>
-          <td><%= Detail.secondParty %></td>
-          <td><%= Detail.callDuration %></td>
-          <td><%= Detail.time %></td>
-          <td><%= Detail.type %></td>
+      <% _.each(Details, function(Detail) { 
+         if(Detail.type == 'Incoming') {%>
+        <tr style='color:blue;'>
+          <td><img src="imgs/incoming2.jpeg" style='height:50px;'>
+        <% } else if (Detail.type == 'Outgoing') { %>
+        <tr style='color:green;'>
+          <td><img src="imgs/Outgoing.png" style='height:50px;'>
+        <% } else {%>
+        <tr style='color:#FF3903;'>
+          <td><img src="imgs/missed2.png" style='height:50px;'>
+        <% } %>
+          <span style='font-size:24px;'><%= Detail.name %></span>
+           <span class='pull-right'><%= Detail.time %></span><br/>
+           <span class='pull-left' style='margin-left:15%;'><%= Detail.type %></span> <span class='pull-right'><%= Detail.callDuration %></span>
+          </td>
           <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delcall">Delete</button></td>
-        </tr>
+        </tr>          
       <% }); %>
     </tbody>
   </table>
+  </div>

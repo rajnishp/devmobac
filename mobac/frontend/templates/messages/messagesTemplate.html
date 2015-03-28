@@ -1,18 +1,23 @@
 <h4>List of Messages</h4> <hr />
 <br/>
+<div class='col-md-2'></div>
+<div class='col-md-8'>
   <table class="display" id='messagesTable' width="100%" cellspacing="0">
     <thead>
       <tr>
-        <th>Time</th><th>Phone no.</th><th>Count</th>
+        <th>Messages</th>
       </tr>
     </thead>
     <tbody>
       <% _.each(Numbers, function(Number) { %>
         <tr>
-          <td><%= Number.name %></td>
-          <td><a class="btn" href="#/messages/<%= Number.number %>"><%= Number.number %></a></td>
-          <td><%= Number.count %></td>
+          <td style='text-align:left; margin-left:15%;'>
+          <a class="btn" href="#/messages/<%= Number.number %>" style='font-size:24px;'><%= Number.number %></a>
+          <span class='pull-right' style='color:green;'><%= Number.count %></span><br/>
+          <%= Number.name %>
+          </td>
         </tr>
       <% }); %>
     </tbody>
   </table>
+  </div>

@@ -1,18 +1,22 @@
 <h4>List of CallDetails</h4> <hr />
 <br/>
+<div class='col-md-2'></div>
+<div class='col-md-8'>
   <table class="display" id='callDetailsTable' width="100%" cellspacing="0">
     <thead>
       <tr>
-        <th>Name</th><th>Phone no.</th><th>Count</th>
+        <th>Calls</th>
       </tr>
     </thead>
     <tbody>
       <% _.each(Numbers, function(Number) { %>
         <tr>
-          <td><%= Number.name %></td>
-          <td><a class="btn" href="#/call-details/<%= Number.number %>"><%= Number.number %></a></td>
-          <td><%= Number.count %></td>
+          <td style='text-align:left; margin-left:15%;'>
+          <a class="btn" href="#/call-details/<%= Number.number %>" style='font-size:24px;'><%= Number.name %></a>
+          <span class='pull-right' style='color:green;'><%= Number.count %></span><br/>
+          <%= Number.date %></td>
         </tr>
       <% }); %>
     </tbody>
   </table>
+  </div>

@@ -73,8 +73,16 @@ define([
                       break;
                     }
                 }
-                if(flag == 0)
-                  numbers.push({"number" : callD.secondParty, "name" : callD.callerName, "count" : 1});
+                if(flag == 0){
+                  var oldDate = callD.time;
+                  var a = oldDate.split(/-|\s|:/); 
+                  var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  if(callD.callerName == ""){
+                    numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": date, "count" : 1});
+                  }
+                  else 
+                    numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": date, "count" : 1});
+                }
                 else
                   numbers[i].count = numbers[i].count + 1;
                 flag = 0;
@@ -97,7 +105,12 @@ define([
                   var oldDate = detail.time;
                   var a = oldDate.split(/-|\s|:/); 
                   var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
-                  Details.push({"id" : detail.id, "secondParty" : detail.secondParty, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
+                  if(detail.callerName == ""){
+                    Details.push({"id" : detail.id, 'name': detail.secondParty, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
+                  }
+                  else {
+                    Details.push({"id" : detail.id, 'name': detail.callerName, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
+                  }
                 }
               });
               if(Details == ""){
@@ -114,7 +127,9 @@ define([
         },
         error: function (CallDetails, response) {
           var status = response.status;
+
           if(status == "401"){
+            document.getElementById("logout").innerHTML = "";
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
           }

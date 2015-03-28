@@ -183,6 +183,7 @@ define([
         error: function (locations, response) {
           var status = response.status;
           if(status == "401"){
+            document.getElementById("logout").innerHTML = "";
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
           }

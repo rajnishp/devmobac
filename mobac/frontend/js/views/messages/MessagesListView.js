@@ -127,6 +127,7 @@ define([
           var status = response.status;
           if(status == "401"){
             Bootbox.alert("Please login first");
+            document.getElementById("logout").innerHTML = "";
             window.app_router.navigate('default', {trigger:true});
           }
           else {

@@ -25,7 +25,7 @@ class LocationsMySqlDAO implements LocationsDAO{
 	 * Get all records from table
 	 */
 	public function queryAll($userId){
-		$sql = 'SELECT * FROM locations WHERE user_id = ? AND status = 0';
+		$sql = 'SELECT * FROM locations WHERE user_id = ? AND status = 0 ORDER BY from_time DESC';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);

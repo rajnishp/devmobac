@@ -16,6 +16,7 @@ define([
       },
 
       initialize : function() {
+        document.getElementById("logout").innerHTML = "";
         var that = this;
         that.bind("reset", that.clearView);
       },
