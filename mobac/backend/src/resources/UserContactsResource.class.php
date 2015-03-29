@@ -48,9 +48,9 @@ class UserContactsResource implements Resource {
         $logger -> debug ("Contact Deleted? " . $result);
 
         if ($result) 
-            $result = array('code' => '5003');
+            $result = array('code' => '7003');
         else 
-            $result = array('code' => '5004');
+            $result = array('code' => '7004');
 
         return $result;
     }
@@ -61,7 +61,7 @@ class UserContactsResource implements Resource {
         global $logger, $warnings_payload;
 
         // $userId is set temporally, update it
-        $userId = 2;
+        //$userId = 2;
         
         $contactId = $resourceVals ['contacts'];
         if (isset($contactId)) {
@@ -73,7 +73,7 @@ class UserContactsResource implements Resource {
         $contactObj = new UserContact(
                                         $userId, 
                                         $data ['name'], 
-                                        $data ['number'], 
+                                        $data ['phone'], 
                                         $data ['last_update_time'],
                                         $data ['email_contact'],
                                         $data ['email_type'],
@@ -92,7 +92,7 @@ class UserContactsResource implements Resource {
         $this -> contacts[] = $contacts;
     
 
-        return array ('code' => '5001', 
+        return array ('code' => '7001', 
                         'data' => array(
                             'contacts' => $this -> contacts
                         )
@@ -114,7 +114,7 @@ class UserContactsResource implements Resource {
             $result = $this -> getListOfAllContacts($userId);
 
         if (!is_array($result)) {
-            return array('code' => '5004');
+            return array('code' => '7004');
         }
 
         return $result;
@@ -128,13 +128,13 @@ class UserContactsResource implements Resource {
         $contactObj = $this -> mobacDAO -> loadUserContact($contactId, $userId);
 
         if(empty($contactObj)) 
-                return array('code' => '5004');        
+                return array('code' => '7004');        
              
         $this -> Contacts [] = $contactObj-> toArray();
         
         $logger -> debug ('Fetched list of Contacts: ' . json_encode($this -> Contacts));
 
-        return array('code' => '5000', 
+        return array('code' => '7000', 
                      'data' => array(
                                 'Contacts' => $this -> Contacts
                             )
@@ -148,7 +148,7 @@ class UserContactsResource implements Resource {
 
         $listOfContactObj = $this -> mobacDAO -> queryAllUserContacts($userId);
         if(empty($listOfContactObj)) 
-                return array('code' => '5004');
+                return array('code' => '7004');
 
         foreach ($listOfContactObj as $contactObj) {
                 $contacts = $contactObj -> toArray();
@@ -156,7 +156,7 @@ class UserContactsResource implements Resource {
         }
         $logger -> debug ('Fetched list of contacts: ' . json_encode($this -> contacts));
 
-        return array('code' => '5000', 
+        return array('code' => '7000', 
                      'data' => array(
                                 'contacts' => $this -> contacts
                             )

@@ -13,12 +13,12 @@ interface MessagesDAO{
 	 * @param String $id primary key
 	 * @Return Messages 
 	 */
-	public function load($id, $userId);
+	public function load($id);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($userId);
+	public function queryAll();
 	
 	/**
 	 * Get all records from table ordered by field

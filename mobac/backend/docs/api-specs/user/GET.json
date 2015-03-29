@@ -1,14 +1,14 @@
 /user
 
-	GET ""
+	GET "api.loc.mobac.com/v0/user"
 
 	Response:
 
     {
        "internal_status":
        {
-           "code": "2000",
-           "message": "Messages Fetched"
+           "code": "6000",
+           "message": "User Details Fetched"
        },
        "data":
        {

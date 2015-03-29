@@ -10,18 +10,18 @@
 		private $id;
 		private $userId;
 		private $name;
-		private $number;
+		private $phone;
 		private $lastUpdateTime;
 		private $emailContact;
 		private $emailType;
 		private $imageLink;
 
 
-		function __construct($userId, $name, $number, $lastUpdateTime, $emailContact, $emailType, $imageLink, $id = null){
+		function __construct($userId, $name, $phone, $lastUpdateTime, $emailContact, $emailType, $imageLink, $id = null){
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> name = $name;
-			$this -> number = $number;
+			$this -> phone = $phone;
 			$this -> lastUpdateTime = $lastUpdateTime;
 			$this -> emailContact = $emailContact;
 			$this -> emailType = $emailType;
@@ -49,11 +49,11 @@
 			return $this-> name;
 		}
 
-		function setNumber($number){
-			$this -> number = $number;
+		function setPhone($phone){
+			$this -> phone = $phone;
 		}
-		function getNumber(){
-			return $this-> number;
+		function getPhone(){
+			return $this-> phone;
 		}
 
 		function setLastUpdateTime($lastUpdateTime){
@@ -88,7 +88,7 @@
 			return $this -> id . ", " . 
 					$this -> userId . ", " . 
 					$this -> name. ", " . 
-					$this -> number. ", " . 
+					$this -> phone. ", " . 
 					$this -> lastUpdateTime. ", " . 
 					$this -> emailContact. ", " . 
 					$this -> emailType. ", " . 
@@ -100,7 +100,7 @@
 						id => $this -> id,
 						userId => $this -> userId,
 						name => $this -> name,
-						number => $this -> number,
+						phone => $this -> phone,
 						lastUpdateTime => $this -> lastUpdateTime,
 						emailContact => $this -> emailContact,
 						emailType => $this -> emailType,

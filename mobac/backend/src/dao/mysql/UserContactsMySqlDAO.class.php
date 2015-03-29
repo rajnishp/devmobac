@@ -57,12 +57,12 @@ class UserContactsMySqlDAO implements UserContactsDAO{
  	 * @param UserContactsMySql userContact
  	 */
 	public function insert($userContact){
-		$sql = 'INSERT INTO user_contacts (user_id, name, `number`, last_update_time, email_contact, email_type, image_link) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO user_contacts (user_id, name, `phone`, last_update_time, email_contact, email_type, image_link) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($userContact->getUserId());
 		$sqlQuery->set($userContact->getName());
-		$sqlQuery->set($userContact->getNumber());
+		$sqlQuery->set($userContact->getPhone());
 		$sqlQuery->set($userContact->getLastUpdateTime());
 		$sqlQuery->set($userContact->getEmailContact());
 		$sqlQuery->set($userContact->getEmailType());
@@ -79,12 +79,12 @@ class UserContactsMySqlDAO implements UserContactsDAO{
  	 * @param UserContactsMySql userContact
  	 */
 	public function update($userContact){
-		$sql = 'UPDATE user_contacts SET user_id = ?, name = ?, number = ?, last_update_time = ?, email_contact = ?, email_type = ?, image_link = ? WHERE id = ?';
+		$sql = 'UPDATE user_contacts SET user_id = ?, name = ?, phone = ?, last_update_time = ?, email_contact = ?, email_type = ?, image_link = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->setNumber($userContact->userId);
 		$sqlQuery->set($userContact->name);
-		$sqlQuery->set($userContact->number);
+		$sqlQuery->set($userContact->phone);
 		$sqlQuery->set($userContact->lastUpdateTime);
 		$sqlQuery->set($userContact->emailContact);
 		$sqlQuery->set($userContact->emailType);
@@ -117,8 +117,8 @@ class UserContactsMySqlDAO implements UserContactsDAO{
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByNumber($value){
-		$sql = 'SELECT * FROM user_contacts WHERE number = ?';
+	public function queryByPhone($value){
+		$sql = 'SELECT * FROM user_contacts WHERE phone = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
@@ -167,8 +167,8 @@ class UserContactsMySqlDAO implements UserContactsDAO{
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByNumber($value){
-		$sql = 'DELETE FROM user_contacts WHERE number = ?';
+	public function deleteByPhone($value){
+		$sql = 'DELETE FROM user_contacts WHERE phone = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
@@ -215,13 +215,13 @@ class UserContactsMySqlDAO implements UserContactsDAO{
 		/*$userContact->id = $row['id'];
 		$userContact->userId = $row['user_id'];
 		$userContact->name = $row['name'];
-		$userContact->number = $row['number'];
+		$userContact->phone = $row['phone'];
 		$userContact->lastUpdateTime = $row['last_update_time'];
 		$userContact->emailContact = $row['email_contact'];
 		$userContact->emailType = $row['email_type'];
 		$userContact->imageLink = $row['image_link'];*/
 
-		$userContact = new UserContact($row['user_id'], $row['name'], $row['number'], $row['last_update_time'], $row['email_contact'], $row['email_type'], $row['image_link'], $row['id']);
+		$userContact = new UserContact($row['user_id'], $row['name'], $row['phone'], $row['last_update_time'], $row['email_contact'], $row['email_type'], $row['image_link'], $row['id']);
 		
 		return $userContact;
 	}

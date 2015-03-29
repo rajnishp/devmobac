@@ -62,6 +62,8 @@
                             'message' => 'Message Could Not Be Updated', 'otherHeaders' => array()),
             '2013' => array('httpStatusCode' => 500, 
                             'message' => 'Message Could Not Be Deleted', 'otherHeaders' => array()),
+            '2014' => array('httpStatusCode' => 500, 
+                            'message' => 'Phone number cannot be empty', 'otherHeaders' => array()),
 
 
             /* [3000 - 3999] - Validator Exceptions  */
@@ -167,73 +169,43 @@
             '5013' => array('httpStatusCode' => 200, 
                             'message' => 'Data-Field Could Not Be Deleted', 'otherHeaders' => array()),
 
-            /* [6000 - 6999] - Organization Resource Exceptions  */
+            /* [6000 - 6999] - User Resource Exceptions  */
             '6000' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization Fetched', 'otherHeaders' => array()),
+                            'message' => 'User Details Fetched', 'otherHeaders' => array()),
             '6001' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization Created', 'otherHeaders' => array()),
+                            'message' => 'User Created', 'otherHeaders' => array()),
             '6002' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization Updated', 'otherHeaders' => array()),
+                            'message' => 'User Detail Updated', 'otherHeaders' => array()),
             '6003' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization Deleted', 'otherHeaders' => array()),
+                            'message' => 'User Deleted', 'otherHeaders' => array()),
             '6004' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization Not Found', 'otherHeaders' => array()),
+                            'message' => 'User Not Found', 'otherHeaders' => array()),
+            '6010' => array('httpStatusCode' => 500, 
+                            'message' => 'User Detail Could Not Be Fetched', 'otherHeaders' => array()),
+            '6011' => array('httpStatusCode' => 200, 
+                            'message' => 'User Detail Could Not Be Saved', 'otherHeaders' => array()),
+            '6012' => array('httpStatusCode' => 200, 
+                            'message' => 'User Detail Could Not Be Updated', 'otherHeaders' => array()),
+            '6013' => array('httpStatusCode' => 200, 
+                            'message' => 'User Detail Could Not Be Deleted', 'otherHeaders' => array()),
+            '6014' => array('httpStatusCode' => 400, 
+                            'message' => 'Phone number field Missing', 'otherHeaders' => array()),
+            '6015' => array('httpStatusCode' => 400, 
+                            'message' => 'Password field Missing', 'otherHeaders' => array()),
 
 
-            /* [6100 - 6199] - Organization-Channel Resource Exceptions  */
-            '6100' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization-Channel Fetched', 'otherHeaders' => array()),
-            '6104' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization-Channel Not Found', 'otherHeaders' => array()),
-            '6105' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization Not Found', 'otherHeaders' => array()),
-            '6106' => array('httpStatusCode' => 404, 
-                            'message' => 'Channel Not Found', 'otherHeaders' => array()),
-
-
-            /* [6200 - 6299] - Organization-Channel-Field Resource Exceptions  */
-            '6200' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization-Channel-Field Fetched', 'otherHeaders' => array()),
-            '6201' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization-Channel-Field Created', 'otherHeaders' => array()),
-            '6202' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization-Channel-Field Updated', 'otherHeaders' => array()),
-            '6203' => array('httpStatusCode' => 200, 
-                            'message' => 'Organization-Channel-Field Deleted', 'otherHeaders' => array()),
-            '6204' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization-Channel-Field Not Found', 'otherHeaders' => array()),
-            '6205' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization Not Found', 'otherHeaders' => array()),
-            '6206' => array('httpStatusCode' => 404, 
-                            'message' => 'Channel Not Found', 'otherHeaders' => array()),
-            '6207' => array('httpStatusCode' => 404, 
-                            'message' => 'Data-Field Not Found', 'otherHeaders' => array()),
-            '6208' => array('httpStatusCode' => 404, 
-                            'message' => 'Validator Not Found', 'otherHeaders' => array()),
-
-
-            /* [7000 - 7799] - Customer Resource Exceptions  */
+            /* [7000 - 7799] - contacts Resource Exceptions  */
             '7000' => array('httpStatusCode' => 200, 
-                            'message' => 'Customer Fetched', 'otherHeaders' => array()),
+                            'message' => 'Contact Fetched', 'otherHeaders' => array()),
             '7001' => array('httpStatusCode' => 200, 
-                            'message' => 'Customer Created', 'otherHeaders' => array()),
+                            'message' => 'Contact Created', 'otherHeaders' => array()),
             '7002' => array('httpStatusCode' => 200, 
-                            'message' => 'Customer Updated', 'otherHeaders' => array()),
+                            'message' => 'Contact Updated', 'otherHeaders' => array()),
             '7003' => array('httpStatusCode' => 200, 
-                            'message' => 'Customer Deleted', 'otherHeaders' => array()),
+                            'message' => 'Contact Deleted', 'otherHeaders' => array()),
             '7004' => array('httpStatusCode' => 404, 
-                            'message' => 'Customer Not Found', 'otherHeaders' => array()),
-            '7005' => array('httpStatusCode' => 404, 
-                            'message' => 'Organization Not Found', 'otherHeaders' => array()),
-            '7006' => array('httpStatusCode' => 404, 
-                            'message' => 'Channel Not Found', 'otherHeaders' => array()),
-            '7007' => array('httpStatusCode' => 404, 
-                            'message' => 'Source Not Found', 'otherHeaders' => array()),
-            '7008' => array('httpStatusCode' => 404, 
-                            'message' => 'Org-Data-Field Not Found', 'otherHeaders' => array()),
-            '7009' => array('httpStatusCode' => 404, 
-                            'message' => 'Org-Data-Field-Validator Not Found', 'otherHeaders' => array()),
-
+                            'message' => 'Contact Not Found', 'otherHeaders' => array()),
+            
             /* [7800 - 7899] - Conflicts Resource Exceptions  */
             '7800' => array('httpStatusCode' => 200, 
                             'message' => 'Conflict Fetched', 'otherHeaders' => array()),

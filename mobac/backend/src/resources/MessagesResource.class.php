@@ -140,7 +140,7 @@ class MessagesResource implements Resource {
         global $logger;
         $logger->debug('Fetch message...');
 
-        $messageObj = $this -> mobacDAO -> load($messageId, $userId);
+        $messageObj = $this -> mobacDAO -> loadMessage($messageId, $userId);
 
         if(empty($messageObj)) 
                 return array('code' => '2004');        
@@ -161,27 +161,21 @@ class MessagesResource implements Resource {
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        $listOfmessageObjs = $this -> mobacDAO -> queryAll($userId);
+        //$delta = $resourceVals ['id'];
+
+        //if (isset($delta)) 
+        //    $listOfmessageObjs = $this -> mobacDAO -> queryAllMessages($userId);
+        //else
+            $listOfmessageObjs = $this -> mobacDAO -> queryAllFirstMessages($userId);
         
         if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');
-        //$oldLength = 1;
-        //$newLength = 0;
+        
         foreach ($listOfmessageObjs as $messageObj) {
-                //print_r($messageObj -> toArray()); exit;
+        
                 $this -> messages [] = $messageObj -> toArray();
                 $newLength = intval( $messageObj ->getId() );
-                //echo $newLength;
-                //var_dump($newLength);
-                /*if($oldLength !=  $newLength ){
-                    echo "thiere $oldLenght" .  intval($newLength) . "\n" ;
-                    print_r($this -> messages);
-                    exit;
-                }
-                */
-                //$oldLength = intval( $messageObj ->getId() ) + 1;
-                //var_dump( $oldLength);
-
+        
                 $old = $messageObj -> toArray();
         }
 

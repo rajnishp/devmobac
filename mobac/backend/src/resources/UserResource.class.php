@@ -43,19 +43,27 @@ class UserResource implements Resource {
         $userInfoObj = new UserInfo($data ['firstName'], $data ['lastName'], $data ['email'], $data ['phoneNo'], $data ['password'], 0);
         $logger -> debug ("POSTed User Detail: " . $userInfoObj -> toString());
 
-        $this -> mobacDAO -> insert($userInfoObj);
+        if ($data['phoneNo'] == '') {
+            return array('code' => '6014');
+        }
+        else if ($data['password'] == '') {
+            return array('code' => '6015');
+        }
+        else {
+            $this -> mobacDAO -> insert($userInfoObj);
 
-        $userDetail = $userInfoObj -> toArray();
-        
-        if(! isset($userDetail ['id'])) 
-            return array('code' => '2011');
+            $userDetail = $userInfoObj -> toArray();
+            
+            if(! isset($userDetail ['id'])) 
+                return array('code' => '6011');
 
-        $this -> userDetail[] = $userDetail;
-        return array ('code' => '2001', 
-                        'data' => array(
-                            'userDetail' => $this -> userDetail
-                        )
-        );
+            $this -> userDetail[] = $userDetail;
+            return array ('code' => '6001', 
+                            'data' => array(
+                                'userDetail' => $this -> userDetail
+                            )
+            );
+        }
     }
 
     public function get($resourceVals, $data, $userId) {
@@ -64,14 +72,14 @@ class UserResource implements Resource {
 
         $UserInfoId = $resourceVals ['user'];
         if (isset($UserInfoId))
-            return array('code' => '2004');
+            return array('code' => '6004');
             //$result = $this->getUserDetail($userId);
             
         else
             $result = $this -> getUserDetail($userId);
         
         if (!is_array($result)) {
-            return array('code' => '2004');
+            return array('code' => '6004');
         }
 
         return $result;
@@ -84,12 +92,12 @@ class UserResource implements Resource {
         $userInfoObj = $this -> mobacDAO -> load($userId);
 
         if(empty($userInfoObj)) 
-                return array('code' => '2004');        
+                return array('code' => '6004');        
              
         $this -> userDetail [] = $userInfoObj-> toArray();
         $logger -> debug ('Fetched details: ' . json_encode($this -> userDetail));
 
-        return array('code' => '2000', 
+        return array('code' => '6000', 
                      'data' => array(
                                 'user' => $this -> userDetail
                             )
