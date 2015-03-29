@@ -74,7 +74,7 @@
 			$this -> emailType = $emailType;
 		}
 		function getEmailType(){
-				return $this-> semailType;
+				return $this-> emailType;
 		}
 
 		function setImageLink($imageLink){
