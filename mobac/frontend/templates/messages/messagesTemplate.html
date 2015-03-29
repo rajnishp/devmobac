@@ -1,4 +1,4 @@
-<h4>List of Messages</h4> <hr />
+<img src="imgs/index.jpeg" style="width:10%"/>Messages <hr />
 <br/>
 <div class='col-md-2'></div>
 <div class='col-md-8'>
@@ -9,12 +9,14 @@
       </tr>
     </thead>
     <tbody>
-      <% _.each(Numbers, function(Number) { %>
+      <% _.each(Numbers, function(Number) { 
+        var text = Number.text;
+        var data = text.substring(0, 30); %>
         <tr>
           <td style='text-align:left; margin-left:15%;'>
           <a class="btn" href="#/messages/<%= Number.number %>" style='font-size:24px;'><%= Number.number %></a>
-          <span class='pull-right' style='color:green;'><%= Number.count %></span><br/>
-          <%= Number.name %>
+          <span class='pull-right' style='color:green;'><% if(Number.count > 1){ %>(<%= Number.count %>)<% } %></span><br/>
+          <%= data %><span class='pull-right'><%= Number.name %></span>
           </td>
         </tr>
       <% }); %>

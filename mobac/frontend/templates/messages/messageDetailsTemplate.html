@@ -1,30 +1,55 @@
-<h4>Details</h4> <hr />
+<h4>CHAT HISTORY</h4> <hr />
 <br/>
 <div class='col-md-2'></div>
 <div class='col-md-8'>
-  <table class="display" id='messageDetailsTable' width="100%" cellspacing="0">
-    <thead>
-      <tr>
-        <th>Details</th><th>Delete</th>
-      </tr>
-    </thead> 
-    <tbody>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+    <% var modal = [];
+      _.each(Details, function(Detail) { 
+        modal.push(Detail.fromTo);
+      });
+    %>
+    <%= modal[0] %>
+    </div>
+    <div class="panel-body">
+      <ul class="media-list">
       <% _.each(Details, function(Detail) { %>
-        <% if(Detail.type == "Inbox"){ %>
-        <tr style="color:blue;">
-          <td style="text-align:left;"><%= Detail.messageText %><br/><br/>
-           From : <%= Detail.fromTo %><br/>
-          <%= Detail.time %></td>
-          <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delmessage">Delete</button></td>
-        </tr>
-        <% } else { %>
-        <tr style="color:green;">
-          <td style="text-align:left;"><%= Detail.messageText %><br/><br/>
-           To : <%= Detail.fromTo %><br/>
-          <%= Detail.time %></td>
-          <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delmessage">Delete</button></td>
-        </tr>
-      <% } }); %>
-    </tbody>
-  </table>
+        <li class="media">
+          <div class="media-body">
+            <div class="media">
+            <% if(Detail.type == "Inbox") { %>
+              <!-- <a class="pull-left" href="#">
+                <img class="media-object img-circle " src="assets/img/user.png" />
+              </a> -->
+              <div class="media-body" style="padding-right:30%;">
+                <%= Detail.messageText %> <br />
+                <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link" value="<%= Detail.id %>" id="delmessage">Delete</button></small>
+                <hr />
+              </div>
+            <% } else { %>
+              <div class="media-body" style="padding-left:30%;" >
+                <%= Detail.messageText %> <br />
+                <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link" value="<%= Detail.id %>" id="delmessage">Delete</button></small>
+                <hr />
+              </div>
+              <!-- <a class="pull-right" href="#">
+                <img class="media-object img-circle " src="assets/img/user.png" />
+              </a> -->
+            <% } %>
+            </div>
+          </div>
+        </li>
+      <%  }); %>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <div class="input-group">
+          <input type="text" class="form-control" id="messagetext" placeholder="Enter Message" />
+          <span class="input-group-btn">
+            <button id="sendmessage" class="btn btn-info" type="button">SEND</button>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

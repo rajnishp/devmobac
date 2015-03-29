@@ -5,22 +5,29 @@ define([
   'datatable',
   'Bootstrap',
   'Bootbox',
+  'timeago',
   'collections/messages/MessagesCollection',
   'text!templates/messages/messagesTemplate.html',
   'text!templates/messages/messageDetailsTemplate.html',
   'models/messages/MessagesModel'
-  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
+  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, timeago, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
      el : $("#page"),
      events: {
-      'click #delmessage': 'deletemessage'
+      'click #delmessage': 'deletemessage',
+      'click #sendmessage': 'sendmessage'
      },
      initialize : function() {
       document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
       that.bind("reset", that.clearView);
+    },
+    sendmessage : function(options){
+      var text = $("#messagetext").val();
+      $("#messagetext").val("");
+      console.log(text);
     },
     deletemessage:function( options){
       Bootbox.confirm("Do u really want to delete this message?", function(result) {
@@ -79,14 +86,15 @@ define([
                 }
                 if(flag == 0){
                   var oldDate = phone.time;
-                  var a = oldDate.split(/-|\s|:/); 
-                  var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
-                  numbers.push({"number" : phone.fromTo, "name" : date, "count" : 1});
+                  var a = oldDate.split(/\s/); 
+                  //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+                  //console.log(string);
+                  numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : string, "count" : 1});
                 }
                 else
                   numbers[i].count = numbers[i].count + 1;
                 flag = 0;
-
               });
               if(numbers == ""){
                 Bootbox.alert("Sorry No Data Available");
@@ -103,10 +111,11 @@ define([
               var that = this;
               if (options.number == detail.fromTo ) {
                 var oldDate = detail.time;
-                var a = oldDate.split(/-|\s|:/); 
-                var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]); 
-                
-                Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : date, "type" : detail.type});
+                //var a = oldDate.split(/-|\s|:/); 
+                var a = oldDate.split(/\s/); 
+                //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25); 
+                Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : string, "type" : detail.type});
               }
             });
             if(Details == ""){
@@ -116,7 +125,7 @@ define([
             $('#messageDetails-list-template').html(template); 
             
             that.$el.html(template);
-            $('#messageDetailsTable').DataTable();
+            //$('#messageDetailsTable').DataTable();
 
           }
           
