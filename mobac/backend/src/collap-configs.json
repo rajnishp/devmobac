@@ -2,7 +2,7 @@
     "mysql": {
         "host": "localhost", 
         "user": "root", 
-        "password": "redhat111111", 
+        "password": "redhat@11111p", 
         "database": "mobac",
     	"social": {
     		"host": "localhost", 
@@ -17,7 +17,7 @@
         "options": {
             "connect": true
         }, 
-        "db_name": "nucleus", 
+        "db_name": "mobac", 
         "username": "",  
         "password": "" 
     }, 
@@ -29,9 +29,8 @@
         }, 
         "expiry": 86400
     },
-    "nucleus_backend" : "/var/www/capillary/nucleus/backend/src/",
-    "INTOUCH_BASE_URL" : "http://api.capillary.co.in/v1.1/",
-    "NUCLEUS_BASE_URL" : "http://nucleus.capillary.in/v0/",
-    "NUCLEUS_VERSION"  : "v0",
-    "NUCLEUS_DOMAIN" : "nucleus.capillary.in"
+    "mobac_backend" : "/var/www/html/devmobac/mobac/backend/src/",
+    "MOBAC_BASE_URL" : "http://mobac.dpower4.com/v0/",
+    "MOBAC_VERSION"  : "v0",
+    "MOBAC_DOMAIN" : "mobac.dpower4.com"
 }

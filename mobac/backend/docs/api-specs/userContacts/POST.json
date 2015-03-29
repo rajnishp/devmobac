@@ -7,7 +7,7 @@
 	{
 		"root":{
 			"name" : "rajnish",
-			"number" : "8901414422",
+			"phone" : "8901414422",
 			"last_update_time": "2015-12-03",
 	        "email_contact" : "rajnish_pawar90@yahoo.com",
 	        "email_type" : "yahoo",
@@ -27,7 +27,7 @@
 	            {
 	                "id": 1,
 	                "userId": 2,
-	                "name": "rajnish",
+	                "phone": "rajnish",
 	                "number": "8901414422",
 	                "lastUpdateTime": "2015-12-03",
 	                "emailContact": "rajnish_pawar90@yahoo.com",
@@ -37,3 +37,65 @@
 	        ]
 	    }
 	}
+
+
+	Post for 
+	Post Data: 
+
+		{	
+			"root":{
+		        "contacts" :[
+			        {
+						"name" : "rajnish",
+						"phone" : "8901",
+						"last_update_time": "2015-12-03",
+				        "email_contact" : "rajnish_pawar90@yahoo.com",
+				        "email_type" : "yahoo",
+				        "image_link" : "/mobac/image/rajnish.jpg"
+					},
+			        {
+						"name" : "rajnish",
+						"phone" : "414421",
+						"last_update_time": "2015-12-03",
+				        "email_contact" : "rajnish_pawar90@yahoo.com",
+				        "email_type" : "yahoo",
+				        "image_link" : "/mobac/image/rajnish.jpg"
+					}
+		       ]
+			}
+	   }
+
+
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "7001",
+		        "message": "Contact Created"
+		    },
+		    "data": {
+		        "contacts": [
+		            {
+		                "id": 12,
+		                "userId": "12",
+		                "name": "rajnish",
+		                "phone": "8901",
+		                "lastUpdateTime": "2015-12-03",
+		                "emailContact": "rajnish_pawar90@yahoo.com",
+		                "emailType": "yahoo",
+		                "imageLink": "/mobac/image/rajnish.jpg"
+		            },
+		            {
+		                "id": 13,
+		                "userId": "12",
+		                "name": "rajnish",
+		                "phone": "414421",
+		                "lastUpdateTime": "2015-12-03",
+		                "emailContact": "rajnish_pawar90@yahoo.com",
+		                "emailType": "yahoo",
+		                "imageLink": "/mobac/image/rajnish.jpg"
+		            }
+		        ]
+		    }
+		}
+
