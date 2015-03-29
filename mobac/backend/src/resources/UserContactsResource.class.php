@@ -86,12 +86,15 @@ class UserContactsResource implements Resource {
 
                 $logger -> debug ("POSTed contact: " . $contactObj -> toString());
 
-                $this -> mobacDAO -> insert($contactObj);
+                try {
+                    $this -> mobacDAO -> insert($contactObj);
+                } catch (Exception $e) {
 
+                }
                 $contacts = $contactObj -> toArray();
                 
-                if(! isset($contacts ['id'])) 
-                    return array('code' => '5011');
+                //if(! isset($contacts ['id'])) 
+                  //  return array('code' => '5011');
 
                 $this -> contacts[] = $contacts;
             }

@@ -2,15 +2,15 @@
 /**
  * Connection properties
  *
- * @author: Rahul Lahoria (rahul_lahoria@capillarytech.com)
+ * @author: Rahul Lahoria (rahul_lahoria@yahoo.com)
  * @date: 9.12.2014
  */
 class ConnectionProperty{
 
 	/*private static $host = 'localhost';
-	private static $user = 'capillary';
-	private static $password = 'deal20hunt';
-	private static $database = 'nucleus';*/
+	private static $user = '';
+	private static $password = '';
+	private static $database = 'mobac';*/
 
 	public static function getHost(){
 		/*return ConnectionProperty::$host;*/
