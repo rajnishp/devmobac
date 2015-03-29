@@ -78,7 +78,13 @@
 		}
 
 		function toString (){
-			return $this -> id . ", " . $this -> userId . ", " . $this -> fromTo. ", " . $this -> messageText. ", " . $this -> time. ", " . $this -> typeid . ", " . $this -> status;
+			return $this -> id . ", " . 
+					$this -> userId . ", " . 
+					$this -> fromTo. ", " . 
+					$this -> messageText. ", " . 
+					$this -> time. ", " . 
+					$this -> type . ", " . 
+					$this -> status;
 		}
 		
 		function toArray() {

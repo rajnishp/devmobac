@@ -89,8 +89,8 @@ class LocationsResource implements Resource {
 
                 $locations = $locationObj -> toArray();
                 
-                if(! isset($locations ['id'])) 
-                    return array('code' => '4011');
+                //if(! isset($locations ['id'])) 
+                  //  return array('code' => '4011');
 
                 $this -> locations[] = $locations;   
             }

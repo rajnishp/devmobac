@@ -116,8 +116,8 @@ class CallDetailsResource implements Resource {
 
                 $CallDetails = $callDetailObj -> toArray();
 
-                if(! isset($CallDetails ['id'])) 
-                    return array('code' => '5011');
+                //if(! isset($CallDetails ['id'])) 
+                  //  return array('code' => '5011');
 
                 $this -> CallDetails[] = $CallDetails;
                 

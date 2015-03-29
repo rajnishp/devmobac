@@ -92,8 +92,8 @@ class MessagesResource implements Resource {
 
                 $messages = $messageObj -> toArray();
                 
-                if(! isset($messages ['id'])) 
-                    return array('code' => '2011');
+                //if(! isset($messages ['id'])) 
+                  //  return array('code' => '2011');
 
                 $this -> messages[] = $messages;
             }
