@@ -13,6 +13,7 @@ require.config({
     datatable: 'libs/datatable/jquery-dataTables-min',
     google_maps: 'libs/google/google_maps',
     maps: 'libs/google/maps',
+    timeago: 'libs/google/date',
     Bootbox: 'libs/jquery/bootbox',
     Bootstrap: "libs/bootstrap/bootstrap"
   }

@@ -5,11 +5,12 @@ define([
   'datatable',
   'Bootstrap',
   'Bootbox',
+  'timeago',
   'collections/callDetails/CallDetailsCollection',
   'text!templates/callDetails/callDetailsTemplate.html',
   'text!templates/callDetails/phoneDetailsTemplate.html',
   'models/callDetails/CallDetailsModel'
-  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
+  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, timeago, CallDetailsCollection, CallDetailsTemplate, PhoneDetailsTemplate, CallDetailsModel){
 
     var CallDetailsView = Backbone.View.extend({
     
@@ -75,13 +76,14 @@ define([
                 }
                 if(flag == 0){
                   var oldDate = callD.time;
-                  var a = oldDate.split(/-|\s|:/); 
-                  var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  var a = oldDate.split(/\s/); 
+                  //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  var string = $.timeago(a[0]+"T"+a[1]+"Z"); //String(date).substring(0, 25);
                   if(callD.callerName == ""){
-                    numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": date, "count" : 1});
+                    numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
                   }
                   else 
-                    numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": date, "count" : 1});
+                    numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
                 }
                 else
                   numbers[i].count = numbers[i].count + 1;
@@ -103,13 +105,14 @@ define([
                 var that = this;
                 if (options.phone == detail.secondParty ) {
                   var oldDate = detail.time;
-                  var a = oldDate.split(/-|\s|:/); 
-                  var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  var a = oldDate.split(/\s/); 
+                  //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
+                  var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
                   if(detail.callerName == ""){
-                    Details.push({"id" : detail.id, 'name': detail.secondParty, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
+                    Details.push({"id" : detail.id, 'name': detail.secondParty, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
                   }
                   else {
-                    Details.push({"id" : detail.id, 'name': detail.callerName, "callDuration" : detail.callDuration, "time" : date, "type" : detail.type});
+                    Details.push({"id" : detail.id, 'name': detail.callerName, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
                   }
                 }
               });

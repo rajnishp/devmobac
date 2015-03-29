@@ -12,17 +12,17 @@
       <% _.each(Details, function(Detail) { 
          if(Detail.type == 'Incoming') {%>
         <tr style='color:blue;'>
-          <td><img src="imgs/incoming2.jpeg" style='height:50px;'>
+          <td style="text-align:left;padding-left:10%;"><img src="imgs/incoming.png" style='height:50px;'>
         <% } else if (Detail.type == 'Outgoing') { %>
         <tr style='color:green;'>
-          <td><img src="imgs/Outgoing.png" style='height:50px;'>
+          <td style="text-align:left;padding-left:10%;"><img src="imgs/Outgoing.png" style='height:50px;'>
         <% } else {%>
         <tr style='color:#FF3903;'>
-          <td><img src="imgs/missed2.png" style='height:50px;'>
+          <td style="text-align:left;padding-left:10%;"><img src="imgs/missed2.png" style='height:50px;'>
         <% } %>
           <span style='font-size:24px;'><%= Detail.name %></span>
            <span class='pull-right'><%= Detail.time %></span><br/>
-           <span class='pull-left' style='margin-left:15%;'><%= Detail.type %></span> <span class='pull-right'><%= Detail.callDuration %></span>
+           <%= Detail.type %> <span class='pull-right'><%= Detail.callDuration %></span>
           </td>
           <td><button type="submit" class="btn btn-danger" value="<%= Detail.id %>" id="delcall">Delete</button></td>
         </tr>          
