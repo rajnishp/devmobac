@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])) {
 <div class="container">
   <div class='row'>
       <div class='col-md-1'>
-        
+        <div id='locationDate'></div>      
       </div>
       <div class='col-md-10' >
         <div id="page" style="width:100%; height:100%">
@@ -80,7 +80,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>   
       </div>
       <div class="col-md-1">
-        <div id='locationDate'></div
+        
       </div> 
   </div>
 
