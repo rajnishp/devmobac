@@ -13,21 +13,19 @@ class MessagesMySqlDAO implements MessagesDAO{
 	 * @param String $id primary key
 	 * @return MessagesMySql 
 	 */
-	public function load($id, $userId){
-		$sql = 'SELECT * FROM messages WHERE id = ? AND user_id = ? AND status = 0';
+	public function load($id){
+		$sql = 'SELECT * FROM messages WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
-		$sqlQuery->set($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($userId){
-		$sql = 'SELECT * FROM messages WHERE user_id = ? AND status = 0 ORDER BY time DESC';
+	public function queryAll(){
+		$sql = 'SELECT * FROM messages';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
 	}
 	

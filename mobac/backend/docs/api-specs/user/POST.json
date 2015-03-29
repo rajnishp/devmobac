@@ -19,8 +19,8 @@
     {
        "internal_status":
        {
-           "code": "2001",
-           "message": "Message saved"
+           "code": "6001",
+           "message": "User Created"
        },
        "data":
        {

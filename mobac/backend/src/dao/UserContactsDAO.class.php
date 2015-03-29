@@ -55,7 +55,7 @@ interface UserContactsDAO{
 
 	public function queryByName($value);
 
-	public function queryByNumber($value);
+	public function queryByPhone($value);
 
 	public function queryByLastUpdateTime($value);
 
@@ -70,7 +70,7 @@ interface UserContactsDAO{
 
 	public function deleteByName($value);
 
-	public function deleteByNumber($value);
+	public function deleteByPhone($value);
 
 	public function deleteByLastUpdateTime($value);
 

@@ -19,8 +19,8 @@
 
 	{
 	    "internal_status": {
-	        "code": "5001",
-	        "message": "call-detail Saved"
+	        "code": "7001",
+	        "message": "Contact Created"
 	    },
 	    "data": {
 	        "contacts": [
