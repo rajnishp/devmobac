@@ -34,6 +34,11 @@
                     $this -> resource = new UserResource();
                 break;
 
+                case '/contacts': 
+                    require_once 'resources/UserContactsResource.class.php';
+                    $this -> resource = new UserContactsResource();
+                break;
+
                 default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();

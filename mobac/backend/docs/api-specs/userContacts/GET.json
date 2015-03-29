@@ -1,0 +1,26 @@
+/contacts
+
+	GET "api.loc.mobac.com/v0/contacts"
+
+	Response: 
+
+	{
+	    "internal_status": {
+	        "code": "5000",
+	        "message": "contact Fetched"
+	    },
+	    "data": {
+	        "contacts": [
+	            {
+	                "id": "1",
+	                "userId": "2",
+	                "name": "rajnish",
+	                "number": "8901414422",
+	                "lastUpdateTime": "2015-12-03 00:00:00",
+	                "emailContact": "rajnish_pawar90@yahoo.com",
+	                "emailType": "",
+	                "imageLink": "/mobac/image/rajnish.jpg"
+	            }
+	        ]
+	    }
+	}
