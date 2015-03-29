@@ -93,14 +93,26 @@ class CallDetailsResource implements Resource {
                                                 $value ['secondParty']
                                             );
                     $logger -> debug ("POSTed contact: " . $contactObj -> toString());
+                    
+                try {
                     $this -> mobacDAOContact -> insert($contactObj);
+                } catch (Exception $e) {
+
+                }
+                        
 
                 }
             
 
                 $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
 
-                $this -> mobacDAO -> insert($callDetailObj);
+                try {
+                    $this -> mobacDAO -> insert($callDetailObj);
+                } catch (Exception $e) {
+
+                }
+
+                
 
                 $CallDetails = $callDetailObj -> toArray();
 

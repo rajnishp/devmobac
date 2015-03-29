@@ -84,7 +84,11 @@ class MessagesResource implements Resource {
 
                 $logger -> debug ("POSTed message: " . $messageObj -> toString());
 
-                $this -> mobacDAO -> insert($messageObj);
+                try {
+                    $this -> mobacDAO -> insert($messageObj);
+                } catch (Exception $e) {
+
+                }
 
                 $messages = $messageObj -> toArray();
                 
@@ -93,7 +97,7 @@ class MessagesResource implements Resource {
 
                 $this -> messages[] = $messages;
             }
-            
+
         } 
         else {
 

@@ -80,7 +80,12 @@ class LocationsResource implements Resource {
                                             );
                 $logger -> debug ("POSTed location: " . $locationObj -> toString());
 
-                $this -> mobacDAO -> insert($locationObj);
+                try {
+                    $this -> mobacDAO -> insert($locationObj);
+                } catch (Exception $e) {
+
+                }
+
 
                 $locations = $locationObj -> toArray();
                 
