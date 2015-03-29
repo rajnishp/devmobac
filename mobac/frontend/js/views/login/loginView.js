@@ -22,27 +22,37 @@ define([
       },
       login: function (ev) {
         var that = this;
-        console.log("savePost");
-        console.log(this);
-        var loginDetails = {};
+        var data = $(ev.currentTarget).serializeObject1();
+        var username = data.username;
+        var password = data.password;
+        if(username=="" || username==undefined || username==null){
+          Bootbox.alert("Please enter username");
+        }
+        else if(password=="" || password==undefined || password==null){
+          Bootbox.alert("Please enter password");
+        }
+        else {
+          var loginDetails = {};
           //console.log(ev.currentTarget);
-        loginDetails.root = $(ev.currentTarget).serializeObject1();
-        var login = new LoginModel({id: null});
-        login.save(loginDetails,{
-          success: function (login) {
-            that.bind("reset", that.clearView);
-            //that.render({id: null});
-            delete login;
-            delete this.login;
-            document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
-            var key = login.attributes.data["auth-key"];
-            $.createCookie("auth-key", key, 2);
-            window.app_router.navigate('#/messages', {trigger:true});
-          },
-          error: function (loginDetails,response) {
-            Bootbox.alert("Please try again");
-          }
-        });
+          loginDetails.root = $(ev.currentTarget).serializeObject1();
+          var login = new LoginModel({id: null});
+          login.save(loginDetails,{
+            success: function (login) {
+              that.bind("reset", that.clearView);
+              //that.render({id: null});
+              delete login;
+              delete this.login;
+              document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
+              var key = login.attributes.data["auth-key"];
+              $.createCookie("auth-key", key, 2);
+              window.app_router.navigate('#/messages', {trigger:true});
+            },
+            error: function (loginDetails,response) {
+              Bootbox.alert("Please try again");
+            }
+          });
+        }
+        that.bind("reset", that.clearView);
         return false;
       },
       render: function () {

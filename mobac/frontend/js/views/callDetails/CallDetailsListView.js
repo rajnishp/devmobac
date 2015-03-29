@@ -79,11 +79,15 @@ define([
                   var a = oldDate.split(/\s/); 
                   //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
                   var string = $.timeago(a[0]+"T"+a[1]+"Z"); //String(date).substring(0, 25);
-                  if(callD.callerName == ""){
-                    numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
+                  if(callD.secondParty == "" || a[0] =="0000-00-00"){}
+                  else { 
+                    if(callD.callerName == ""){
+                      numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
+                    }
+                    else {
+                      numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
+                    }
                   }
-                  else 
-                    numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": string, "count" : 1, "type" : callD.type});
                 }
                 else
                   numbers[i].count = numbers[i].count + 1;
@@ -108,11 +112,14 @@ define([
                   var a = oldDate.split(/\s/); 
                   //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
                   var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
-                  if(detail.callerName == ""){
-                    Details.push({"id" : detail.id, 'name': detail.secondParty, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
-                  }
+                  if(detail.secondParty == "" || a[0] =="0000-00-00"){}
                   else {
-                    Details.push({"id" : detail.id, 'name': detail.callerName, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
+                    if(detail.callerName == ""){
+                      Details.push({"id" : detail.id, 'name': detail.secondParty, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
+                    }
+                    else {
+                      Details.push({"id" : detail.id, 'name': detail.callerName, "callDuration" : detail.callDuration, "time" : string, "type" : detail.type});
+                    }
                   }
                 }
               });

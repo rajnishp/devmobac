@@ -102,34 +102,40 @@ define([
             for (i = 0; i < (locationData.length); i++) {
               var date = locationData[i].fromTime.split(' ')[0];
               if(options.date == date){
-                var mylocation = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
-                var mapOptions = {
-                                  center: mylocation,
-                                  zoom: 12,
-                                  mapTypeId: google.maps.MapTypeId.ROADMAP
-                                };
-                var loc = new google.maps.Marker({
-                              position:center,
-                              icon: {
-                                path: google.maps.SymbolPath.CIRCLE,
-                                scale:10,
-                                strokeColor:"red",
-                                strokeOpacity:0.6,
-                                strokeWeight:9,
-                                fillColor:"green",
-                                fillOpacity:0.4
-                              },
-                              title : locationData[i].fromTime
-                            });
-                var map = new google.maps.Map($('#map_canvas')[0], mapOptions);
-                loc.setMap(map);
-                var infowindow = new google.maps.InfoWindow({
-                  content: locations.models[0].attributes.data.locations[0].fromTime
-                });
-                google.maps.event.addListener(loc, 'click', function() {
-                  infowindow.open(map,loc);
-                });
-                break;
+                if(locationData[i].latitude == 0.000000 && locationData[i].longitude == 0.000000){
+                  break;
+                  Bootbox.alert("No locations available for this date"); 
+                }
+                else {     
+                  var mylocation = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
+                  var mapOptions = {
+                                    center: mylocation,
+                                    zoom: 12,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                  };
+                  var loc = new google.maps.Marker({
+                                position:center,
+                                icon: {
+                                  path: google.maps.SymbolPath.CIRCLE,
+                                  scale:10,
+                                  strokeColor:"red",
+                                  strokeOpacity:0.6,
+                                  strokeWeight:9,
+                                  fillColor:"green",
+                                  fillOpacity:0.4
+                                },
+                                title : locationData[i].fromTime
+                              });
+                  var map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+                  loc.setMap(map);
+                  var infowindow = new google.maps.InfoWindow({
+                    content: locations.models[0].attributes.data.locations[0].fromTime
+                  });
+                  google.maps.event.addListener(loc, 'click', function() {
+                    infowindow.open(map,loc);
+                  });
+                  break;
+                }
               }
             }
             for (i = 0; i < (locationData.length); i++) {
