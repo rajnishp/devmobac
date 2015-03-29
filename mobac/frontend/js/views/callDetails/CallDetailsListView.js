@@ -97,7 +97,7 @@ define([
               $('#CallDetails-list-template').html(template); 
               
               that.$el.html(template);
-              $('#callDetailsTable').DataTable();
+              //$('#callDetailsTable').DataTable();
             }
             else { 
               var Details = [];

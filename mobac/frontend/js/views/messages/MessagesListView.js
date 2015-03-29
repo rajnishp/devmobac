@@ -103,7 +103,7 @@ define([
               $('#messages-list-template').html(template); 
               
               that.$el.html(template);
-              $('#messagesTable').DataTable();
+              //$('#messagesTable').DataTable();
             }
           else {
             var Details = [];

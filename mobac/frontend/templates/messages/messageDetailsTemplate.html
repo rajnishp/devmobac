@@ -1,14 +1,15 @@
-<h4>CHAT HISTORY</h4> <hr />
-<br/>
+<% var modal = [];
+  _.each(Details, function(Detail) { 
+    modal.push(Detail.fromTo);
+  });
+%>
+<span style="font-size:18px;">
+  <a href="#/messages">Home </a> > <a href="#/messages">Messages </a> > <%= modal[0] %> 
+</span><hr />
 <div class='col-md-2'></div>
 <div class='col-md-8'>
   <div class="panel panel-info">
     <div class="panel-heading">
-    <% var modal = [];
-      _.each(Details, function(Detail) { 
-        modal.push(Detail.fromTo);
-      });
-    %>
     <%= modal[0] %>
     </div>
     <div class="panel-body">

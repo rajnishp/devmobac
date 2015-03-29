@@ -25,7 +25,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	 * Get all records from table
 	 */
 	public function queryAll($userId){
-		$sql = 'SELECT * FROM call_details WHERE user_id = ? AND status = 0 ORDER BY time DESC';
+		$sql = 'SELECT * FROM call_details WHERE user_id = ? AND status = 0 ORDER BY `time` DESC';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getList($sqlQuery);
