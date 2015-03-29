@@ -81,5 +81,18 @@ class DAOFactory{
 		
 		return new ContactsMySqlExtDAO();
 	}
+
+	/**
+	 * @return UserContactsDAO
+	 */
+	
+	public static function getUserContactsDAO(){
+		require_once('UserContactsDAO.class.php');
+		require_once('models/UserContact.class.php');
+		require_once('mysql/UserContactsMySqlDAO.class.php');
+		require_once('mysql/ext/UserContactsMySqlExtDAO.class.php');
+		
+		return new UserContactsMySqlExtDAO();
+	}
 }
 ?>
