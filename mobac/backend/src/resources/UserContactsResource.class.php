@@ -70,27 +70,55 @@ class UserContactsResource implements Resource {
             throw new UnsupportedResourceMethodException();
         }        
 
-        $contactObj = new UserContact(
-                                        $userId, 
-                                        $data ['name'], 
-                                        $data ['phone'], 
-                                        $data ['last_update_time'],
-                                        $data ['email_contact'],
-                                        $data ['email_type'],
-                                        $data ['image_link']
-                                    );
+        if( isset( $data["contacts"] ) ){
+            
+            foreach ($data["contacts"] as $key => $value) {
 
-        $logger -> debug ("POSTed contact: " . $contactObj -> toString());
+                $contactObj = new UserContact(
+                                                $userId, 
+                                                $value ['name'], 
+                                                $value ['phone'], 
+                                                $value ['last_update_time'],
+                                                $value ['email_contact'],
+                                                $value ['email_type'],
+                                                $value ['image_link']
+                                            );
 
-        $this -> mobacDAO -> insert($contactObj);
+                $logger -> debug ("POSTed contact: " . $contactObj -> toString());
 
-        $contacts = $contactObj -> toArray();
-        
-        if(! isset($contacts ['id'])) 
-            return array('code' => '5011');
+                $this -> mobacDAO -> insert($contactObj);
 
-        $this -> contacts[] = $contacts;
-    
+                $contacts = $contactObj -> toArray();
+                
+                if(! isset($contacts ['id'])) 
+                    return array('code' => '5011');
+
+                $this -> contacts[] = $contacts;
+            }
+        }
+
+        else {
+            $contactObj = new UserContact(
+                                            $userId, 
+                                            $data ['name'], 
+                                            $data ['phone'], 
+                                            $data ['last_update_time'],
+                                            $data ['email_contact'],
+                                            $data ['email_type'],
+                                            $data ['image_link']
+                                        );
+
+            $logger -> debug ("POSTed contact: " . $contactObj -> toString());
+
+            $this -> mobacDAO -> insert($contactObj);
+
+            $contacts = $contactObj -> toArray();
+            
+            if(! isset($contacts ['id'])) 
+                return array('code' => '5011');
+
+            $this -> contacts[] = $contacts;   
+        }
 
         return array ('code' => '7001', 
                         'data' => array(

@@ -93,8 +93,7 @@ class MessagesResource implements Resource {
 
                 $this -> messages[] = $messages;
             }
-
-
+            
         } 
         else {
 
