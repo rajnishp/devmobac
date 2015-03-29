@@ -89,8 +89,8 @@ define([
                   var a = oldDate.split(/\s/); 
                   //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
                   var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
-                  //console.log(string);
-                  numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : string, "count" : 1});
+                  if(phone.fromTo != "")
+                    numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : string, "count" : 1});
                 }
                 else
                   numbers[i].count = numbers[i].count + 1;
@@ -114,8 +114,9 @@ define([
                 //var a = oldDate.split(/-|\s|:/); 
                 var a = oldDate.split(/\s/); 
                 //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
-                var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25); 
-                Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : string, "type" : detail.type});
+                var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+                if(detail.fromTo != "") 
+                  Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : string, "type" : detail.type});
               }
             });
             if(Details == ""){
@@ -134,6 +135,7 @@ define([
         },
         error: function (messages, response) {
           var status = response.status;
+          console.log(response);
           if(status == "401"){
             Bootbox.alert("Please login first");
             document.getElementById("logout").innerHTML = "";
