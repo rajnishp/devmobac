@@ -14,7 +14,7 @@
             <% } else {%>
             <img src="imgs/missed2.png" style='width:50px;'>
             <% } %>
-            <a class="btn" href="#/call-details/<%= Number.number %>" style='font-size:24px;'><%= Number.name %></a>
+            <a  href="#/call-details/<%= Number.number %>" style='font-size:24px;'><%= Number.name %></a>
             <span class='pull-right' style='color:green;'><% if(Number.count > 1){ %>(<%= Number.count %>)<% } %></span><br/>
             <span class='pull-right'><%= Number.date %></span>
             </div><hr/>
