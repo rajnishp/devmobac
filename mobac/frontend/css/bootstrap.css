@@ -6857,10 +6857,11 @@ a.list-group-item-danger.active:focus {
     padding: 0px;
   }
   img{
-    width: 9%;
+    width:40px; 
+    height:40px;
   }
   .myclass{
-    padding-left:4%;
+    padding-left:10px;
     font-size:0;
   }.
   .panel {
