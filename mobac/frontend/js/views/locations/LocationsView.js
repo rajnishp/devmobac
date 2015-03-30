@@ -184,6 +184,9 @@ define([
           if(mylocation == ""){
             Bootbox.alert("No locations available for this date");
           }
+          $("#tab3").addClass("active");
+          $("#tab2").removeClass("active");
+          $("#tab1").removeClass("active");
           return map;
         },
         error: function (locations, response) {

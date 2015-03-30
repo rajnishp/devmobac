@@ -129,7 +129,9 @@ define([
             //$('#messageDetailsTable').DataTable();
 
           }
-          
+          $("#tab1").addClass("active");
+          $("#tab2").removeClass("active");
+          $("#tab3").removeClass("active");
           $("#locationDate").html(""); 
           return that;
         },

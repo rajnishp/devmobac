@@ -50,17 +50,11 @@ if (!isset($_SESSION['user_id'])) {
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/messages" >Messages</a></li>
-            <li><a href="#/call-details" >Call Details</a></li>
-            <li><a href="#/locations" >Locations</a></li>
-            <li id="logout"></li>
-        	 <!-- <li ><a href="#/channels" >Channels</a></li>
-        	<li><a href="#/datafields">Data fields</a></li>
-        	<li><a href="#/validators">Validators</a></li>
-        	<li><a href="#/conflicts">Conflicts Customers</a></li> -->
+          <ul class="nav navbar-nav navbar-right nav-tabs">
+            <li id="tab1" class="active"><a href="#/messages" ><i class="glyphicon glyphicon-envelope"></i>&nbsp;<span>Messages</span></a></li>
+            <li id="tab2" ><a href="#/call-details" ><i class="glyphicon glyphicon-earphone"></i>&nbsp;<span>Call Details</span></a></li>
+            <li id="tab3" ><a href="#/locations" ><i class="glyphicon glyphicon-pushpin"></i>&nbsp;<span>Locations</span></a></li>
+            <li id="logout"></li><!-- <li><a href="index.html#panel4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li> -->
           </ul>
 
         </div>

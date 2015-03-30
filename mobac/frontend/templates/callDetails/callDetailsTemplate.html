@@ -12,11 +12,11 @@
           <div class="media-body">
             <div class="media">
             <% if(Number.type == 'Incoming') {%>
-            <img src="imgs/incoming.png" style='height:50px;'>
+            <img src="imgs/incoming.png" style='width:50px;'>
             <% } else if (Number.type == 'Outgoing') { %>
-            <img src="imgs/Outgoing.png" style='height:50px;'>
+            <img src="imgs/Outgoing.png" style='width:50px;'>
             <% } else {%>
-            <img src="imgs/missed2.png" style='height:50px;'>
+            <img src="imgs/missed2.png" style='width:50px;'>
             <% } %>
             <a class="btn" href="#/call-details/<%= Number.number %>" style='font-size:24px;'><%= Number.name %></a>
             <span class='pull-right' style='color:green;'><% if(Number.count > 1){ %>(<%= Number.count %>)<% } %></span><br/>

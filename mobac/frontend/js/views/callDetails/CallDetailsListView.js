@@ -132,6 +132,9 @@ define([
               that.$el.html(template);
               $('#phoneDetailsTable').DataTable();
             }
+          $("#tab2").addClass("active");
+          $("#tab1").removeClass("active");
+          $("#tab3").removeClass("active");
           $("#locationDate").html("");
           return that;
         },
