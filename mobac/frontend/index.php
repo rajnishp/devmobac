@@ -42,7 +42,7 @@ if (!isset($_SESSION['user_id'])) {
           <a href="#/messages" class="navbar-brand">
           		Mobac
           </a>
-          <a href='#/messagese' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
+          <a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
           <a href='#/call-details' class="myclass" ><img src="imgs/Callloglogo.png" /> CallDetails </a>
           <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
           <a href='#' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
