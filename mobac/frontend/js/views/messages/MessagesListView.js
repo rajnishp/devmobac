@@ -21,6 +21,7 @@ define([
      },
      initialize : function() {
       document.getElementById("locationDate").innerHTML = "";
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       that.bind("reset", that.clearView);
     },

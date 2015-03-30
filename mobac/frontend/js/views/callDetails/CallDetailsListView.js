@@ -21,6 +21,7 @@ define([
      initialize : function() {
       var that = this;
       document.getElementById("locationDate").innerHTML = "";
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       that.bind("reset", that.clearView);
      },
      deleteCallDetails: function (options) {

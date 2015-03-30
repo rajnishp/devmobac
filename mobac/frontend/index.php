@@ -38,7 +38,6 @@ if (!isset($_SESSION['user_id'])) {
         <div class="navbar-header">
           <a href="#/messages" class="navbar-brand">
           	<img src ='imgs/mobeclogo.png' style="width:60px; height:40px"/>
-          		
           </a>
           <a href="#/messages" class="navbar-brand">
           		Mobac
@@ -47,9 +46,9 @@ if (!isset($_SESSION['user_id'])) {
           <a href='#/call-details' class="myclass" ><img src="imgs/Callloglogo.png" /> CallDetails </a>
           <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
           <a href='#' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
-          <a href='#/logout' class="myclass" ><img src="imgs/logout.jpeg" /> Logout </a>
+          <a href='#/logout' class="myclass" id="logout"> </a>
         </div>
-      </div>
+      </div> 
     </div>
 
     <br/><br/>

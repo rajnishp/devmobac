@@ -17,6 +17,7 @@ define([
 
       initialize : function() {
         document.getElementById("locationDate").innerHTML = "";
+        document.getElementById("logout").innerHTML = "";
         var that = this;
         that.bind("reset", that.clearView);
       },
