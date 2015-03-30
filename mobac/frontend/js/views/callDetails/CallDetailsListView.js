@@ -16,12 +16,11 @@ define([
     
      el : $("#page"),
      events: {
-      'click #delcall': 'deleteCallDetails'
+      'click .delcall': 'deleteCallDetails'
      },
      initialize : function() {
-      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
-      
+      document.getElementById("locationDate").innerHTML = "";
       that.bind("reset", that.clearView);
      },
      deleteCallDetails: function (options) {
@@ -29,7 +28,7 @@ define([
         if(result){
           var that = this;
           var key = $.readCookie("auth-key");
-          var rowId = options.target.attributes[1].value;
+          var rowId = options.target.attributes.value.value;
           var callDetails = new CallDetailsModel({id: rowId});
           
           callDetails.destroy({
@@ -132,17 +131,12 @@ define([
               that.$el.html(template);
               $('#phoneDetailsTable').DataTable();
             }
-          $("#tab2").addClass("active");
-          $("#tab1").removeClass("active");
-          $("#tab3").removeClass("active");
-          $("#locationDate").html("");
           return that;
         },
         error: function (CallDetails, response) {
           var status = response.status;
 
           if(status == "401"){
-            document.getElementById("logout").innerHTML = "";
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
           }

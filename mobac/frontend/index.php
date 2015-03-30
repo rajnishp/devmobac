@@ -43,20 +43,11 @@ if (!isset($_SESSION['user_id'])) {
           <a href="#/messages" class="navbar-brand">
           		Mobac
           </a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav navbar-right nav-tabs">
-            <li id="tab1" class="active"><a href="#/messages" ><i class="glyphicon glyphicon-envelope"></i>&nbsp;<span>Messages</span></a></li>
-            <li id="tab2" ><a href="#/call-details" ><i class="glyphicon glyphicon-earphone"></i>&nbsp;<span>Call Details</span></a></li>
-            <li id="tab3" ><a href="#/locations" ><i class="glyphicon glyphicon-pushpin"></i>&nbsp;<span>Locations</span></a></li>
-            <li id="logout"></li><!-- <li><a href="index.html#panel4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li> -->
-          </ul>
-
+          <a href='#/messagese' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
+          <a href='#/call-details' class="myclass" ><img src="imgs/Callloglogo.png" /> CallDetails </a>
+          <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
+          <a href='#' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
+          <a href='#/v' class="myclass" ><img src="imgs/logout.jpeg" /> Logout </a>
         </div>
       </div>
     </div>

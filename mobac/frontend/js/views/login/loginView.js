@@ -16,7 +16,7 @@ define([
       },
 
       initialize : function() {
-        document.getElementById("logout").innerHTML = "";
+        document.getElementById("locationDate").innerHTML = "";
         var that = this;
         that.bind("reset", that.clearView);
       },
@@ -42,7 +42,6 @@ define([
               //that.render({id: null});
               delete login;
               delete this.login;
-              document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
               var key = login.attributes.data["auth-key"];
               $.createCookie("auth-key", key, 2);
               window.app_router.navigate('#/messages', {trigger:true});
@@ -57,8 +56,7 @@ define([
       },
       render: function () {
         var that = this;
-        var template = _.template(loginTemplate);
-        //$('#login-template').html(template); 
+        var template = _.template(loginTemplate); 
         that.$el.html(template);
         return that;
       }

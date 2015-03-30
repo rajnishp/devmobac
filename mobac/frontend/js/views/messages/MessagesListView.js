@@ -16,11 +16,11 @@ define([
 
      el : $("#page"),
      events: {
-      'click #delmessage': 'deletemessage',
+      'click .delmessage': 'deletemessage',
       'click #sendmessage': 'sendmessage'
      },
      initialize : function() {
-      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
+      document.getElementById("locationDate").innerHTML = "";
       var that = this;
       that.bind("reset", that.clearView);
     },
@@ -30,12 +30,13 @@ define([
       console.log(text);
     },
     deletemessage:function( options){
+      //$('#delmessage').attr('disable', 'disable');
       Bootbox.confirm("Do u really want to delete this message?", function(result) {
         if(result){
           var key = $.readCookie("auth-key");
           var that = this;
           console.log(options);
-          var rowId = options.target.attributes[1].value;
+          var rowId = options.target.attributes.value.value;
           
           var message = new MessagesModel({id: rowId});
           
@@ -49,7 +50,6 @@ define([
               
               delete message;
               Bootbox.alert("Deleted Successfully");
-              //Backbone.history.loadUrl();
               window.app_router.navigate('messages', {trigger:true}); 
             },
             error: function (response) {
@@ -129,10 +129,6 @@ define([
             //$('#messageDetailsTable').DataTable();
 
           }
-          $("#tab1").addClass("active");
-          $("#tab2").removeClass("active");
-          $("#tab3").removeClass("active");
-          $("#locationDate").html(""); 
           return that;
         },
         error: function (messages, response) {
@@ -140,7 +136,6 @@ define([
           console.log(response);
           if(status == "401"){
             Bootbox.alert("Please login first");
-            document.getElementById("logout").innerHTML = "";
             window.app_router.navigate('default', {trigger:true});
           }
           else {

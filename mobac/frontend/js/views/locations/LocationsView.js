@@ -13,7 +13,6 @@ define([
 
     el : $("#page"),
     initialize : function() {
-      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
       var that = this;
     },
 
@@ -184,15 +183,11 @@ define([
           if(mylocation == ""){
             Bootbox.alert("No locations available for this date");
           }
-          $("#tab3").addClass("active");
-          $("#tab2").removeClass("active");
-          $("#tab1").removeClass("active");
           return map;
         },
         error: function (locations, response) {
           var status = response.status;
           if(status == "401"){
-            document.getElementById("logout").innerHTML = "";
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
           }
