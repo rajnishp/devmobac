@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
           <a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
           <a href='#/call-details' class="myclass" ><img src="imgs/callHis.jpeg" /> CallDetails </a>
           <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
-          <a href='#/locations' class="myclass" ><img src="imgs/Callloglogo.png" /> Contacts </a>
+          <a href='#/contacts' class="myclass" ><img src="imgs/Callloglogo.png" /> Contacts </a>
           <a href='#' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
           <a href='#/logout' class="myclass" id="logout"> </a>
         </div>

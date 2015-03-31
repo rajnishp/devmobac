@@ -14,7 +14,7 @@ define([
       },
       
       url : function() {
-        return window.BASE_URL+'/messages';
+        return window.BASE_URL+'/message-details/'+this.id;
       }        
      
   });

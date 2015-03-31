@@ -9,9 +9,13 @@
         <li class="media">
           <div class="media-body">
             <div class="media">
-            <a  href="#/messages/<%= Number.number %>" style='font-size:24px;'><%= Number.number %></a>
+            <% if(Number.name == null) { %>
+              <a  href="#/messages/<%= Number.number %>" style='font-size:24px;'><%= Number.number %></a>
+            <% } else { %>
+              <a  href="#/messages/<%= Number.number %>" style='font-size:24px;'><%= Number.name %></a>
+            <% } %>
             <span class='pull-right' style='color:green;'><% if(Number.count > 1){ %>(<%= Number.count %>)<% } %></span><br/>
-            <%= data %><span class='pull-right'><%= Number.name %></span>
+            <%= data %><span class='pull-right'><%= Number.time %></span>
             </div><hr/>
           </div>
         </li>

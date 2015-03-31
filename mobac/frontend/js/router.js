@@ -9,12 +9,14 @@ define([
     'views/messages/MessagesListView',
     'views/callDetails/CallDetailsListView',
     'views/locations/LocationsView',
+    'views/contacts/ContactsView',
     'views/login/loginView'
     
 ], function ($, _, Backbone, Bootstrap, Bootbox,
         MessagesListView,
         CallDetailsListView,
         LocationsView,
+        ContactsView,
         LoginView
         ) {
 
@@ -27,6 +29,7 @@ define([
             'messages/:number': 'messages',
             'messages': 'messages',
             'locations': 'locations',
+            'contacts': 'contacts',
             'logout': 'confirm',
             'locations/:date': 'locations',
             '*actions': 'defaultAction',
@@ -66,6 +69,12 @@ define([
             
             var callDetailsListView = new CallDetailsListView();
             callDetailsListView.render({phone : phone});
+        });
+
+        app_router.on('route:contacts', function () {
+            
+            var contactsView = new ContactsView();
+            contactsView.render();
         });
 
         app_router.on('route:login', function () {

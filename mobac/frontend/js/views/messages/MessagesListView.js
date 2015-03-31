@@ -6,20 +6,21 @@ define([
   'Bootstrap',
   'Bootbox',
   'timeago',
-  'collections/messages/MessagesCollection',
+  'collections/messages/MessagesSummaryCollection',
+  'collections/messages/MessagesDatailsCollection',
   'text!templates/messages/messagesTemplate.html',
   'text!templates/messages/messageDetailsTemplate.html',
   'models/messages/MessagesModel'
-  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, timeago, MessagesCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
+  ], function($, _, Backbone, Datatable, Bootstrap, Bootbox, timeago, MessagesSummaryCollection, MessagesDatailsCollection, MessagesTemplate, MessageDetailsTemplate, MessagesModel){
 
     var MessagesView = Backbone.View.extend({
 
-     el : $("#page"),
-     events: {
+    el : $("#page"),
+    events: {
       'click .delmessage': 'deletemessage',
       'click #sendmessage': 'sendmessage'
-     },
-     initialize : function() {
+    },
+    initialize : function() {
       document.getElementById("locationDate").innerHTML = "";
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
@@ -60,95 +61,84 @@ define([
         }
       });
     },
-       
     render: function (options) {
       var that = this;
       var options = options;
-      var messages = new MessagesCollection();
-      var key = $.readCookie("auth-key"); 
-      messages.fetch({
-     
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('AUTH-KEY', key);
-        },
-        success: function (messages) {
-          
-          messagesData = messages.models[0].attributes.data.messages;
-          if(options.number == "" || options.number == "messages" || options.number == undefined){
-              var numbers = [];
-              var flag = 0;
-              _.each(messagesData, function(phone){
-                var that = this;
-                for (i = 0; i < numbers.length; i++) { 
-                    if (numbers[i].number == phone.fromTo ) {
-                      flag = 1;
-                      break;
-                    }
-                }
-                if(flag == 0){
-                  var oldDate = phone.time;
-                  var a = oldDate.split(/\s/); 
-                  //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
-                  var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
-                  if(phone.fromTo != "")
-                    numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : string, "count" : 1});
-                }
-                else
-                  numbers[i].count = numbers[i].count + 1;
-                flag = 0;
-              });
-              if(numbers == ""){
-                Bootbox.alert("Sorry No Data Available");
-              }
-              var template = _.template(MessagesTemplate, {Numbers: numbers});
-              $('#messages-list-template').html(template); 
-              
-              that.$el.html(template);
-              //$('#messagesTable').DataTable();
-            }
-          else {
-            var Details = [];
-            _.each(messagesData, function(detail){
-              var that = this;
-              if (options.number == detail.fromTo ) {
-                var oldDate = detail.time;
-                //var a = oldDate.split(/-|\s|:/); 
-                var a = oldDate.split(/\s/); 
-                //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
-                var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
-                if(detail.fromTo != "") 
-                  Details.push({"id" : detail.id, "fromTo" : detail.fromTo, "messageText" : detail.messageText, "time" : string, "type" : detail.type});
-              }
+      var key = $.readCookie("auth-key");
+      if(options.number == "" || options.number == "messages" || options.number == undefined){
+        var messages = new MessagesSummaryCollection(); 
+        messages.fetch({
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+          },
+          success: function (messages) {
+            messagesData = messages.models[0].attributes.data.messages;
+            var numbers = [];
+            _.each(messagesData, function(phone){
+              var oldDate = phone.time;
+              var a = oldDate.split(/\s/); 
+              var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+              numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : phone.name, "time" : string, "count" : phone.count});
             });
-            if(Details == ""){
-                Bootbox.alert("Sorry No Data Available");
-             }
-            var template = _.template(MessageDetailsTemplate, {Details: Details});
-            $('#messageDetails-list-template').html(template); 
-            
+            if(numbers == ""){
+              Bootbox.alert("Sorry No Data Available");
+            }
+            var template = _.template(MessagesTemplate, {Numbers: numbers});
+            //$('#messages-list-template').html(template); 
             that.$el.html(template);
-            //$('#messageDetailsTable').DataTable();
-
+            return that;
+          },
+          error: function (messages, response) {
+            var status = response.status;
+            console.log(response);
+            if(status == "401"){
+              Bootbox.alert("Please login first");
+              window.app_router.navigate('default', {trigger:true});
+            }
+            else {
+              Bootbox.alert("Please try again");
+            }
           }
-          return that;
-        },
-        error: function (messages, response) {
-          var status = response.status;
-          console.log(response);
-          if(status == "401"){
-            Bootbox.alert("Please login first");
-            window.app_router.navigate('default', {trigger:true});
+        });
+      }
+      else {
+        var id = options.number ;
+        alert(id);
+        var messages = new MessagesDatailsCollection({id : id}); 
+        messages.fetch({
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+          },
+          success: function (messages) {
+            messagesData = messages.models[0].attributes.data.messages;
+            _.each(messagesData, function(phone){
+              var oldDate = phone.time;
+              var a = oldDate.split(/\s/); 
+              var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+              numbers.push({"id" : phone.id, "number" : phone.fromTo, "text" : phone.messageText, "time" : string, "type" : phone.messageText});
+            });
+            if(numbers == ""){
+              Bootbox.alert("Sorry No Data Available");
+            }
+            var template = _.template(MessageDetailsTemplate, {Numbers: numbers});
+            //$('#messages-list-template').html(template); 
+            that.$el.html(template);
+            return that;
+          },
+          error: function (messages, response) {
+            var status = response.status;
+            console.log(response);
+            if(status == "401"){
+              Bootbox.alert("Please login first");
+              window.app_router.navigate('default', {trigger:true});
+            }
+            else {
+              Bootbox.alert("Please try again");
+            }
           }
-          else {
-            Bootbox.alert("Please try again");
-          }
-        }
-      });
-
+        });
+      }    
     }
-   
   });
-
   return MessagesView;
-
 });
