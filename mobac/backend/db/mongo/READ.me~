@@ -1,0 +1,6 @@
+To restore from this dump, navigate to 'mobac/backend/db/mongo/' and run:
+...../mobac/backend/db/mongo$ mongorestore mobac
+
+This dump was taken with the command:
+mongodump -d mobac -o mongo
+
