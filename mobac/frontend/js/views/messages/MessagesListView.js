@@ -37,7 +37,7 @@ define([
         if(result){
           var key = $.readCookie("auth-key");
           var that = this;
-          console.log(options);
+          
           var rowId = options.target.attributes.value.value;
           
           var message = new MessagesModel({id: rowId});
@@ -90,7 +90,7 @@ define([
           },
           error: function (messages, response) {
             var status = response.status;
-            console.log(response);
+            
             if(status == "401"){
               Bootbox.alert("Please login first");
               window.app_router.navigate('default', {trigger:true});
@@ -102,9 +102,9 @@ define([
         });
       }
       else {
-        var id = options.number ;
-        alert(id);
-        var messages = new MessagesDatailsCollection({id : id}); 
+        var mid = options.number ;
+        var numbers = [];
+        var messages = new MessagesDatailsCollection({id: mid}); 
         messages.fetch({
           beforeSend: function (xhr) {
               xhr.setRequestHeader('AUTH-KEY', key);
@@ -115,7 +115,7 @@ define([
               var oldDate = phone.time;
               var a = oldDate.split(/\s/); 
               var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
-              numbers.push({"id" : phone.id, "number" : phone.fromTo, "text" : phone.messageText, "time" : string, "type" : phone.messageText});
+              numbers.push({"id" : phone.id, "number" : phone.fromTo, "text" : phone.messageText, "time" : string, "type" : phone.type});
             });
             if(numbers == ""){
               Bootbox.alert("Sorry No Data Available");
@@ -127,7 +127,7 @@ define([
           },
           error: function (messages, response) {
             var status = response.status;
-            console.log(response);
+            c
             if(status == "401"){
               Bootbox.alert("Please login first");
               window.app_router.navigate('default', {trigger:true});
