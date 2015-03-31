@@ -1,0 +1,38 @@
+/callDetail-details/<secondParty>
+
+	GET "api.loc.mobac.com/v0/callDetail-details/+918884500545"
+
+	Response: 
+
+	{
+	    "internal_status": {
+	        "code": "5000",
+	        "message": "call-detail Fetched"
+	    },
+	    "data": {
+	        "CallDetails": [
+	            {
+	                "id": "12",
+	                "userId": "12",
+	                "secondParty": "+918884500545",
+	                "callDuration": "00:00:34",
+	                "time": "0000-00-00 00:00:00",
+	                "type": "Incoming",
+	                "status": "0",
+	                "callerName": "Neeraj Sir",
+	                "count": 0
+	            },
+	            {
+	                "id": "11",
+	                "userId": "12",
+	                "secondParty": "+918884500545",
+	                "callDuration": "00:00:00",
+	                "time": "2015-03-07 22:05:16",
+	                "type": "Outgoing",
+	                "status": "0",
+	                "callerName": "Neeraj Sir",
+	                "count": 0
+	            }
+	        ]
+	    }
+	}

@@ -44,9 +44,19 @@
                     $this -> resource = new MessagesSummaryResource();
                 break;
 
+                case '/message-details': 
+                    require_once 'resources/MessageDetailsResource.class.php';
+                    $this -> resource = new MessageDetailsResource();
+                break;
+
                 case '/callDetails-summary': 
                     require_once 'resources/CallDetailsSummaryResource.class.php';
                     $this -> resource = new CallDetailsSummaryResource();
+                break;
+
+                case '/callDetail-details': 
+                    require_once 'resources/CallDetailDetailsResource.class.php';
+                    $this -> resource = new CallDetailDetailsResource();
                 break;
 
                 default:

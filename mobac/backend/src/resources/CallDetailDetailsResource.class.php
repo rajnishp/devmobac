@@ -12,7 +12,7 @@ require_once 'models/CallDetail.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
-class CallDetailsSummaryResource implements Resource {
+class CallDetailDetailsResource implements Resource {
 
     private $mobacDAO;
     private $CallDetails;
@@ -38,11 +38,11 @@ class CallDetailsSummaryResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
 
-        $callDetailId = $resourceVals ['callDetails-summary'];
-        if (isset($callDetailId))
-            $result = $this->getCallSummary($callDetailId, $userId);
+        $secondPartyVal = $resourceVals ['callDetail-details'];
+        if (isset($secondPartyVal))
+            $result = $this->getCallDetail($secondPartyVal, $userId);
         else
-            $result = $this -> getListOfAllCallsSummary($userId);
+            //$result = $this -> getListOfAllCallsDetail($userId);
 
         if (!is_array($result)) {
             return array('code' => '5004');
@@ -51,33 +51,12 @@ class CallDetailsSummaryResource implements Resource {
         return $result;
     }
 
-    private function getCallSummary($callDetailId, $userId) {
+    private function getCallDetail($secondPartyVal, $userId) {
     
         global $logger;
-        $logger->debug('Fetch call detail...');
+        $logger->debug('Fetch list of all call-details...');
 
-        $callDetailObj = $this -> mobacDAO -> loadCallSummary($callDetailId, $userId);
-
-        if(empty($callDetailObj)) 
-                return array('code' => '5004');        
-             
-        $this -> CallDetails [] = $callDetailObj-> toArray();
-        
-        $logger -> debug ('Fetched list of call details: ' . json_encode($this -> CallDetails));
-
-        return array('code' => '5000', 
-                     'data' => array(
-                                'CallDetails' => $this -> CallDetails
-                            )
-            );
-    }
-
-    private function getListOfAllCallsSummary($userId) {
-    
-        global $logger;
-        $logger->debug('Fetch list of all messages...');
-
-        $listOfcallDetailObj = $this -> mobacDAO -> queryAllCallsSummary($userId);
+        $listOfcallDetailObj = $this -> mobacDAO -> queryBySecondParty($secondPartyVal, $userId);
         
         if(empty($listOfcallDetailObj)) 
                 return array('code' => '5004');

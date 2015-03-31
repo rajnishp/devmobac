@@ -20,7 +20,7 @@ class CallDetailsMySqlExtDAO extends CallDetailsMySqlDAO{
 		return $this->getRowCallSummary($sqlQuery);
 	}
 
-	public function queryAllCallSummary($userId){
+	public function queryAllCallsSummary($userId){
 		$sql = "SELECT *, count(*) AS count FROM `call_details`
 					WHERE user_id = ? AND status=0 
 						GROUP BY second_party";
@@ -52,7 +52,7 @@ class CallDetailsMySqlExtDAO extends CallDetailsMySqlDAO{
 		if(count($tab)==0){
 			return null;
 		}
-		return $this->readRowMessageSummary($tab[0]);		
+		return $this->readRowCallDetailSummary($tab[0]);		
 	}
 	
 

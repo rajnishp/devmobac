@@ -108,6 +108,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ? AND status = 0';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
+		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 
@@ -177,7 +178,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		$message->time = $row['time'];
 		$message->type = $row['type'];*/
 
-		$message = new Message($row['user_id'], $row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id']);
+		$message = new Message($row['user_id'], $row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id'], 0, 0);
 		return $message;
 	}
 	
