@@ -54,6 +54,11 @@
                     $this -> resource = new CallDetailsSummaryResource();
                 break;
 
+                case '/callDetail-details': 
+                    require_once 'resources/CallDetailDetailsResource.class.php';
+                    $this -> resource = new CallDetailDetailsResource();
+                break;
+
                 default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();

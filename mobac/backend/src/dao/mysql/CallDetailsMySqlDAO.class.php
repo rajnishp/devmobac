@@ -189,7 +189,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 		$callDetail->time = $row['time'];
 		$callDetail->type = $row['type'];
 */
-		$callDetail = new CallDetail($row['user_id'], $row['second_party'], $row['call_duration'], $row['time'], $row['type'], $row['status'], $row['caller_name'], $row['id']);
+		$callDetail = new CallDetail($row['user_id'], $row['second_party'], $row['call_duration'], $row['time'], $row['type'], $row['status'], $row['caller_name'], $row['id'], 0);
 		return $callDetail;
 	}
 	

@@ -1,4 +1,4 @@
-/message-details
+/message-details/<fromTo>
 
 	GET "api.loc.mobac.com/v0/message-details/8901414422"
 
