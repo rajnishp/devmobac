@@ -6846,10 +6846,12 @@ a.list-group-item-danger.active:focus {
 }
 @media (min-width: 980px) {
   .myclass{
-    padding-left:4%;
+    padding-left:3%;
+    font-size: 14px;
   }
   img{
-    width:5%;
+    width:3%;
+    padding-top:10px;
   }
 }
 @media (max-width: 979px) {
