@@ -2,7 +2,7 @@
 	/**
 	 * Object represents table 'messages'
 	 *
-     	 * @author: http://phpdao.com
+     	 * @author: rajnish
      	 * @date: 2015-03-18 23:07	 
 	 */
 
@@ -15,8 +15,10 @@
 		private $time;
 		private $type;
 		private $status;
+		private $count;
+		private $name;
 	
-	function __construct($userId, $fromTo, $messageText, $time, $type, $status, $id = null){
+	function __construct($userId, $fromTo, $messageText, $time, $type, $status, $id = null, $count, $name){
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> fromTo = $fromTo;
@@ -24,6 +26,8 @@
 			$this -> time = $time;
 			$this -> type = $type;
 			$this -> status = $status;
+			$this -> count = $count;
+			$this -> name = $name;
 
 			
 		}
@@ -77,6 +81,20 @@
 				return $this-> status;
 		}
 
+		function setCount ($count) {
+			$this -> count = $count;
+		}
+		function getCount () {
+			return $this -> count;
+		}
+
+		function setName ($name) {
+			$this -> name = $name;
+		}
+		function getName () {
+			return $this -> name;
+		}
+
 		function toString (){
 			return $this -> id . ", " . 
 					$this -> userId . ", " . 
@@ -84,7 +102,9 @@
 					$this -> messageText. ", " . 
 					$this -> time. ", " . 
 					$this -> type . ", " . 
-					$this -> status;
+					$this -> status . ", " .
+					$this -> count . ", " .
+					$this -> name;
 		}
 		
 		function toArray() {
@@ -95,7 +115,9 @@
 						messageText => $this-> messageText,
 						time => $this-> time,
 						type => $this-> type,
-						status => $this-> status
+						status => $this-> status,
+						count => $this-> count,
+						name => $this-> name
 				);
 		}	
 	}

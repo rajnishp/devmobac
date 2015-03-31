@@ -30,9 +30,6 @@ class MessagesResource implements Resource {
         
         global $logger, $warnings_payload;
          
-        // $userId is set temporally, update it
-        //$userId = 3;
-
         $messageId = $resourceVals ['messages'];
 
         if (! isset($messageId)) {
@@ -58,17 +55,12 @@ class MessagesResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        // $userId is set temporally, update it
-        //$userId = 3;
-
         $messageId = $resourceVals ['messages'];
         if (isset($messageId)) {
             $warnings_payload [] = 'POST call to /messages must not have ' . 
                                         '/messages_ID appended i.e. POST /messages';
             throw new UnsupportedResourceMethodException();
         }
-
-        //$this -> sanitize($data);
 
         if( isset( $data["messages"] ) ){
             
@@ -123,8 +115,6 @@ class MessagesResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
 
-        //$userId = 3;
-
         $messageId = $resourceVals ['messages'];
         if (isset($messageId))
             $result = $this->getMessage($messageId, $userId);
@@ -164,12 +154,7 @@ class MessagesResource implements Resource {
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        //$delta = $resourceVals ['id'];
-
-        //if (isset($delta)) 
-        //    $listOfmessageObjs = $this -> mobacDAO -> queryAllMessages($userId);
-        //else
-            $listOfmessageObjs = $this -> mobacDAO -> queryAllFirstMessages($userId);
+        $listOfmessageObjs = $this -> mobacDAO -> queryAllMessages($userId);
         
         if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');

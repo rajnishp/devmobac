@@ -39,6 +39,11 @@
                     $this -> resource = new UserContactsResource();
                 break;
 
+                case '/messages-summary': 
+                    require_once 'resources/MessagesSummaryResource.class.php';
+                    $this -> resource = new MessagesSummaryResource();
+                break;
+
                 default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();

@@ -179,10 +179,9 @@ class MessagesMySqlDAO implements MessagesDAO{
 
 		$message = new Message($row['user_id'], $row['from_to'], $row['message_text'], $row['time'],$row['type'], $row['status'], $row['id']);
 		return $message;
-
-//		return $message;
 	}
 	
+
 	protected function getList($sqlQuery){
 		$tab = QueryExecutor::execute($sqlQuery);
 		$ret = array();
@@ -204,7 +203,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 		}
 		return $this->readRow($tab[0]);		
 	}
-	
+
 	/**
 	 * Execute sql query
 	 */
