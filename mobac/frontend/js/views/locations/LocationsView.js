@@ -13,7 +13,7 @@ define([
 
     el : $("#page"),
     initialize : function() {
-      document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
     },
 
@@ -189,7 +189,6 @@ define([
         error: function (locations, response) {
           var status = response.status;
           if(status == "401"){
-            document.getElementById("logout").innerHTML = "";
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
           }

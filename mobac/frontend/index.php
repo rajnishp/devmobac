@@ -38,40 +38,24 @@ if (!isset($_SESSION['user_id'])) {
         <div class="navbar-header">
           <a href="#/messages" class="navbar-brand">
           	<img src ='imgs/mobeclogo.png' style="width:60px; height:40px"/>
-          		
           </a>
           <a href="#/messages" class="navbar-brand">
           		Mobac
           </a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+          <a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
+          <a href='#/call-details' class="myclass" ><img src="imgs/Callloglogo.png" /> CallDetails </a>
+          <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
+          <a href='#' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
+          <a href='#/logout' class="myclass" id="logout"> </a>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/messages" >Messages</a></li>
-            <li><a href="#/call-details" >Call Details</a></li>
-            <li><a href="#/locations" >Locations</a></li>
-            <li id="logout"></li>
-        	 <!-- <li ><a href="#/channels" >Channels</a></li>
-        	<li><a href="#/datafields">Data fields</a></li>
-        	<li><a href="#/validators">Validators</a></li>
-        	<li><a href="#/conflicts">Conflicts Customers</a></li> -->
-          </ul>
-
-        </div>
-      </div>
+      </div> 
     </div>
 
     <br/><br/>
 <div class="container">
   <div class='row'>
       <div class='col-md-1'>
-        
+        <div id='locationDate'></div>      
       </div>
       <div class='col-md-10' >
         <div id="page" style="width:100%; height:100%">
@@ -80,7 +64,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>   
       </div>
       <div class="col-md-1">
-        <div id='locationDate'></div
+        
       </div> 
   </div>
 
