@@ -1,0 +1,48 @@
+/messages-summary
+
+    GET "api.loc.mobac.com/v0/messages-summary"
+
+    Response:
+        {
+            "internal_status": {
+                "code": "2000",
+                "message": "Messages Fetched"
+            },
+            "data": {
+                "messages": [
+                    {
+                        "id": "427",
+                        "userId": "12",
+                        "fromTo": "1414422",
+                        "messageText": "This is second post after message summary",
+                        "time": "0000-00-00 00:00:00",
+                        "type": "Inbox",
+                        "status": "0",
+                        "count": "4",
+                        "name": "newtname"
+                    },
+                    {
+                        "id": "426",
+                        "userId": "12",
+                        "fromTo": "8901414422",
+                        "messageText": "This is test bulk after message with meg summary",
+                        "time": "0000-00-00 00:00:00",
+                        "type": "Inbox",
+                        "status": "0",
+                        "count": "2",
+                        "name": "rajnish"
+                    },
+                    {
+                        "id": "2",
+                        "userId": "12",
+                        "fromTo": "BP-658800",
+                        "messageText": "Get Sunny Leone Wallpapers subscribe to Playboy click http://180.179.103.247/opbl/?id=19724 at Rs 30",
+                        "time": "2015-03-22 19:55:32",
+                        "type": "Inbox",
+                        "status": "0",
+                        "count": "1",
+                        "name": null
+                    }
+                ]
+            }
+        }

@@ -15,8 +15,9 @@
 		private $type;
 		private $status;
 		private $callerName;
+		private $count;
 
-		function __construct($userId, $secondParty, $callDuration, $time, $type, $status, $callerName, $id = null){
+		function __construct($userId, $secondParty, $callDuration, $time, $type, $status, $callerName, $id = null, $count){
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> secondParty = $secondParty;
@@ -25,6 +26,7 @@
 			$this -> type = $type;
 			$this -> status = $status;
 			$this -> callerName = $callerName;
+			$this -> count = $count;
 		}
 		
 		function setId($id){
@@ -83,8 +85,23 @@
 			return $this -> callerName;
 		}
 
+		function setCount ($count) {
+			$this -> count = $count;
+		}
+		function getCount () {
+			return $this -> count;
+		}
+
 		function toString (){
-			return $this -> id . ", " . $this -> userId . ", " . $this -> secondParty. ", " . $this -> callDuration. ", " . $this -> time. ", " . $this -> type. ", " . $this -> status. ", " . $this -> callerName;
+			return $this -> id . ", " . 
+					$this -> userId . ", " . 
+					$this -> secondParty. ", " . 
+					$this -> callDuration. ", " . 
+					$this -> time. ", " . 
+					$this -> type. ", " . 
+					$this -> status. ", " . 
+					$this -> callerName . ", " .
+					$this -> count;
 		}
 		
 		function toArray() {
@@ -96,7 +113,8 @@
 						time => $this -> time,
 						type => $this -> type,
 						status => $this -> status,
-						callerName => $this -> callerName
+						callerName => $this -> callerName,
+						count => $this-> count
 				);
 		}
 		
