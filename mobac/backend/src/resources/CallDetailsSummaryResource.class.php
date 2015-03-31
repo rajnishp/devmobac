@@ -7,7 +7,7 @@ require_once 'resources/Resource.interface.php';
 require_once 'dao/DAOFactory.class.php';
 require_once 'models/CallDetail.class.php';
 
-require_once 'models/Contact.class.php';
+//require_once 'models/Contact.class.php';
 
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';

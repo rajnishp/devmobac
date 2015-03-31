@@ -1,0 +1,61 @@
+/callDetails-summary/
+
+
+    GET "api.loc.mobac.com/v0/callDetails-summary/"
+
+    Response:
+    
+        {
+            "internal_status": {
+                "code": "5000",
+                "message": "call-detail Fetched"
+            },
+            "data": {
+                "CallDetails": [
+                    {
+                        "id": "11",
+                        "userId": "12",
+                        "secondParty": "+918884500545",
+                        "callDuration": "00:00:00",
+                        "time": "2015-03-07 22:05:16",
+                        "type": "Outgoing",
+                        "status": "0",
+                        "callerName": "Neeraj Sir",
+                        "count": "1"
+                    },
+                    {
+                        "id": "10",
+                        "userId": "12",
+                        "secondParty": "+919886182033",
+                        "callDuration": "00:00:00",
+                        "time": "2015-03-07 22:23:19",
+                        "type": "Outgoing",
+                        "status": "0",
+                        "callerName": "Rahul New",
+                        "count": "1"
+                    },
+                    {
+                        "id": "8",
+                        "userId": "12",
+                        "secondParty": "214747",
+                        "callDuration": "00:00:23",
+                        "time": "2015-03-22 05:16:21",
+                        "type": "",
+                        "status": "0",
+                        "callerName": "myfoot",
+                        "count": "1"
+                    },
+                    {
+                        "id": "9",
+                        "userId": "12",
+                        "secondParty": "2222222222",
+                        "callDuration": "00:00:23",
+                        "time": "2015-03-22 05:26:21",
+                        "type": "",
+                        "status": "0",
+                        "callerName": "myfoot2",
+                        "count": "1"
+                    }
+                ]
+            }
+        }
