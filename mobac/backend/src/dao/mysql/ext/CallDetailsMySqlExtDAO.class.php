@@ -12,7 +12,7 @@ class CallDetailsMySqlExtDAO extends CallDetailsMySqlDAO{
 	 */
 	public function loadCallSummary($id, $userId){
 		$sql = "SELECT *, count(*) AS count FROM `call_details`
-					WHERE id = ? AND user_id = ? AND status=0 
+					WHERE id = ? AND user_id = ? AND status=0 AND time != '0000-00-00 00:00:00'
 						GROUP BY second_party";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
@@ -22,7 +22,7 @@ class CallDetailsMySqlExtDAO extends CallDetailsMySqlDAO{
 
 	public function queryAllCallsSummary($userId){
 		$sql = "SELECT *, count(*) AS count FROM `call_details`
-					WHERE user_id = ? AND status=0 
+					WHERE user_id = ? AND status=0 AND time != '0000-00-00 00:00:00'
 						GROUP BY second_party";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);

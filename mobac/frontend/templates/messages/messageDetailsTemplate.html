@@ -24,13 +24,13 @@
               </a> -->
               <div class="media-body" style="padding-right:30%;">
                 <%= Detail.text %> <br />
-                <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link delmessage" value="<%= Detail.id %>" >Delete</button></small>
+                <small class="text-muted"><%= Detail.time %> <button type="submit" id="delmessage" class="btn-link" value="<%= Detail.id %>" >Delete</button></small>
                 <hr />
               </div>
             <% } else { %>
               <div class="media-body" style="padding-left:30%;" >
                 <%= Detail.text %> <br />
-                <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link delmessage" value="<%= Detail.id %>" >Delete</button></small>
+                <small class="text-muted"><%= Detail.time %> <button type="submit" id="delmessage" class="btn-link" value="<%= Detail.id %>" >Delete</button></small>
                 <hr />
               </div>
               <!-- <a class="pull-right" href="#">
