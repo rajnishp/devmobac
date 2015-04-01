@@ -9,12 +9,13 @@ define([
       model: MessagesModel,
 
       initialize : function(models, options) {
-
+        this.id = models.id;
         console.log("starting Collections");
       },
       
       url : function() {
-        return window.BASE_URL+'/messages';
+        console.log(this.id);
+        return window.BASE_URL+'/message-details/'+this.id;
       }        
      
   });

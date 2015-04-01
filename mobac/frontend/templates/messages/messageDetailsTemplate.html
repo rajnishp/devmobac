@@ -1,6 +1,6 @@
 <% var modal = [];
-  _.each(Details, function(Detail) { 
-    modal.push(Detail.fromTo);
+  _.each(Numbers, function(Detail) { 
+    modal.push(Detail.number);
   });
 %>
 <span style="font-size:18px;">
@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body">
       <ul class="media-list">
-      <% _.each(Details, function(Detail) { %>
+      <% _.each(Numbers, function(Detail) { %>
         <li class="media">
           <div class="media-body">
             <div class="media">
@@ -23,13 +23,13 @@
                 <img class="media-object img-circle " src="assets/img/user.png" />
               </a> -->
               <div class="media-body" style="padding-right:30%;">
-                <%= Detail.messageText %> <br />
+                <%= Detail.text %> <br />
                 <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link delmessage" value="<%= Detail.id %>" >Delete</button></small>
                 <hr />
               </div>
             <% } else { %>
               <div class="media-body" style="padding-left:30%;" >
-                <%= Detail.messageText %> <br />
+                <%= Detail.text %> <br />
                 <small class="text-muted"><%= Detail.time %> <button type="submit" class="btn-link delmessage" value="<%= Detail.id %>" >Delete</button></small>
                 <hr />
               </div>
