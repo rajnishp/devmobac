@@ -64,9 +64,6 @@ class CallDetailsResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        // $userId is set temporally, update it
-        //$userId = 2;
-        
         $callDetailId = $resourceVals ['call-details'];
         if (isset($callDetailId)) {
             $warnings_payload [] = 'POST call to /call-details must not have ' . 
@@ -78,9 +75,7 @@ class CallDetailsResource implements Resource {
             
             foreach ($data["callDetails"] as $key => $value) {
 
-                $string=$value['secondParty'];
-                $s = explode("-",$string);
-                $value['secondParty'] = $s[0].$s[1];
+                $value['secondParty'] = str_replace(array(' ', '-'), array('', ''), $value['secondParty']);
 
                 $callDetailObj = new CallDetail(
                                                     $userId, 
@@ -122,10 +117,8 @@ class CallDetailsResource implements Resource {
 
         } else {
         
-            $string=$data['secondParty'];
-            $s = explode("-",$string);
-            $data['secondParty'] = $s[0].$s[1];
-            
+            $data['secondParty'] = str_replace(array(' ', '-'), array('', ''), $data['secondParty']);
+
             $callDetailObj = new CallDetail(
                                             $userId, 
                                             $data ['secondParty'], 

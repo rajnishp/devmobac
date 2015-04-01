@@ -66,13 +66,11 @@ class MessagesResource implements Resource {
             
             foreach ($data["messages"] as $key => $value) {
 
-                $string=$value['fromTo'];
-                $s = explode("-",$string);
-                $value['fromTo'] = $s[0].$s[1];
+                $value['fromTo'] = str_replace(array(' ', '-'), array('', ''), $value['fromTo']);
 
                 $messageObj = new Message(
                                                 $userId, 
-                                                $value ['fromTo'], 
+                                                $value ['fromTo'],
                                                 $value ['messageText'], 
                                                 $value ['time'],
                                                 $value ['type'], 
@@ -98,11 +96,9 @@ class MessagesResource implements Resource {
         } 
         else {
 
-            $string=$data['fromTo'];
-            $s = explode("-",$string);
-            $data['fromTo'] = $s[0].$s[1];
-
-            $messageObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
+            $newFromTo = str_replace(array(' ', '-'), array('', ''), $data['fromTo']);
+            
+            $messageObj = new Message($userId, $newFromTo, $data ['messageText'], $data ['time'],$data ['type'], 0);
             $logger -> debug ("POSTed message: " . $messageObj -> toString());
 
             $this -> mobacDAO -> insert($messageObj);
