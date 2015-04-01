@@ -60,7 +60,7 @@ class SqlQuery {
 	}
 	if (!is_numeric($value)) {
 	    //throw new Exception($value.' is not a number');
-	    throw new InvalidAttributeTypeException('904', $value . ' is not a number');
+	    //throw new InvalidAttributeTypeException('904', $value . ' is not a number');
 	}
 	$this->params[$this->idx++] = $value;
     }
