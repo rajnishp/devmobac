@@ -9,12 +9,12 @@ define([
       model: CallDetailsModel,
 
       initialize : function(models, options) {
-        
+        this.id = models.id ;
         console.log("starting CallDetails");
       },
       
       url : function() {
-        return window.BASE_URL+'/call-details';
+        return window.BASE_URL+'/callDetail-details/'+this.id;
       }        
      
   });

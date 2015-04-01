@@ -1,6 +1,6 @@
 <% var modal = [];
-  _.each(Details, function(Detail) { 
-    modal.push(Detail.name);
+  _.each(Numbers, function(Detail) { 
+    modal.push(Detail.number);
   });
 %>
 <span style="font-size:18px;">
@@ -15,23 +15,23 @@
       </tr>
     </thead>  
     <tbody>
-      <% _.each(Details, function(Detail) { 
+      <% _.each(Numbers, function(Detail) { 
          if(Detail.type == 'Incoming') {%>
         <tr style='color:blue;'>
-          <td style="text-align:left;padding-left:5%;"><img src="imgs/incoming.png" style='height:50px;'>
+          <td style="text-align:left;padding-left:5%;"><img src="imgs/incoming.png" style='width:50px;'>
         <% } else if (Detail.type == 'Outgoing') { %>
         <tr style='color:green;'>
-          <td style="text-align:left;padding-left:5%;"><img src="imgs/Outgoing.png" style='height:50px;'>
+          <td style="text-align:left;padding-left:5%;"><img src="imgs/Outgoing.png" style='width:50px;'>
         <% } else {%>
         <tr style='color:#FF3903;'>
-          <td style="text-align:left;padding-left:5%;"><img src="imgs/missed2.png" style='height:50px;'>
+          <td style="text-align:left;padding-left:5%;"><img src="imgs/missed2.png" style='width:50px;'>
         <% } %>
-          <span style='font-size:24px;'><%= Detail.name %></span>
+          <span style='font-size:24px;'><%= Detail.number %></span>
            <span class='pull-right'><%= Detail.time %></span><br/>
            <%= Detail.type %> <span class='pull-right'><%= Detail.callDuration %></span>
           </td>
           <td width="10%"><button type="submit" class="btn delcall" value="<%= Detail.id %>">
-            <img src="imgs/delete.png" style="width:30px;height:30px;" /></button></td>
+            <img src="imgs/delete.png" style="width:25  px;height:30px;" /></button></td>
         </tr>          
       <% }); %>
     </tbody>

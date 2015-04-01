@@ -31,7 +31,8 @@ class MessagesMySqlExtDAO extends MessagesMySqlDAO{
 	public function loadMessageSummary($id, $userId){
 		$sql = "SELECT messages.*, user_contacts.name, count(*) AS count FROM `messages` 
 					LEFT OUTER JOIN user_contacts ON messages.from_to=user_contacts.phone 
-					WHERE messages.id = ?  AND messages.from_to != '' AND messages.user_id = ? AND messages.status=0 
+					WHERE messages.id = ?  AND messages.from_to != '' AND messages.user_id = ? 
+					AND messages.status=0 AND messages.time != '0000-00-00 00:00:00'
 						GROUP BY messages.from_to";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($id);
@@ -43,6 +44,7 @@ class MessagesMySqlExtDAO extends MessagesMySqlDAO{
 		$sql = "SELECT messages.*, user_contacts.name, count(*) AS count FROM `messages` 
 					LEFT OUTER JOIN user_contacts ON messages.from_to=user_contacts.phone 
 					WHERE messages.user_id = ? AND messages.from_to != '' AND messages.status=0 
+					AND messages.time != '0000-00-00 00:00:00'
 						GROUP BY messages.from_to";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
