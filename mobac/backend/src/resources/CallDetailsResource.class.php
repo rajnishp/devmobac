@@ -78,6 +78,10 @@ class CallDetailsResource implements Resource {
             
             foreach ($data["callDetails"] as $key => $value) {
 
+                $string=$value['secondParty'];
+                $s = explode("-",$string);
+                $value['secondParty'] = $s[0].$s[1];
+
                 $callDetailObj = new CallDetail(
                                                     $userId, 
                                                     $value ['secondParty'], 
@@ -94,25 +98,18 @@ class CallDetailsResource implements Resource {
                                             );
                     $logger -> debug ("POSTed contact: " . $contactObj -> toString());
                     
-                try {
-                    $this -> mobacDAOContact -> insert($contactObj);
-                } catch (Exception $e) {
-
-                }
-                        
-
+                    try {
+                        $this -> mobacDAOContact -> insert($contactObj);
+                    } 
+                    catch (Exception $e) {     }
                 }
             
-
                 $logger -> debug ("POSTed call-detail: " . $callDetailObj -> toString());
 
                 try {
                     $this -> mobacDAO -> insert($callDetailObj);
-                } catch (Exception $e) {
-
-                }
-
-                
+                } 
+                catch (Exception $e) {    }
 
                 $CallDetails = $callDetailObj -> toArray();
 
@@ -123,10 +120,12 @@ class CallDetailsResource implements Resource {
                 
             }
 
-
         } else {
         
-
+            $string=$data['secondParty'];
+            $s = explode("-",$string);
+            $data['secondParty'] = $s[0].$s[1];
+            
             $callDetailObj = new CallDetail(
                                             $userId, 
                                             $data ['secondParty'], 

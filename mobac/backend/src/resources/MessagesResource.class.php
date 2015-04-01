@@ -65,6 +65,11 @@ class MessagesResource implements Resource {
         if( isset( $data["messages"] ) ){
             
             foreach ($data["messages"] as $key => $value) {
+
+                $string=$value['fromTo'];
+                $s = explode("-",$string);
+                $value['fromTo'] = $s[0].$s[1];
+
                 $messageObj = new Message(
                                                 $userId, 
                                                 $value ['fromTo'], 
@@ -92,6 +97,10 @@ class MessagesResource implements Resource {
 
         } 
         else {
+
+            $string=$data['fromTo'];
+            $s = explode("-",$string);
+            $data['fromTo'] = $s[0].$s[1];
 
             $messageObj = new Message($userId, $data ['fromTo'], $data ['messageText'], $data ['time'],$data ['type'], 0);
             $logger -> debug ("POSTed message: " . $messageObj -> toString());
