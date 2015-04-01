@@ -69,11 +69,11 @@ define([
               var oldDate = callD.time;
               var a = oldDate.split(/\s/); 
               var string = $.timeago(a[0]+"T"+a[1]+"Z"); //String(date).substring(0, 25);
-              if(callD.callerName == null){
-                numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": string, "count" : callD.count, "type" : callD.type});
+              if(callD.callerName !== ""){
+                numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": string, "count" : callD.count, "type" : callD.type});
               }
               else {
-                numbers.push({"name" : callD.callerName, "number": callD.secondParty, "date": string, "count" : callD.count, "type" : callD.type});
+                numbers.push({"name" : callD.secondParty, "number": callD.secondParty, "date": string, "count" : callD.count, "type" : callD.type});
               }
             });
             if(numbers == ""){

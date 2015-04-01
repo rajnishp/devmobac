@@ -10,7 +10,7 @@ define([
 
       initialize : function(models, options) {
         
-        console.log("starting CallDetails");
+        console.log("starting contacts");
       },
       
       url : function() {
