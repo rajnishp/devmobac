@@ -50,7 +50,7 @@ define([
         },
         error: function (contacts, response) {
           var status = response.status;
-          console.log(status);
+          
           if(status == "401"){
             Bootbox.alert("Please login first");
             window.app_router.navigate('default', {trigger:true});
