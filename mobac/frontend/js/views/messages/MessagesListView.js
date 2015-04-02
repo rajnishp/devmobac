@@ -21,13 +21,13 @@ define([
       'click #sendmessage': 'sendmessage'
     },
     initialize : function() {
-      console.log("hello, thers i m initialize");
+      
       document.getElementById("locationDate").innerHTML = "";
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       that.bind("reset", that.clearView);
-      this.undelegateEvents();
-      $(this.el).empty();
+      /*this.undelegateEvents();
+      $(this.el).empty();*/
     },
     sendmessage : function(options){
       var text = $("#messagetext").val();
@@ -35,9 +35,6 @@ define([
       console.log(text);
     },
     deletemessage:function( options){
-      console.log("opt");
-      //$('#delmessage').attr('disable', 'disable');
-      alert("hi");
       Bootbox.confirm("Do u really want to delete this message?", function(result) {
         if(result){
           var key = $.readCookie("auth-key");

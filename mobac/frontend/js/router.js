@@ -51,28 +51,22 @@ define([
             var loginView = new LoginView();
             loginView.render();
         });
-
+        var messagesListView = new MessagesListView();
         app_router.on('route:messages', function (number) {
-            
-            var messagesListView = new MessagesListView();
             messagesListView.render({number : number});
         });
 
         app_router.on('route:locations', function (date) {
-            
             var locationsView = new LocationsView();
             locationsView.render({date : date});
         
         });
-
+        var callDetailsListView = new CallDetailsListView();
         app_router.on('route:call-details', function (phone) {
-            
-            var callDetailsListView = new CallDetailsListView();
             callDetailsListView.render({phone : phone});
         });
 
         app_router.on('route:contacts', function () {
-            
             var contactsView = new ContactsView();
             contactsView.render();
         });
