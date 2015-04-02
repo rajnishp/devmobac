@@ -17,7 +17,7 @@ define([
     
     el : $("#page"),
     events: {
-      'click .delcall': 'deleteCallDetails'
+      'submit .delcall': 'deleteCallDetails'
     },
     initialize : function() {
       var that = this;
@@ -25,12 +25,14 @@ define([
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       that.bind("reset", that.clearView);
     },
-    deleteCallDetails: function (options) {
+    deleteCallDetails: function (ev) {
+      var data = $(ev.currentTarget).serializeObject1();
       Bootbox.confirm("Do u really want to delete this?", function(result) {
         if(result){
           var that = this;
           var key = $.readCookie("auth-key");
-          var rowId = options.target.attributes.value.value;
+          var rowId = data.value;
+          
           var callDetails = new CallDetailsModel({id: rowId});
           
           callDetails.destroy({

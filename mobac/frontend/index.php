@@ -42,12 +42,14 @@ if (!isset($_SESSION['user_id'])) {
           <a href="#/messages" class="navbar-brand">
           		Mobac
           </a>
-          <a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> 
-          <a href='#/call-details' class="myclass" ><img src="imgs/callHis.jpeg" /> CallDetails </a>
-          <a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a>
-          <a href='#/contacts' class="myclass" ><img src="imgs/Callloglogo.png" /> Contacts </a>
-          <a href='#/locations' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a>
-          <a href='#/logout' class="myclass" id="logout"> </a>
+          <ul class="nav nav-tabs nav-justified">
+            <li><a href='#/messages' class="myclass"><img src="imgs/index.jpeg" /> Messages</a> </li>
+            <li><a href='#/call-details' class="myclass" ><img src="imgs/callHis.jpeg" /> Call Logs </a></li>
+            <li><a href='#/locations' class="myclass" ><img src="imgs/locations.png" /> Locations </a></li>
+            <li><a href='#/contacts' class="myclass" ><img src="imgs/Callloglogo.png" /> Contacts </a></li>
+            <li><a href='#/locations' class="myclass" ><img src="imgs/sharelocation.png" /> Share Location </a></li>
+            <li><a href='#/logout' class="myclass" id="logout"> </a></li>
+          </ul>
         </div>
       </div> 
     </div>
@@ -71,6 +73,5 @@ if (!isset($_SESSION['user_id'])) {
 
   <div id="footer"></div>
 </div>
-<div class="modal fade hide" id="base-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </body>
 </html>

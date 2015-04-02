@@ -3955,7 +3955,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   cursor: default;
 }
 .nav-tabs.nav-justified {
-  width: 100%;
+  width: 90%;
   border-bottom: 0;
 }
 .nav-tabs.nav-justified > li {
@@ -3969,10 +3969,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   top: auto;
   left: auto;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
+  .nav-tabs.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+  }
   .nav-tabs.nav-justified > li {
-    display: table-cell;
-    width: 1%;
+    display: table-row;
+    width: 25%;
   }
   .nav-tabs.nav-justified > li > a {
     margin-bottom: 0;
@@ -4200,8 +4204,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (max-width: 779px) {
   .navbar-brand {
     float: left;
-    padding: 8px 3px;
-    font-size: 12px;
+    padding: 5px 1px;
+    font-size: 0px;
     line-height: 15px;
     height: 50px;
   }
@@ -6861,7 +6865,7 @@ a.list-group-item-danger.active:focus {
     font-size: 14px;
   }
   img{
-    width:3%;
+    width:6%;
     padding-top:10px;
   }
 }
@@ -6871,12 +6875,13 @@ a.list-group-item-danger.active:focus {
     padding: 0px;
   }
   img{
-    width:25px; 
-    height:25px;
+    width:0px; 
+    height:0px;
   }
   .myclass {
-    padding-left:3px;
-    font-size:0;
+    padding-left:1px;
+    text-align: center;
+    font-size:10px;
   }.
   .panel {
     width:100%;
