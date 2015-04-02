@@ -26,8 +26,8 @@ define([
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       that.bind("reset", that.clearView);
-      this.undelegateEvents();
-      $(this.el).empty();
+      /*this.undelegateEvents();
+      $(this.el).empty();*/
     },
     sendmessage : function(options){
       var text = $("#messagetext").val();
