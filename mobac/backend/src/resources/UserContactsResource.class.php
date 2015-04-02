@@ -31,9 +31,6 @@ class UserContactsResource implements Resource {
     public function delete ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload; 
 
-        // $userId is set temporally, update it
-        //$userId = 2;
-
         $contactId = $resourceVals ['contacts'];
 
         if (! isset($contactId)) {
@@ -60,9 +57,6 @@ class UserContactsResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        // $userId is set temporally, update it
-        //$userId = 2;
-        
         $contactId = $resourceVals ['contacts'];
         if (isset($contactId)) {
             $warnings_payload [] = 'POST call to /contacts must not have ' . 
@@ -134,9 +128,6 @@ class UserContactsResource implements Resource {
 
 
     public function get($resourceVals, $data, $userId) {
-
-        // $userId is set temporally, update it
-        $userId = 2;
 
         $contactId = $resourceVals ['contacts'];
         if (isset($contactId))
