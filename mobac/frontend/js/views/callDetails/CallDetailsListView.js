@@ -92,7 +92,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("Please try again");
+              Bootbox.alert("No data available");
             }
           }
         });
@@ -129,7 +129,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("Please try again");
+              Bootbox.alert("No data available");
             }
           }
         });

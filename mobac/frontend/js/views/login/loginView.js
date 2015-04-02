@@ -48,7 +48,7 @@ define([
               window.app_router.navigate('#/messages', {trigger:true});
             },
             error: function (loginDetails,response) {
-              Bootbox.alert("Please try again");
+              Bootbox.alert("Username or Password is wrong");
             }
           });
         }
