@@ -86,7 +86,7 @@ define([
                 newloc.setMap(map);
               }
               if(center == "" || center == undefined || center == null){
-                Bootbox.alert("No locations available");
+               that.$el.html("<h3> Sorry No Data Available </h3>");
               }
                       
               var infowindow = new google.maps.InfoWindow({
@@ -104,7 +104,7 @@ define([
               if(options.date == date){
                 if(locationData[i].latitude == 0.000000 && locationData[i].longitude == 0.000000){
                   break;
-                  Bootbox.alert("No locations available for this date"); 
+                  that.$el.html("<h3> Sorry No locations available for this date </h3>"); 
                 }
                 else {     
                   var mylocation = new google.maps.LatLng(locationData[i].latitude, locationData[i].longitude);
@@ -182,7 +182,7 @@ define([
           }
 
           if(mylocation == ""){
-            Bootbox.alert("No locations available for this date");
+            that.$el.html("<h3> Sorry No locations available for this date </h3>");
           }
           return map;
         },
@@ -193,7 +193,7 @@ define([
             window.app_router.navigate('default', {trigger:true});
           }
           else {
-            Bootbox.alert("Please try again");
+            that.$el.html("<h3> Sorry No Data Available </h3>");
           }
         }
       });

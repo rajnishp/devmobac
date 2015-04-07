@@ -22,6 +22,7 @@ define([
       that.bind("reset", that.clearView);
      },
     render: function (options) {
+      document.getElementById("locationDate").innerHTML = "";
       var that = this;
       var options = options; 
       var contacts = new ContactsCollection();
@@ -33,16 +34,16 @@ define([
         } ,
         success: function (contacts) {  
           contactsData = contacts.models[0].attributes.data.contacts;
-          var Details = [];
-          _.each(contactsData, function(detail){
+          //var Details = [];
+        /*  _.each(contactsData, function(detail){
             var that = this;
             var oldDate = detail.lastUpdateTime;
             var a = oldDate.split(/\s/); 
             //var date = new Date(a[0], a[1] -1, a[2], a[3], a[4], a[5]);
             var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
             Details.push({'name': detail.name, "number" : detail.phone, "time" : string});
-          });
-          var template = _.template(ContactsTemplate, {Details: Details});
+          });*/
+          var template = _.template(ContactsTemplate, {Details: contactsData});
           //$('#PhoneDetails-list-template').html(template); 
           that.$el.html(template);
           //$('#phoneDetailsTable').DataTable();
@@ -56,7 +57,7 @@ define([
             window.app_router.navigate('default', {trigger:true});
           }
           else {
-            Bootbox.alert("Please try again");
+            that.$el.html("<h3> Sorry No Data Available </h3>");
           }
         }
       });

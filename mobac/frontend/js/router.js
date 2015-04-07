@@ -46,7 +46,7 @@ define([
         app_router.on('route:defaultAction', function () {
             var key = $.readCookie("auth-key");
             if(key != null){
-                window.app_router.navigate('#/messages', {trigger:true});
+                window.app_router.navigate('#/call-details', {trigger:true});
             }
             var loginView = new LoginView();
             loginView.render();
@@ -74,7 +74,7 @@ define([
         app_router.on('route:login', function () {
             var key = $.readCookie("auth-key");
             if(key != null){
-                window.app_router.navigate('#/messages', {trigger:true});
+                window.app_router.navigate('#/call-details', {trigger:true});
             }
             var loginView = new LoginView();
             loginView.render();

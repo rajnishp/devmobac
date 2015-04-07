@@ -48,7 +48,7 @@ define([
               window.app_router.navigate('#/messages', {trigger:true});
             },
             error: function (loginDetails,response) {
-              Bootbox.alert("Please try again");
+              Bootbox.alert("Username or Password is wrong");
             }
           });
         }
@@ -56,6 +56,7 @@ define([
         return false;
       },
       render: function () {
+        document.getElementById("locationDate").innerHTML = "";
         var that = this;
         var template = _.template(loginTemplate); 
         that.$el.html(template);

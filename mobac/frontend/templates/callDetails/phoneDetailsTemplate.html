@@ -30,8 +30,14 @@
            <span class='pull-right'><%= Detail.time %></span><br/>
            <%= Detail.type %> <span class='pull-right'><%= Detail.callDuration %></span>
           </td>
-          <td width="10%"><button type="submit" class="btn delcall" value="<%= Detail.id %>">
-            <img src="imgs/delete.png" style="width:22px;height:30px;" /></button></td>
+          <td width="10%">
+            <form class="delcall">
+              <input name="value" type="hidden" value="<%= Detail.id %>" />
+              <button type="submit" class="btn">
+              <img src="imgs/delete.png" style="width:22px;height:30px;" />
+              </button>
+            </form>
+          </td>
         </tr>          
       <% }); %>
     </tbody>

@@ -17,7 +17,7 @@ define([
     
     el : $("#page"),
     events: {
-      'click .delcall': 'deleteCallDetails'
+      'submit .delcall': 'deleteCallDetails'
     },
     initialize : function() {
       var that = this;
@@ -25,12 +25,14 @@ define([
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       that.bind("reset", that.clearView);
     },
-    deleteCallDetails: function (options) {
+    deleteCallDetails: function (ev) {
+      var data = $(ev.currentTarget).serializeObject1();
       Bootbox.confirm("Do u really want to delete this?", function(result) {
         if(result){
           var that = this;
           var key = $.readCookie("auth-key");
-          var rowId = options.target.attributes.value.value;
+          var rowId = data.value;
+          
           var callDetails = new CallDetailsModel({id: rowId});
           
           callDetails.destroy({
@@ -52,6 +54,7 @@ define([
       });
     },
     render: function (options) {
+      document.getElementById("locationDate").innerHTML = "";
       var that = this;
       var options = options; 
       var key = $.readCookie("auth-key");
@@ -77,7 +80,7 @@ define([
               }
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(CallDetailsTemplate, {Numbers: numbers});
             //$('#CallDetails-list-template').html(template); 
@@ -92,7 +95,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("Please try again");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });
@@ -114,7 +117,7 @@ define([
               numbers.push({"id": callD.id, "number": callD.secondParty, "date": string, "type" : callD.type, "callDuration": callD.callDuration});
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(PhoneDetailsTemplate, {Numbers: numbers});
             //$('#CallDetails-list-template').html(template); 
@@ -129,7 +132,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("Please try again");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });
