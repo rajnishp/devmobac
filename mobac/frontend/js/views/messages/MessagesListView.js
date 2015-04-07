@@ -78,7 +78,7 @@ define([
     sendmessage : function(options){
       var text = $("#messagetext").val();
       $("#messagetext").val("");
-      console.log(text);
+      /*console.log(text);*/
     },
     deletemessage:function( options){
       Bootbox.confirm("Do u really want to delete this message?", function(result) {

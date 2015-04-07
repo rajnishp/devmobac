@@ -40,7 +40,7 @@ define([
             var newvalue = parseInt(parseInt(length)+3);
             $.createCookie("callDetails-start", newvalue, 1);
             var newcallDetails = "";
-            callDetailsData = callDetails.models[0].attributes.data.callDetails;
+            callDetailsData = callDetails.models[0].attributes.data.CallDetails;
             _.each(callDetailsData, function(callD){
               var oldDate = callD.time;
               var a = oldDate.split(/\s/); 
