@@ -83,7 +83,7 @@ define([
               numbers.push({"number" : phone.fromTo, "text" : phone.messageText, "name" : phone.name, "time" : string, "count" : phone.count});
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(MessagesTemplate, {Numbers: numbers});
             //$('#messages-list-template').html(template); 
@@ -98,7 +98,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("No data available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });
@@ -120,7 +120,7 @@ define([
               numbers.push({"id" : phone.id, "number" : phone.fromTo, "text" : phone.messageText, "time" : string, "type" : phone.type});
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(MessageDetailsTemplate, {Numbers: numbers});
             //$('#messages-list-template').html(template); 
@@ -129,13 +129,12 @@ define([
           },
           error: function (messages, response) {
             var status = response.status;
-            c
             if(status == "401"){
               Bootbox.alert("Please login first");
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("No data available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });

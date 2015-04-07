@@ -56,7 +56,7 @@ define([
             window.app_router.navigate('default', {trigger:true});
           }
           else {
-            Bootbox.alert("No data available");
+            that.$el.html("<h3> Sorry No Data Available </h3>");
           }
         }
       });

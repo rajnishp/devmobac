@@ -79,7 +79,7 @@ define([
               }
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(CallDetailsTemplate, {Numbers: numbers});
             //$('#CallDetails-list-template').html(template); 
@@ -94,7 +94,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("No data available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });
@@ -116,7 +116,7 @@ define([
               numbers.push({"id": callD.id, "number": callD.secondParty, "date": string, "type" : callD.type, "callDuration": callD.callDuration});
             });
             if(numbers == ""){
-              Bootbox.alert("Sorry No Data Available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
             var template = _.template(PhoneDetailsTemplate, {Numbers: numbers});
             //$('#CallDetails-list-template').html(template); 
@@ -131,7 +131,7 @@ define([
               window.app_router.navigate('default', {trigger:true});
             }
             else {
-              Bootbox.alert("No data available");
+              that.$el.html("<h3> Sorry No Data Available </h3>");
             }
           }
         });
