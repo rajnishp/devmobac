@@ -15,6 +15,7 @@ define([
     
      el : $("#page"),
      
+     
      initialize : function() {
       var that = this;
       document.getElementById("locationDate").innerHTML = "";

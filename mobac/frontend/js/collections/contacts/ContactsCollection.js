@@ -14,7 +14,16 @@ define([
       },
       
       url : function() {
-        return window.BASE_URL+'/contacts';
+        var start = $.readCookie("contacts-start");
+        if(start==null){
+          start = 0;
+          limit = 10;
+        }
+        else {
+          start = start; 
+          limit = 3;
+        }
+        return window.BASE_URL+'/contacts/start='+start+'&limit='+limit;
       }        
      
   });

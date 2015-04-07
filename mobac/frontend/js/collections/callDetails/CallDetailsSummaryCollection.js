@@ -14,7 +14,16 @@ define([
       },
       
       url : function() {
-        return window.BASE_URL+'/callDetails-summary';
+        var start = $.readCookie("callDetails-start");
+        if(start==null){
+          start = 0;
+          limit = 10;
+        }
+        else {
+          start = start; 
+          limit = 3;
+        }
+        return window.BASE_URL+'/callDetails-summary/start='+start+'&limit='+limit;
       }        
      
   });

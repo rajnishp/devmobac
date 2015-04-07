@@ -21,13 +21,20 @@ define([
       'click #sendmessage': 'sendmessage'
     },
     initialize : function() {
-      
+      _.bindAll(this, 'detect_scroll');
+      // bind to window
+      $(window).scroll(this.detect_scroll);
       document.getElementById("locationDate").innerHTML = "";
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       that.bind("reset", that.clearView);
       /*this.undelegateEvents();
       $(this.el).empty();*/
+    },
+    detect_scroll: function() {
+      if ($(window).scrollTop() == ($(document).height() - window.innerHeight)) {
+        console.log('detected');
+      }
     },
     sendmessage : function(options){
       var text = $("#messagetext").val();
@@ -75,6 +82,7 @@ define([
               xhr.setRequestHeader('AUTH-KEY', key);
           },
           success: function (messages) {
+            console.log(messages);
             messagesData = messages.models[0].attributes.data.messages;
             var numbers = [];
             _.each(messagesData, function(phone){
