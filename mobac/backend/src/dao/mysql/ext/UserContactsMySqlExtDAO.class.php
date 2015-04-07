@@ -18,8 +18,8 @@ class UserContactsMySqlExtDAO extends UserContactsMySqlDAO{
 	/**
 	 * Get all records from table
 	 */
-	public function queryAllUserContacts($userId){
-		$sql = 'SELECT * FROM user_contacts WHERE user_id = ?';
+	public function queryAllUserContacts($userId, $start, $limit){
+		$sql = "SELECT * FROM user_contacts WHERE user_id = ? LIMIT $start, $limit";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
