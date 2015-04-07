@@ -14,14 +14,47 @@ define([
     var ContactsView = Backbone.View.extend({
     
      el : $("#page"),
-     
+
      
      initialize : function() {
+      _.bindAll(this, 'detect_scroll');
+      // bind to window
+      $(window).scroll(this.detect_scroll);
       var that = this;
       document.getElementById("locationDate").innerHTML = "";
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       that.bind("reset", that.clearView);
      },
+     detect_scroll: function() {
+      if ($(window).scrollTop() == ($(document).height() - window.innerHeight)) {
+        var key = $.readCookie("auth-key");
+        var contacts = new ContactsCollection();
+        contacts.fetch({
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+          },
+          success: function (contacts) {
+            var length = $.readCookie("contacts-start");
+            var newvalue = parseInt(parseInt(length)+3);
+            $.createCookie("contacts-start", newvalue, 1);
+            var newcontacts = "";
+            contactsData = contacts.models[0].attributes.data.contacts;
+            _.each(contactsData, function(Contact) {
+              newcontacts += "<li class='media'>" +
+                                "<div class='media-body'>" +
+                                  "<div class='media'>"+
+                                  "<a style='font-size:24px;'>"+Contact.name +"</a>"+
+                                  "<span class='pull-right'>"+ Contact.emailContact+ "</span><br/>"+
+                                  "<span style='color:green;'>"+ Contact.phone +"</span>"+
+                                  "</div><hr/>"+
+                                "</div>"+
+                              "</li>" ;
+            });
+            $("#newcontacts").append(newcontacts);
+          }
+        });
+      }
+    },
     render: function (options) {
       document.getElementById("locationDate").innerHTML = "";
       var that = this;
@@ -35,6 +68,8 @@ define([
         } ,
         success: function (contacts) {  
           contactsData = contacts.models[0].attributes.data.contacts;
+          var value = contactsData.length;
+          $.createCookie("contacts-start", value, 1);
           //var Details = [];
         /*  _.each(contactsData, function(detail){
             var that = this;

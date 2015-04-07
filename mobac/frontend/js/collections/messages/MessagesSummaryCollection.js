@@ -23,7 +23,7 @@ define([
           start = start; 
           limit = 3;
         }
-        return window.BASE_URL+'/messages-summary';
+        return window.BASE_URL+'/messages-summary?start='+start+'&limit='+limit;
       }        
      
   });

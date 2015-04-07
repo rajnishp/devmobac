@@ -20,10 +20,64 @@ define([
       'submit .delcall': 'deleteCallDetails'
     },
     initialize : function() {
+      _.bindAll(this, 'detect_scroll');
+      $(window).scroll(this.detect_scroll);
       var that = this;
       document.getElementById("locationDate").innerHTML = "";
       document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       that.bind("reset", that.clearView);
+    },
+    detect_scroll: function() {
+      if ($(window).scrollTop() == ($(document).height() - window.innerHeight)) {
+        var key = $.readCookie("auth-key");
+        var callDetails = new CallDetailsSummaryCollection();
+        callDetails.fetch({
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+          },
+          success: function (callDetails) {
+            var length = $.readCookie("callDetails-start");
+            var newvalue = parseInt(parseInt(length)+3);
+            $.createCookie("callDetails-start", newvalue, 1);
+            var newcallDetails = "";
+            callDetailsData = callDetails.models[0].attributes.data.callDetails;
+            _.each(callDetailsData, function(callD){
+              var oldDate = callD.time;
+              var a = oldDate.split(/\s/); 
+              var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+              newcallDetails += "<li class='media'>" +
+                             "<div class='media-body'>" +
+                              "<div class='media'>" ;
+              if(callD.type == 'Incoming') {
+                newcallDetails = newcallDetails += "<img src='imgs/incoming.png' style='width:50px;'>" ;
+              } 
+              else if (callD.type == 'Outgoing') {
+                newcallDetails = newcallDetails += "<img src='imgs/Outgoing.png' style='width:50px;'>" ;
+              } 
+              else {
+                newcallDetails = newcallDetails += "<img src='imgs/missed2.png' style='width:50px;'>" ;
+              }
+              if(callD.callerName !== ""){
+                newcallDetails = newcallDetails += "<a href='#/call-details/"+callD.secondParty+
+                                                    "' style='font-size:24px;'>"+ callD.callerName +"</a>" ;
+              }
+              else {
+                newcallDetails = newcallDetails += "<a href='#/call-details/"+callD.secondParty+
+                                                    "' style='font-size:24px;'>"+ callD.secondParty +"</a>" ;
+              }
+              newcallDetails = newcallDetails += "<span class='pull-right' style='color:green;'>" ;
+              if(callD.count > 1) { 
+                newcallDetails = newcallDetails += "("+callD.count +")" ; 
+              } 
+              newcallDetails = newcallDetails += "</span><br/>" + 
+                                          "<span class='pull-right'>"+ 
+                                          string + 
+                                          "</span></div><hr/></div></li>" ;
+            });
+            $("#newcallDetails").append(newcallDetails);
+          }
+        });
+      }
     },
     deleteCallDetails: function (ev) {
       var data = $(ev.currentTarget).serializeObject1();
@@ -67,6 +121,8 @@ define([
           } ,
           success: function (CallDetails) {  
             callDetailsData = CallDetails.models[0].attributes.data.CallDetails;
+            var value = callDetailsData.length;
+            $.createCookie("callDetails-start", value, 1);
             _.each(callDetailsData, function(callD){
               var that = this;
               var oldDate = callD.time;

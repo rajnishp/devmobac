@@ -33,7 +33,46 @@ define([
     },
     detect_scroll: function() {
       if ($(window).scrollTop() == ($(document).height() - window.innerHeight)) {
-        console.log('detected');
+        var key = $.readCookie("auth-key");
+        var messages = new MessagesSummaryCollection(); 
+        messages.fetch({
+          beforeSend: function (xhr) {
+              xhr.setRequestHeader('AUTH-KEY', key);
+          },
+          success: function (messages) {
+            var length = $.readCookie("messages-start");
+            var newvalue = parseInt(parseInt(length)+3);
+            $.createCookie("messages-start", newvalue, 1);
+            var newmessages = "";
+            messagesData = messages.models[0].attributes.data.messages;
+            _.each(messagesData, function(message){
+              var oldDate = message.time;
+              var a = oldDate.split(/\s/); 
+              var string = $.timeago(a[0]+"T"+a[1]+"Z");//String(date).substring(0, 25);
+              var text = message.messageText;
+              var data = text.substring(0, 30);
+              newmessages += "<li class='media'>" +
+                             "<div class='media-body'>" +
+                              "<div class='media'>" ;
+              if(message.name == null) {
+                newmessages = newmessages += "<a  href='#/messages/"+message.fromTo+"'style='font-size:24px;'>"+message.fromTo+"</a>" ;
+              } 
+              else {
+                newmessages = newmessages += "<a  href='#/messages/"+message.fromTo+"'style='font-size:24px;'>"+message.name+"</a>" ;
+              } 
+              newmessages = newmessages += "<span class='pull-right' style='color:green;'>";
+              if(message.count > 1){ 
+                newmessages = newmessages += "("+message.count+")" ;
+              } 
+              newmessages = newmessages += "</span><br/>" + 
+                                              data + 
+                                          "<span class='pull-right'>"+ 
+                                          string + 
+                                          "</span></div><hr/></div></li>" ;
+            });
+            $("#newmessages").append(newmessages);
+          }
+        });
       }
     },
     sendmessage : function(options){
@@ -82,8 +121,9 @@ define([
               xhr.setRequestHeader('AUTH-KEY', key);
           },
           success: function (messages) {
-            console.log(messages);
             messagesData = messages.models[0].attributes.data.messages;
+            var value = messagesData.length;
+            $.createCookie("messages-start", value, 1);
             var numbers = [];
             _.each(messagesData, function(phone){
               var oldDate = phone.time;
