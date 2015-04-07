@@ -64,6 +64,7 @@ define([
       });
     },
     render: function (options) {
+      document.getElementById("locationDate").innerHTML = "";
       var that = this;
       var options = options;
       var key = $.readCookie("auth-key");

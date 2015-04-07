@@ -56,6 +56,7 @@ define([
         return false;
       },
       render: function () {
+        document.getElementById("locationDate").innerHTML = "";
         var that = this;
         var template = _.template(loginTemplate); 
         that.$el.html(template);

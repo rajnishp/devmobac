@@ -22,6 +22,7 @@ define([
       that.bind("reset", that.clearView);
      },
     render: function (options) {
+      document.getElementById("locationDate").innerHTML = "";
       var that = this;
       var options = options; 
       var contacts = new ContactsCollection();
