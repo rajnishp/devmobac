@@ -34,11 +34,14 @@ class MessagesSummaryResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
 
+        $start = intval($data['start']);
+        $limit = intval($data['limit']);
+
         $messageId = $resourceVals ['messages-summary'];
         if (isset($messageId))
             $result = $this->getMessageSummary($messageId, $userId);
         else
-            $result = $this -> getListOfAllMessagesSummary($userId);
+            $result = $this -> getListOfAllMessagesSummary($userId, $start, $limit);
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -68,13 +71,13 @@ class MessagesSummaryResource implements Resource {
             );
     }
 
-    private function getListOfAllMessagesSummary($userId) {
+    private function getListOfAllMessagesSummary($userId, $start, $limit) {
     
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
 
-        $listOfmessageObjs = $this -> mobacDAO -> queryAllMessagesSummary($userId);
+        $listOfmessageObjs = $this -> mobacDAO -> queryAllMessagesSummary($userId, $start, $limit);
         
         if(empty($listOfmessageObjs)) 
                 return array('code' => '2004');

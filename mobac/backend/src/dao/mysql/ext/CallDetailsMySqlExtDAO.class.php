@@ -20,10 +20,10 @@ class CallDetailsMySqlExtDAO extends CallDetailsMySqlDAO{
 		return $this->getRowCallSummary($sqlQuery);
 	}
 
-	public function queryAllCallsSummary($userId){
+	public function queryAllCallsSummary($userId, $start, $limit){
 		$sql = "SELECT *, count(*) AS count FROM `call_details`
 					WHERE user_id = ? AND status=0 AND time != '0000-00-00 00:00:00'
-						GROUP BY second_party";
+						GROUP BY second_party LIMIT $start, $limit";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($userId);
 		return $this->getListCallsSummary($sqlQuery);

@@ -38,11 +38,14 @@ class CallDetailsSummaryResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
 
+        $start = intval($data['start']);
+        $limit = intval($data['limit']);
+        
         $callDetailId = $resourceVals ['callDetails-summary'];
         if (isset($callDetailId))
             $result = $this->getCallSummary($callDetailId, $userId);
         else
-            $result = $this -> getListOfAllCallsSummary($userId);
+            $result = $this -> getListOfAllCallsSummary($userId, $start, $limit);
 
         if (!is_array($result)) {
             return array('code' => '5004');
@@ -72,12 +75,12 @@ class CallDetailsSummaryResource implements Resource {
             );
     }
 
-    private function getListOfAllCallsSummary($userId) {
+    private function getListOfAllCallsSummary($userId, $start, $limit) {
     
         global $logger;
         $logger->debug('Fetch list of all messages...');
 
-        $listOfcallDetailObj = $this -> mobacDAO -> queryAllCallsSummary($userId);
+        $listOfcallDetailObj = $this -> mobacDAO -> queryAllCallsSummary($userId, $start, $limit);
         
         if(empty($listOfcallDetailObj)) 
                 return array('code' => '5004');

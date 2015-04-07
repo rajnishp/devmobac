@@ -126,14 +126,17 @@ class UserContactsResource implements Resource {
         
     }
 
-
+    
     public function get($resourceVals, $data, $userId) {
 
+        $start = intval($data['start']);
+        $limit = intval($data['limit']);
+        
         $contactId = $resourceVals ['contacts'];
         if (isset($contactId))
             $result = $this->getContact($contactId, $userId);
         else
-            $result = $this -> getListOfAllContacts($userId);
+            $result = $this -> getListOfAllContacts($userId, $start, $limit);
 
         if (!is_array($result)) {
             return array('code' => '7004');
@@ -163,12 +166,12 @@ class UserContactsResource implements Resource {
             );
     }
 
-    private function getListOfAllContacts($userId) {
+    private function getListOfAllContacts($userId, $start, $limit) {
     
         global $logger;
         $logger->debug('Fetch list of all Contacts...');
 
-        $listOfContactObj = $this -> mobacDAO -> queryAllUserContacts($userId);
+        $listOfContactObj = $this -> mobacDAO -> queryAllUserContacts($userId, $start, $limit);
         if(empty($listOfContactObj)) 
                 return array('code' => '7004');
 
