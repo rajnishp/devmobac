@@ -109,7 +109,7 @@ class CallDetailsMySqlDAO implements CallDetailsDAO{
 	}
 
 	public function queryBySecondParty($value, $userId){
-		$sql = 'SELECT * FROM call_details WHERE second_party = ? AND user_id = ? AND status = 0';
+		$sql = 'SELECT * FROM call_details WHERE second_party = ? AND user_id = ? AND status = 0 ORDER BY `time` DESC';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery -> setNumber($value);
 		$sqlQuery -> set($userId);

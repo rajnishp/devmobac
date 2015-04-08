@@ -105,7 +105,7 @@ class MessagesMySqlDAO implements MessagesDAO{
 	}
 
 	public function queryByFromTo($value, $userId){
-		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ? AND status = 0';
+		$sql = 'SELECT * FROM messages WHERE from_to = ? AND user_id = ? AND status = 0 ORDER BY `time` DESC';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		$sqlQuery->setNumber($userId);
