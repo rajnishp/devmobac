@@ -125,6 +125,15 @@ define([
             messagesData = messages.models[0].attributes.data.messages;
             var value = messagesData.length;
             $.createCookie("messages-start", value, 1);
+            
+            var aaa = messagesData.sort(function comp(a, b) {
+              var oldDate = a.time;
+              var a = oldDate.split(/\s/);
+              var old = b.time;
+              var b = old.split(/\s/);
+              return  new Date(b[0]).getTime() - new Date(a[0]).getTime() ;
+            });
+            console.log(aaa);
             var numbers = [];
             _.each(messagesData, function(phone){
               var oldDate = phone.time;
