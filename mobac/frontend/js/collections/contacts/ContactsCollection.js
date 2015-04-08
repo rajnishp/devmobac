@@ -21,7 +21,7 @@ define([
         }
         else {
           start = start; 
-          limit = 3;
+          limit = 10;
         }
         return window.BASE_URL+'/contacts?start='+start+'&limit='+limit;
       }        

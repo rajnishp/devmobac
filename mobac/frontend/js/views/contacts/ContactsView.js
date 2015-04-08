@@ -35,7 +35,7 @@ define([
           },
           success: function (contacts) {
             var length = $.readCookie("contacts-start");
-            var newvalue = parseInt(parseInt(length)+3);
+            var newvalue = parseInt(parseInt(length)+10);
             $.createCookie("contacts-start", newvalue, 1);
             var newcontacts = "";
             contactsData = contacts.models[0].attributes.data.contacts;
@@ -57,6 +57,7 @@ define([
     },
     render: function (options) {
       document.getElementById("locationDate").innerHTML = "";
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       var options = options; 
       var contacts = new ContactsCollection();

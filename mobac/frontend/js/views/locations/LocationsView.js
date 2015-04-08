@@ -18,6 +18,7 @@ define([
     },
 
     render: function (options) {
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       var locations = new LocationsCollection();
       
