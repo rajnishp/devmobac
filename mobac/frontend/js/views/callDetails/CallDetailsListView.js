@@ -37,7 +37,7 @@ define([
           },
           success: function (callDetails) {
             var length = $.readCookie("callDetails-start");
-            var newvalue = parseInt(parseInt(length)+3);
+            var newvalue = parseInt(parseInt(length)+10);
             $.createCookie("callDetails-start", newvalue, 1);
             var newcallDetails = "";
             callDetailsData = callDetails.models[0].attributes.data.CallDetails;
@@ -109,6 +109,7 @@ define([
     },
     render: function (options) {
       document.getElementById("locationDate").innerHTML = "";
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       var options = options; 
       var key = $.readCookie("auth-key");

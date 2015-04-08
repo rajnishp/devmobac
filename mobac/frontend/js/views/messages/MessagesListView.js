@@ -41,7 +41,7 @@ define([
           },
           success: function (messages) {
             var length = $.readCookie("messages-start");
-            var newvalue = parseInt(parseInt(length)+3);
+            var newvalue = parseInt(parseInt(length)+10);
             $.createCookie("messages-start", newvalue, 1);
             var newmessages = "";
             messagesData = messages.models[0].attributes.data.messages;
@@ -111,6 +111,7 @@ define([
     },
     render: function (options) {
       document.getElementById("locationDate").innerHTML = "";
+      document.getElementById("logout").innerHTML = "<img src='imgs/logout.jpeg' /> Logout";
       var that = this;
       var options = options;
       var key = $.readCookie("auth-key");
